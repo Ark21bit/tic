@@ -12,7 +12,7 @@
                 <NuxtLink to="#">Блог</NuxtLink>
             </nav>
             <div class="flex text-[rgba(255,255,255,0.4)] text-sm">
-                <NuxtLink to="#" class="flex text-white after:w-[1px] after:h-full after:bg-[rgba(28,25,25,0.4)] after:mx-2.5">РУ</NuxtLink>            
+                <NuxtLink to="#" class="flex text-white after:w-[1px] after:h-full after:bg-[rgba(255,255,255,0.4)] after:mx-2.5">РУ</NuxtLink>            
                 <NuxtLink to="#" class="flex">EN</NuxtLink>
             </div>
         </div>
@@ -20,12 +20,12 @@
             <div class="lg:wrapper lg:gap-20 lg:flex grid-container leading-[1.2]">
                 <div class="flex max-lg:col-[full] flex-col gap-5 lg:flex-[1.55]">
                     <div class="lg:gap-[15px] gap-5 flex flex-wrap max-lg:pb-5 max-lg:border-b max-lg:border-b-[#123A4F] max-sm:px-[15px] max-lg:px-5">
-                        <p class="mb-[5px] font-medium w-full">Адрес</p>
-                        <div class="flex flex-col gap-[15px] sm:flex-1 lg:gap-[5px] text-sm w-full sm:w-auto lg:w-full">
+                        <p class="lg:mb-[5px] font-medium w-full">Адрес</p>
+                        <div class="flex flex-col gap-[15px] sm:max-lg:flex-1 lg:gap-[5px] text-sm w-full sm:w-auto lg:w-full">
                             <p class="font-medium">Главный офис</p>
                             <p>420111 г. Казань, ул. Баумана, д. 49</p>
                         </div>
-                        <div class="flex flex-col gap-[15px] sm:flex-1 lg:gap-[5px] text-sm w-full sm:w-auto lg:w-full">
+                        <div class="flex flex-col gap-[15px] sm:max-lg:flex-1 lg:gap-[5px] text-sm w-full sm:w-auto lg:w-full">
                             <p class="font-medium">Почтовый адрес:</p>
                             <p>420111, г. Казань, а/я 4</p>
                         </div>
@@ -41,7 +41,7 @@
                             <a href="tel:+793700932 34" class="w-max">+7 937 009 32 34</a>
                             <a href="tel:+793700932 34" class="w-max">+7 937 009 32 34</a>
                         </div>
-                        <div class="flex flex-wrap sm:max-lg:flex-row flex-col sm:max-lg:items-end font-medium max-lg:justify-between lg:gap-x-10 gap-2.5 text-sm max-lg:pb-5 max-sm:px-[15px] max-lg:px-5">
+                        <div class="flex flex-wrap sm:max-lg:flex-row flex-col sm:max-lg:items-end font-medium max-lg:justify-between lg:gap-x-10 max-sm:gap-[15px] gap-2.5 text-sm max-sm:pb-0 max-lg:pb-5 max-sm:px-[15px] max-lg:px-5">
                             <p class="lg:mb-2.5 text-base max-lg:w-full">Почта</p>
                             <a href="tel:+78432316798" class="w-max">+7 843 231 67 98</a>
                             <div class="flex gap-3 mt-auto">
@@ -92,9 +92,9 @@
                 </div> 
             </div>  
         </div>
-        <div class="wrapper flex text-white justify-between sm:pt-0 lg:py-[30px] py-5">
+        <div class="wrapper flex max-sm:flex-col text-white justify-between sm:pt-0 lg:py-[30px] gap-[15px] py-5">
             <p class="text-xs lg:text-sm leading-[1.2]">@Copyright 2021-2023 Все права защищены</p>
-            <a href="" class="text-xs lg:text-sm leading-[1.2] max-lg:hidden ml-[100px] mr-auto">Порядок предоставления экскурсионных услуг</a>
+            <a href="" class="text-xs lg:text-sm leading-[1.2] max-lg:hidden ml-[85px] mr-auto">Порядок предоставления экскурсионных услуг</a>
             <a href="" class="text-xs lg:text-sm leading-[1.2]">Политика конфиденциальности</a>
         </div>
     </footer>
