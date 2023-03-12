@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html{
+        @apply font-Onest
+    }
+
+    :root{
+        /* макимальная ширина контента */
+        --widthContent:1200px;
+        /* Растояние от границы брузера по бокам */
+        --widthContentMargin:15px;
+    }
+
+    /* Настройка кастомных контейнеров */
+    /* Применение системы гридов для расположения контента в ячейку main или full или в любую другую ячейку между именованными линиями grid*/
+
+    .grid-container{        
+        grid-template-columns: [full-start] minmax(var(--widthContentMargin), 1fr) [main-start] minmax(0, var(--widthContent)) [main-end] minmax(var(--widthContentMargin), 1fr) [full-end];
+        @apply grid
+    }
+
+    .grid-container>*{        
+        @apply col-[main]
+    }    
+
+    .wrapper{ 
+        @apply mx-auto w-[calc(100%-var(--widthContentMargin)*2)] max-w-[var(--widthContent)]
+    }
+
+    .container{        
+        @apply max-w-[var(--widthContent)]
+    }
+}
+
+@media screen and (min-width:640px){
+    :root{        
+        /* Растояние от границы брузера по бокам */
+        --widthContentMargin:20px;
+    }
+}
