@@ -1,0 +1,23 @@
+<template>
+<div class="group accordion-item" :class="{'active':isAcordeonItemShow}" ref="accordionItem">
+    <div class="accordion-header  ">
+        <button type="button" @click="isAcordeonItemShow = !isAcordeonItemShow" class="flex items-center justify-between w-full text-fblack group-[.active]:text-fred">
+            
+            <slot name="accordion-header-content">
+            </slot>  
+            <slot name="accordion-header-icon">
+                <svg class="group-[.active]:rotate-180" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15.825 6.65615L9.525 12.9749C9.45 13.0499 9.36875 13.1029 9.28125 13.1339C9.19375 13.1654 9.1 13.1812 9 13.1812C8.9 13.1812 8.80625 13.1654 8.71875 13.1339C8.63125 13.1029 8.55 13.0499 8.475 12.9749L2.15625 6.65615C1.98125 6.48115 1.89375 6.2624 1.89375 5.9999C1.89375 5.7374 1.9875 5.5124 2.175 5.3249C2.3625 5.1374 2.58125 5.04365 2.83125 5.04365C3.08125 5.04365 3.3 5.1374 3.4875 5.3249L9 10.8374L14.5125 5.3249C14.6875 5.1499 14.903 5.0624 15.159 5.0624C15.4155 5.0624 15.6375 5.15615 15.825 5.34365C16.0125 5.53115 16.1063 5.7499 16.1063 5.9999C16.1063 6.2499 16.0125 6.46865 15.825 6.65615Z" fill="#E7363D"/></svg>
+            </slot>  
+        </button>
+    </div>
+    <div class="accordion-body flex-col group-[.active]:flex hidden">
+        <slot/>
+    </div>     
+</div>
+
+</template>
+
+<script setup>
+    let isAcordeonItemShow = ref( false )
+</script>
+
