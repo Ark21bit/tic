@@ -1,10 +1,11 @@
 <template>
-    <component :is="tag" class="flex items-center justify-center transition-all duration-500 ease-linear rounded-[5px]" :class="buttonClass">
+    <component :is="tag" class="flex items-center justify-center transition-colors duration-500 ease-linear rounded-[5px]" :class="buttonClass">
         <slot/>
     </component>
 </template>
 
 <script setup>
+
 
 const props = defineProps(
     {
@@ -19,9 +20,11 @@ const props = defineProps(
 const buttonColorClasses = {
   default: {
     primary: 'bg-fred text-white',    
+    secondary: 'bg-fgreen text-white',    
   },
   hover: {
-    primary: 'hover:bg-[#C82027]',    
+    primary: 'hover:bg-[#C82027]',   
+    secondary: '',  
   },
 }
 

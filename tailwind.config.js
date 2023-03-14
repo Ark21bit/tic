@@ -45,14 +45,20 @@ module.exports = {
         'fred': '#E7363D',
         'finactive': '#CFCFCF',
         'fgreen': '#2DBBB5',
+        'fmainText': '#A3A3A3',
         'ftext': '#B6C5D5',
+        'ftext2': '#676767',
+        'ftext3': '#505050',
+        'fline': '#E8E8E8',
       },
       fontFamily: {
         'Onest': ['Onest', 'sans-serif'],      
+        'Inter': ['Inter', 'sans-serif'],      
       },
     }
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('@tailwindcss/line-clamp')
   ],
 }

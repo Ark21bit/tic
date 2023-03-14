@@ -1,8 +1,6 @@
 <template>
-    <Header></Header>
-    <main class="grid-container">
-        <NuxtPage/>
-    </main>
+    <Header></Header>    
+    <NuxtPage/>    
     <Footer/>
 </template>
 

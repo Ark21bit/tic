@@ -1,6 +1,6 @@
 <template>
     <!-- Шапка -->
-    <header class="relative grid-container group" :class="{'menu-active':isMobileMenuShow}">
+    <header class="relative grid-container group shadow-[0_2px_34px_0_rgba(0,0,0,.06)]" :class="{'menu-active':isMobileMenuShow}">
         <div class="py-4 flex gap-10 justify-between items-center">
             <NuxtLink to="/"><Logo class="text-fred w-[135px] lg:w-[169px]"/></NuxtLink>
             <nav class="lg:flex hidden items-center gap-[35px] text-sm text-fblack">
@@ -19,7 +19,7 @@
                     <a href="tel:+78432676116" class="w-max">+7 843 267-61-16</a>
                     <a href="tel:+79270331133" class="w-max">+7 927 033 11 33</a>
                 </div>
-                <Button size="L">Заказать звонок</Button>
+                <Button size="L" class="lg:p-2.5"><img src="@/assets/imgs/icons/phone.svg" alt="" class="max-lg:hidden"><span class="lg:hidden">Заказать звонок</span></Button>
             </div>
             <button @click="isMobileMenuShow = !isMobileMenuShow" class="lg:hidden flex flex-col justify-between w-[26px] group-[.menu-active]:h-5 h-3.5 transition-[height] ease-linear duration-100">
                 <span class="w-full h-0.5 bg-fblack rounded-[1px] group-[.menu-active]:rotate-45 origin-[0] transition-transform ease-linear duration-500"/>
@@ -35,9 +35,9 @@
                         Туры
                     </template>
                     <div class="flex mt-5 flex-col text-fblack gap-5">
-                        <NuxtLink to="/" href="">Название тура 1</NuxtLink>
-                        <NuxtLink to="/" href="">Название тура 2</NuxtLink>
-                        <NuxtLink to="/" href="">Название тура 3</NuxtLink>
+                        <NuxtLink to="/">Название тура 1</NuxtLink>
+                        <NuxtLink to="/">Название тура 2</NuxtLink>
+                        <NuxtLink to="/">Название тура 3</NuxtLink>
                     </div>
                 </AccordionItem>
                 <AccordionItem class="p-[15px] border-b border-b-[#E8E8E8]">
@@ -45,9 +45,9 @@
                         Экскурсии
                     </template>
                     <div class="flex mt-5 flex-col text-fblack gap-5">
-                        <NuxtLink to="/" href="">Название Экскурсии 1</NuxtLink>
-                        <NuxtLink to="/" href="">Название Экскурсии 2</NuxtLink>
-                        <NuxtLink to="/" href="">Название Экскурсии 3</NuxtLink>
+                        <NuxtLink to="/">Название Экскурсии 1</NuxtLink>
+                        <NuxtLink to="/">Название Экскурсии 2</NuxtLink>
+                        <NuxtLink to="/">Название Экскурсии 3</NuxtLink>
                     </div>
                 </AccordionItem>
                 <AccordionItem class="p-[15px] border-b border-b-[#E8E8E8]">
@@ -55,9 +55,9 @@
                         Дополнительно
                     </template>
                     <div class="flex mt-5 flex-col text-fblack gap-5">
-                        <NuxtLink to="/" href="">Дополнительно 1</NuxtLink>
-                        <NuxtLink to="/" href="">Дополнительно 2</NuxtLink>
-                        <NuxtLink to="/" href="">Дополнительно 3</NuxtLink>
+                        <NuxtLink to="/">Дополнительно 1</NuxtLink>
+                        <NuxtLink to="/">Дополнительно 2</NuxtLink>
+                        <NuxtLink to="/">Дополнительно 3</NuxtLink>
                     </div>
                 </AccordionItem>                
             </Accordion>
