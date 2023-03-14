@@ -1,5 +1,5 @@
 <template>
-    <main class="grid-container">
+    <main class="grid-container contain-paint">
         <div class="flex gap-2 py-[30px] overflow-hidden border-b border-b-fline mb-10 max-lg:hidden">
             <NuxtLink to="/" class="text-sm shrink-0 text-fblack transition-colors duration-500 ease-linear hover:text-white leading-[1.2] px-4 py-[9px] bg-[#F4F4F4] hover:bg-fgreen rounded-full">Автобусные туры по Казани</NuxtLink>
             <NuxtLink to="/" class="text-sm shrink-0 text-fblack transition-colors duration-500 ease-linear hover:text-white leading-[1.2] px-4 py-[9px] bg-[#F4F4F4] hover:bg-fgreen rounded-full">Экскурсия в храм всех религий</NuxtLink>
@@ -8,9 +8,11 @@
             <NuxtLink to="/" class="text-sm shrink-0 text-fblack transition-colors duration-500 ease-linear hover:text-white leading-[1.2] px-4 py-[9px] bg-[#F4F4F4] hover:bg-fgreen rounded-full">Обзорные экскурсии по Казани</NuxtLink>
             <NuxtLink to="/" class="text-sm shrink-0 text-fblack transition-colors duration-500 ease-linear hover:text-white leading-[1.2] px-4 py-[9px] bg-[#F4F4F4] hover:bg-fgreen rounded-full">Однодневыне экскурсии </NuxtLink>
         </div>
-        <div class="flex max-lg:flex-col gap-y-5 gap-x-10 max-lg:mt-[30px]">
-            <SideBar class="lg:max-w-[265px] w-full self-start shrink-0" />
-            <div class="grow flex flex-col gap-[60px]">
+        <div class="grid grid-cols-1 lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10 max-lg:mt-[30px] pb-5 lg:pb-[60px]">
+            <div class="relative">
+                <SideBar class="w-full sticky top-0" />               
+            </div>
+            <div class="flex flex-col gap-[60px]">
                 <div class="text-sm text-fblack -mb-5 max-lg:hidden">
                     <span class="last:text-finactive after:content-['/'] last:after:content-['']">Экскурсии по Татарстану</span>                    
                     <span class="last:text-finactive after:content-['/'] last:after:content-['']">Остров-град Свияжск</span>
@@ -105,8 +107,16 @@
                     </p>
                     <NuxtLink to="/" class="font-medium text-sm leading-[1.2] underline text-fred">Читать полностью</NuxtLink>
                 </div>
-            </div>
-            
+                <div >
+                    <h2 class="text-2xl font-bold leading-[1.2] text-fblack mb-[30px]">Отзывы</h2>                    
+                    <Reviews class="scrollbar-h-0 w-screen"/>                    
+                    <Button size="L" class="mt-[30px] max-sm:mx-auto">Добавить отзыв</Button>
+                </div>
+            </div>            
+        </div>
+        <div class="pt-10 lg:pt-[60px] lg:border-t border-t-fline">
+            <h2 class="text-2xl lg:text-3xl font-bold leading-[1.2] text-fblack sm:mb-5 mb-[30px]">Рекомендации</h2>                    
+            <Recommendations /> 
         </div>
     </main>
 </template>

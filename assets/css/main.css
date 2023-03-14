@@ -38,6 +38,10 @@
     .scrollbar-h-0::-webkit-scrollbar{
         @apply h-0
     }
+
+    .contain-paint{
+        contain: paint;
+    }
 }
 
 @media screen and (min-width:640px){

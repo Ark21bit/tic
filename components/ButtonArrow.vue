@@ -18,26 +18,17 @@ const props = defineProps(
 )
 
 const buttonColorClasses = {
-  default: {
-    primary: 'bg-fred text-white',    
-    secondary: 'bg-fgreen text-white',    
-    white: 'bg-white text-fblack',    
+  default: {        
+    white: 'bg-white text-black',    
   },
   hover: {
     primary: 'hover:bg-[#C82027]',   
     secondary: '', 
-    white: 'hover:bg-fred hover:text-white', 
+    white: 'bg-fred text-white', 
   },
 }
 
-const buttonOutlineColorClasses = {
-  default: {
-    primary: 'outline outline-1 -outline-offset-1 outline-[#D7D7D7] text-fblack',     
-  },
-  hover: {
-    primary: 'hover:bg-fgreen hover:outline-transparent',    
-  },
-}
+
 
 const buttonSizeClasses = {
     L:"text-[.9375rem] py-3 px-5",
