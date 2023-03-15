@@ -1,6 +1,6 @@
 <template>
     <main class="grid-container overflow-hidden">
-        <div class="flex max-lg:flex-col gap-[30px] justify-between mt-[70px]">
+        <div class="flex max-lg:flex-col gap-[30px] justify-between mt-[30px] lg:mt-[70px]">
             <div class="flex flex-col justify-between flex-1">
                 <h1 class="text-[1.75rem] lg:text-4xl  font-bold text-fblack mb-[30px]">О нас</h1>
                 <img src="@/assets/imgs/img5.png" class="lg:max-w-[387px] object-cover max-h-[378px] w-full rounded-[5px]" alt="">
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="pt-20 lg:pt-[150px]">
-            <h2 class="text-3xl font-bold leading-1.2 text-fblack mb-[30px]"><span class="text-fred">Наша</span> команда</h2>
+            <h2 class="text-2xl lg:text-3xl font-bold leading-1.2 text-fblack mb-[30px]"><span class="text-fred">Наша</span> команда</h2>
             <Team/>
         </div>
     </main>
