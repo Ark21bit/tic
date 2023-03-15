@@ -1,35 +1,8 @@
 <template>    
-    <swiper :slidesPerView="1" :pagination="{clickable: true, el: '.swiper-reviews-pagination'}" :modules="[SwiperPagination]" class="swiper-reviews" :loop="true" :spaceBetween="20" :breakpoints="{'640': {  slidesPerView: 'auto',  spaceBetween: 20,}}">
-        <SwiperSlide class="sm:max-w-[387px]">
+    <swiper :slidesPerView="1" :pagination="{clickable: true, el: '.swiper-reviews-pagination'}" :modules="[SwiperPagination]" class="swiper-reviews" :spaceBetween="20" :breakpoints="{'640': {  slidesPerView: 'auto',  spaceBetween: 20,}}">
+        <SwiperSlide class="sm:max-w-[387px]"  v-for="n in 10" :key="n">
             <Review class="w-full"/>
-        </SwiperSlide>
-        <SwiperSlide class="sm:max-w-[387px]">
-            <Review class="w-full"/>
-        </SwiperSlide>
-        <SwiperSlide class="sm:max-w-[387px]">
-            <Review class="w-full"/>
-        </SwiperSlide>
-        <SwiperSlide class="sm:max-w-[387px]">
-            <Review class="w-full"/>
-        </SwiperSlide>
-        <SwiperSlide class="sm:max-w-[387px]">
-            <Review class="w-full"/>
-        </SwiperSlide>
-        <SwiperSlide class="sm:max-w-[387px]">
-            <Review class="w-full"/>
-        </SwiperSlide>
-        <SwiperSlide class="sm:max-w-[387px]">
-            <Review class="w-full"/>
-        </SwiperSlide>
-        <SwiperSlide class="sm:max-w-[387px]">
-            <Review class="w-full"/>
-        </SwiperSlide>
-        <SwiperSlide class="sm:max-w-[387px]">
-            <Review class="w-full"/>
-        </SwiperSlide>
-        <SwiperSlide class="sm:max-w-[387px]">
-            <Review class="w-full"/>
-        </SwiperSlide>
+        </SwiperSlide>       
         <div class="swiper-reviews-pagination"/>        
     </swiper>
 </template>

@@ -1,13 +1,8 @@
 <template>
     <main class="grid-container contain-paint">
-        <div class="flex gap-2 py-[30px] overflow-hidden border-b border-b-fline mb-10 max-lg:hidden">
-            <NuxtLink to="/" class="text-sm shrink-0 text-fblack transition-colors duration-500 ease-linear hover:text-white leading-[1.2] px-4 py-[9px] bg-[#F4F4F4] hover:bg-fgreen rounded-full">Автобусные туры по Казани</NuxtLink>
-            <NuxtLink to="/" class="text-sm shrink-0 text-fblack transition-colors duration-500 ease-linear hover:text-white leading-[1.2] px-4 py-[9px] bg-[#F4F4F4] hover:bg-fgreen rounded-full">Экскурсия в храм всех религий</NuxtLink>
-            <NuxtLink to="/" class="text-sm shrink-0 text-fblack transition-colors duration-500 ease-linear hover:text-white leading-[1.2] px-4 py-[9px] bg-[#F4F4F4] hover:bg-fgreen rounded-full">Гастрономические</NuxtLink>
-            <NuxtLink to="/" class="text-sm shrink-0 text-fblack transition-colors duration-500 ease-linear hover:text-white leading-[1.2] px-4 py-[9px] bg-[#F4F4F4] hover:bg-fgreen rounded-full">Необычные экскурсии</NuxtLink>
-            <NuxtLink to="/" class="text-sm shrink-0 text-fblack transition-colors duration-500 ease-linear hover:text-white leading-[1.2] px-4 py-[9px] bg-[#F4F4F4] hover:bg-fgreen rounded-full">Обзорные экскурсии по Казани</NuxtLink>
-            <NuxtLink to="/" class="text-sm shrink-0 text-fblack transition-colors duration-500 ease-linear hover:text-white leading-[1.2] px-4 py-[9px] bg-[#F4F4F4] hover:bg-fgreen rounded-full">Однодневыне экскурсии </NuxtLink>
-        </div>
+        
+        <SwiperOne class="col-[full]"/>       
+        <ExcursionCategories/>
         <div class="grid grid-cols-1 lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10 max-lg:mt-[30px] pb-5 lg:pb-[60px]">
             <div class="relative">
                 <SideBar class="w-full sticky top-0" />               
