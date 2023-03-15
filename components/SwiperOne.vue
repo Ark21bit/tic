@@ -2,7 +2,7 @@
     <swiper :slidesPerView="1"  :navigation="{nextEl:'.next', prevEl:'.prev' }" :modules="[SwiperNavigation]" class="swiper-one w-full h-[391px] lg:h-[600px]" :loop="true">
         <SwiperSlide v-for="n in 10" :key="n">
            <img src="@/assets/imgs/img4.png" alt="" class="w-full h-full object-cover">
-           <div class="absolute left-1/2 -translate-x-1/2 wrapper flex flex-col gap-2.5 items-center bottom-[30px] text-white">
+           <div class="absolute left-1/2 -translate-x-1/2 wrapper flex flex-col gap-2.5 items-center bottom-5 lg:bottom-[30px] text-white">
                 <p class="text-lg lg:text-xl font-medium leading-[1.2]">Остров-град Свияжск</p>
                 <p class="text-sm leading-[1.4]">Какое-нибудь описание</p>
            </div>
