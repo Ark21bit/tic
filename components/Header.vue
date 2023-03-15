@@ -2,7 +2,7 @@
     <!-- Шапка -->
     <header class="relative grid-container group shadow-[0_2px_34px_0_rgba(0,0,0,.06)]" :class="{'menu-active':isMobileMenuShow}">
         <div class="py-4 flex gap-10 justify-between items-center">
-            <NuxtLink to="/"><Logo class="text-fred w-[135px] lg:w-[169px]"/></NuxtLink>
+            <NuxtLink to="/map"><Logo class="text-fred w-[135px] lg:w-[169px]"/></NuxtLink>
             <nav class="lg:flex hidden items-center gap-[35px] text-sm text-fblack">
                 <NuxtLink to="#">Экскурсии</NuxtLink>
                 <NuxtLink to="#">Туры</NuxtLink>
@@ -29,38 +29,37 @@
         </div>
         <!-- меню на мобилках -->
         <div class="absolute leading-tight group-[.menu-active]:flex hidden lg:group-[.menu-active]:hidden flex-col col-[full] bg-white z-50 top-full left-0 w-full pt-[25px] pb-[15px] border-t border-t-[#E8E8E8]">            
-            <Accordion >
-                <AccordionItem class="p-[15px] border-b border-b-[#E8E8E8]">
-                    <template #accordion-header-content>
-                        Туры
-                    </template>
-                    <div class="flex mt-5 flex-col text-fblack gap-5">
-                        <NuxtLink to="/">Название тура 1</NuxtLink>
-                        <NuxtLink to="/">Название тура 2</NuxtLink>
-                        <NuxtLink to="/">Название тура 3</NuxtLink>
-                    </div>
-                </AccordionItem>
-                <AccordionItem class="p-[15px] border-b border-b-[#E8E8E8]">
-                    <template #accordion-header-content>
-                        Экскурсии
-                    </template>
-                    <div class="flex mt-5 flex-col text-fblack gap-5">
-                        <NuxtLink to="/">Название Экскурсии 1</NuxtLink>
-                        <NuxtLink to="/">Название Экскурсии 2</NuxtLink>
-                        <NuxtLink to="/">Название Экскурсии 3</NuxtLink>
-                    </div>
-                </AccordionItem>
-                <AccordionItem class="p-[15px] border-b border-b-[#E8E8E8]">
-                    <template #accordion-header-content>
-                        Дополнительно
-                    </template>
-                    <div class="flex mt-5 flex-col text-fblack gap-5">
-                        <NuxtLink to="/">Дополнительно 1</NuxtLink>
-                        <NuxtLink to="/">Дополнительно 2</NuxtLink>
-                        <NuxtLink to="/">Дополнительно 3</NuxtLink>
-                    </div>
-                </AccordionItem>                
-            </Accordion>
+           
+            <Dropdown class="p-[15px] border-b border-b-[#E8E8E8]">
+                <template #dropdown-header-content>
+                    Туры
+                </template>
+                <div class="flex mt-5 flex-col text-fblack gap-5">
+                    <NuxtLink to="/">Название тура 1</NuxtLink>
+                    <NuxtLink to="/">Название тура 2</NuxtLink>
+                    <NuxtLink to="/">Название тура 3</NuxtLink>
+                </div>
+            </Dropdown>
+            <Dropdown class="p-[15px] border-b border-b-[#E8E8E8]">
+                <template #dropdown-header-content>
+                    Экскурсии
+                </template>
+                <div class="flex mt-5 flex-col text-fblack gap-5">
+                    <NuxtLink to="/">Название Экскурсии 1</NuxtLink>
+                    <NuxtLink to="/">Название Экскурсии 2</NuxtLink>
+                    <NuxtLink to="/">Название Экскурсии 3</NuxtLink>
+                </div>
+            </Dropdown>
+            <Dropdown class="p-[15px] border-b border-b-[#E8E8E8]">
+                <template #dropdown-header-content>
+                    Дополнительно
+                </template>
+                <div class="flex mt-5 flex-col text-fblack gap-5">
+                    <NuxtLink to="/">Дополнительно 1</NuxtLink>
+                    <NuxtLink to="/">Дополнительно 2</NuxtLink>
+                    <NuxtLink to="/">Дополнительно 3</NuxtLink>
+                </div>
+            </Dropdown> 
             <NuxtLink class="p-[15px] border-b border-b-[#E8E8E8]">О нас</NuxtLink>
             <NuxtLink class="p-[15px] border-b border-b-[#E8E8E8]">Контакты</NuxtLink>
             <div class="flex text-finactive mt-10 text-sm font-medium px-[15px]">
