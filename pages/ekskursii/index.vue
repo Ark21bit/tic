@@ -2,8 +2,8 @@
     <main class="grid-container">
         <div class="pt-[30px] lg:pt-[73px] pb-[100px]">
             <div class="flex max-lg:flex-col justify-between gap-6 lg:items-center mb-10 lg:mb-[50px]">
-                <h1 class="text-4xl font-bold leading-[1.2] text-fblack">Сборные экскурсии</h1>
-                <label class="text-[#676767] text-sm leading-[1.2] font-Inter">
+                <h1 class="text-4xl font-bold  text-fblack">Сборные экскурсии</h1>
+                <label class="text-[#676767] text-sm  font-Inter">
                     Выберите дату
                     <Input placeholder="пример" decoration="border" class="ml-7 lg:ml-5 max-w-[162px]"/>
                 </label>
@@ -25,7 +25,7 @@
         <div class="border-t border-t-fline max-lg:hidden">
             <div class="flex gap-5 border-b border-b-fline py-[30px]">
                 <div class="flex-1 gap-2 flex flex-col justify-between">
-                    <p class="text-lg font-medium leading-[1.2] text-fblack">
+                    <p class="text-lg font-medium  text-fblack">
                         Экскурсии по Казани с экскурсоводом:<br>
                         <span class="text-fred">цены и бронирование билетов</span>
                     </p>
@@ -42,7 +42,7 @@
             </div>
             <div class="flex gap-5 border-b border-b-fline py-[30px]">
                 <div class="flex-1 gap-2 flex flex-col justify-between">
-                    <p class="text-lg font-medium leading-[1.2] text-fblack"> 
+                    <p class="text-lg font-medium  text-fblack"> 
                         Экскурсии в Казани 2022: <br>
                         <span class="text-fred">цены от 330 рублей</span>
                     </p>                    
@@ -55,7 +55,7 @@
             </div>
             <div class="flex gap-5 border-b border-b-fline py-[30px]">
                 <div class="flex-1 gap-2 flex flex-col justify-between">
-                    <p class="text-lg font-medium leading-[1.2] text-fblack max-w-[409px]">
+                    <p class="text-lg font-medium  text-fblack max-w-[409px]">
                         Лучший план на выходные - 
                         <span class="text-fred">поехать на экскурсии по Казани!</span>
                     </p>
@@ -74,7 +74,7 @@
             </div>
             <div class="flex gap-5 border-b border-b-fline py-[30px]">
                 <div class="flex-1 gap-2 flex flex-col justify-between">
-                    <p class="text-lg font-medium leading-[1.2] text-fblack">Летние экскурсии 
+                    <p class="text-lg font-medium  text-fblack">Летние экскурсии 
                         <span class="text-fred">(Казань)</span>
                     </p>                   
                 </div>

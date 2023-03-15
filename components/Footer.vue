@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="py-5 lg:py-[30px] border text-white border-y-[#123A4F] border-transparent sm:max-lg:border-b-transparent sm:max-lg:border-t-[#123A4F]">
-            <div class="lg:wrapper lg:gap-20 lg:flex grid-container leading-[1.2]">
+            <div class="lg:wrapper lg:gap-20 lg:flex grid-container ">
                 <div class="flex max-lg:col-[full] flex-col gap-5 lg:flex-[1.55]">
                     <div class="lg:gap-[15px] gap-5 flex flex-wrap max-lg:pb-5 max-lg:border-b max-lg:border-b-[#123A4F] max-sm:px-[15px] max-lg:px-5">
                         <p class="lg:mb-[5px] font-medium w-full">Адрес</p>
@@ -37,13 +37,12 @@
                     <div class="mt-auto max-lg:flex-col flex gap-5 justify-between">
                         <div class="flex flex-wrap lg:flex-col font-medium gap-x-10 gap-[15px] lg:gap-2.5 text-sm max-lg:pb-5 max-lg:border-b max-lg:border-b-[#123A4F] max-sm:px-[15px] max-lg:px-5">
                             <p class="lg:mb-2.5 text-base max-lg:w-full">Телефон</p>
-                            <a href="tel:+784323167 98" class="w-max">+7 843 231 67 98</a>
-                            <a href="tel:+793700932 34" class="w-max">+7 937 009 32 34</a>
-                            <a href="tel:+793700932 34" class="w-max">+7 937 009 32 34</a>
+                            <a href="tel:+78432676116" class="w-max">+7 843 267 61 16</a>
+                            <a href="tel:+79370093234" class="w-max">+7 937 009 32 34</a>
                         </div>
                         <div class="flex flex-wrap sm:max-lg:flex-row flex-col sm:max-lg:items-end font-medium max-lg:justify-between lg:gap-x-10 max-sm:gap-[15px] gap-2.5 text-sm max-sm:pb-0 max-lg:pb-5 max-sm:px-[15px] max-lg:px-5">
                             <p class="lg:mb-2.5 text-base max-lg:w-full">Почта</p>
-                            <a href="tel:+78432316798" class="w-max">+7 843 231 67 98</a>
+                            <a href="mailto:office@kazantravel.ru" class="w-max">office@kazantravel.ru</a>
                             <div class="flex gap-3 mt-auto">
                                 <a href="#" class="shrink-0"><img src="@/assets/imgs/icons/whatsapp.svg" alt=""></a>
                                 <a href="#" class="shrink-0"><img src="@/assets/imgs/icons/tg.svg" alt=""></a>
@@ -93,9 +92,10 @@
             </div>  
         </div>
         <div class="wrapper flex max-sm:flex-col text-white justify-between sm:pt-0 lg:py-[30px] gap-[15px] py-5">
-            <p class="text-xs lg:text-sm leading-[1.2]">@Copyright 2021-2023 Все права защищены</p>
-            <a href="" class="text-xs lg:text-sm leading-[1.2] max-lg:hidden ml-[85px] mr-auto">Порядок предоставления экскурсионных услуг</a>
-            <a href="" class="text-xs lg:text-sm leading-[1.2]">Политика конфиденциальности</a>
+            <p class="text-xs lg:text-sm  max-lg:hidden">@Copyright 2021-2023 Все права защищены</p>
+            <a href="" class="text-xs lg:text-sm ">Порядок предоставления экскурсионных услуг</a>
+            <a href="" class="text-xs lg:text-sm ">Правила оплаты</a>
+            <a href="" class="text-xs lg:text-sm ">Политика конфиденциальности</a>
         </div>
     </footer>
 </template>

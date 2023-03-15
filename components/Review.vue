@@ -1,5 +1,5 @@
 <template>
-    <div class="p-5 flex flex-col gap-[15px] leading-[1.2] rounded-[10px] shadow-[0_4px_23px_0_rgba(0,0,0,.07)]">
+    <div class="p-5 flex flex-col gap-[15px]  rounded-[10px] shadow-[0_4px_23px_0_rgba(0,0,0,.07)]">
         <p class="text-xl font-medium text-fblack">Иван Иванонв</p>
         <p class="text-fgreen font-medium ">Древний город Болгар</p>
         <Rating :rating="4"/>

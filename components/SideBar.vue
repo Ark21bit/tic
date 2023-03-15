@@ -8,7 +8,7 @@
                 <span class="w-full h-0.5 bg-fred rounded-[1px] group-[.menu-active]/side:rotate-45 origin-[100%] transition-transform ease-linear duration-500"/>
             </button></div>
         <div class="flex-col group-[.menu-active]/side:flex lg:flex hidden border-t border-t-fline">
-            <div class="flex flex-col gap-5 py-5 leading-[1.2]">
+            <div class="flex flex-col gap-5 py-5 ">
                 <Dropdown class="px-5 border-b-fline" active-class="active border-b">
                     <template #dropdown-header-content>
                         Экскурсии
@@ -45,7 +45,7 @@
                     <template #dropdown-header-icon>
                         <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180"/>
                     </template>
-                    <ul class="flex py-5 flex-col text-fblack leading-[1.2] gap-[15px]">
+                    <ul class="flex py-5 flex-col text-fblack  gap-[15px]">
                         <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Интерактивные программы</NuxtLink></li>
                         <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Встреча</NuxtLink></li>
                         <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Трансфер</NuxtLink></li>
