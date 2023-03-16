@@ -7,6 +7,7 @@
             <Button tag="router-link"  to="/aboutus">О нас</Button>
             <Button tag="router-link"  to="/contacts">Контакты</Button>
             <Button tag="router-link"  to="/hotels">страница отели</Button>
+            <Button tag="router-link"  to="/transfer">страница трансферы/интерактивные программы/музеи</Button>
         </div>
     </main>
 </template>
