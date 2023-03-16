@@ -1,7 +1,15 @@
 <template>
     <main class="grid-container contain-paint">
         
-        <SwiperOne class="col-[full]"/>       
+        <SwiperOne class="col-[full]">
+            <SwiperSlide v-for="n in 10" :key="n">
+                <img src="@/assets/imgs/img4.png" alt="" class="w-full h-full object-cover">
+                <div class="absolute left-1/2 -translate-x-1/2 wrapper flex flex-col gap-2.5 items-center bottom-5 lg:bottom-[30px] text-white">
+                     <p class="text-lg lg:text-xl font-medium ">Остров-град Свияжск</p>
+                     <p class="text-sm leading-[1.4]">Какое-нибудь описание</p>
+                </div>
+            </SwiperSlide>
+        </SwiperOne>       
         <ExcursionCategories/>
         <div class="grid grid-cols-1 lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10 max-lg:mt-[30px]">
             <div class="relative">
