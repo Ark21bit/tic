@@ -11,4 +11,7 @@ export default defineNuxtConfig({
         autoprefixer: {},
       },
     },
+    build: {
+      transpile: ['@fawmi/vue-google-maps']
+    },
   })
