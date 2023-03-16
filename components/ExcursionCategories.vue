@@ -33,7 +33,7 @@
 
 <style type="text/tailwindcss">
     .swiper-excursion-categories{
-        @apply py-[30px] border-b border-b-fline mb-10 max-lg:hidden overflow-visible
+        @apply py-[30px] max-lg:hidden overflow-visible
     }
 
     .swiper-excursion-categories .swiper-slide{
