@@ -46,6 +46,25 @@
     .link{
         @apply underline text-fred hover:text-fgreen transition-colors ease-linear duration-500
     }
+
+    .table-primary{
+        @apply table-auto border-spacing-0 border-separate w-full text-sm font-medium text-fblack
+    }
+
+    .table-primary-td{
+        @apply sm:px-5 px-[15px] pb-[15px] first:pt-[15px] sm:py-[15px] sm:border-b first:border-l last:border-r border-fline max-sm:group-last/table:first:rounded-bl-[5px] 
+        group-last/table:last:rounded-br-[5px] max-sm:group-first/table:first:border-t max-sm:last:border-b max-sm:group-first/table:first:rounded-tl 
+        max-sm:group-first/table:first:rounded-tr max-sm:flex max-sm:justify-between max-sm:text-right max-sm:before:text-fmainText max-sm:before:content-[attr(data-label)]
+        max-sm:border-x max-sm:group-last/table:last:rounded-bl-[5px]
+    }
+
+    .table-primary-th{
+        @apply px-5 py-[15px] first:rounded-tl-[5px] font-medium last:rounded-tr-[5px] first:border-l last:border-r border-x-[#03537D]
+    }
+
+    .table-primary-thead{
+        @apply text-white bg-[#03537D]  text-left max-sm:hidden
+    }
 }
 
 @media screen and (min-width:640px){

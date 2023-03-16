@@ -10,7 +10,7 @@
                 </div>
             </SwiperSlide>
         </SwiperOne>       
-        <div class="col-[full] grid-container border-b border-b-fline mb-10">
+        <div class="col-[full] grid-container border-b border-b-fline mb-10 max-lg:hidden">
             <ExcursionCategories/>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10 max-lg:mt-[30px] pb-5 lg:pb-[60px]">
