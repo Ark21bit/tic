@@ -14,7 +14,7 @@
                         Экскурсии
                     </template>
                     <template #dropdown-header-icon>
-                        <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180"/>
+                        <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180 transition-transform duration-500 ease-linear"/>
                     </template>
                     <ul class="flex py-5 flex-col text-fblack gap-[15px]">
                         <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Казань</NuxtLink></li>
@@ -28,7 +28,7 @@
                         Туры
                     </template>
                     <template #dropdown-header-icon>
-                        <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180"/>
+                        <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180 transition-transform duration-500 ease-linear"/>
                     </template>
                     <ul class="flex py-5 flex-col text-fblack gap-[15px]">
                         <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Групповые</NuxtLink></li>
@@ -43,7 +43,7 @@
                         Услуги
                     </template>
                     <template #dropdown-header-icon>
-                        <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180"/>
+                        <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180 transition-transform duration-500 ease-linear"/>
                     </template>
                     <ul class="flex py-5 flex-col text-fblack  gap-[15px]">
                         <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Интерактивные программы</NuxtLink></li>

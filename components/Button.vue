@@ -40,7 +40,7 @@ const buttonOutlineColorClasses = {
 }
 
 const buttonSizeClasses = {
-    L:"text-[.9375rem] py-3 px-5",
+    L:"text-[.9375rem] leading-[19px] py-3 px-5",
     M:"text-sm px-6 py-2",
     none:"",
     arrowM:"p-4 rounded-full"
