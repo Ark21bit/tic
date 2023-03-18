@@ -28,8 +28,10 @@
                      <Button size="L">Заказать экскурсию</Button>
                      <table class="table-primary" >
                         <thead class="table-primary-thead">
-                            <th class="table-primary-th">Участников в группе</th>
+                            <tr>
+                                <th class="table-primary-th">Участников в группе</th>
                             <th class="table-primary-th">Стоимость на группу(рус. яз.)</th>
+                            </tr>                           
                         </thead>
                         <tbody>
                             <tr class="group/table">

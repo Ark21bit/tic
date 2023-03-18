@@ -10,6 +10,7 @@
             <Button tag="router-link"  to="/hotels">страница отели</Button>
             <Button tag="router-link"  to="/transfer">страница трансферы/интерактивные программы/музеи</Button>
             <Button tag="router-link"  to="/tour">страница тур</Button>
+            <Button tag="router-link"  to="/confirmation">страница подтверждения</Button>
         </div>
     </main>
 </template>
