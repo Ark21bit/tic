@@ -3,10 +3,12 @@
         <div class="pt-[30px] lg:pt-[73px] pb-[100px]">
             <div class="flex max-lg:flex-col justify-between gap-6 lg:items-center mb-10 lg:mb-[50px]">
                 <h1 class="text-4xl font-bold  text-fblack">Сборные экскурсии</h1>
-                <label class="text-[#676767] text-sm  font-Inter">
-                    Выберите дату
-                    <Input placeholder="пример" decoration="border" class="ml-7 lg:ml-5 max-w-[162px]"/>
-                </label>
+                <div class="flex gap-5 items-center">
+                    <label class="text-[#676767] text-sm  font-Inter" for="dp-input-1">
+                        Выберите дату                    
+                    </label>
+                    <FormsDatepicker class="max-w-[162px]" v-model="date" uid="1"/>                   
+                </div>
             </div>
             <div class="grid lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10">
                 <div class="relative">
@@ -91,5 +93,5 @@
 </template>
 
 <script setup>
-  
+
 </script>

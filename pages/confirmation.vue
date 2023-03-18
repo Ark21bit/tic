@@ -4,8 +4,7 @@
             <h1 class="text-[1.5625rem] leading-[1.2] lg:text-4xl text-fblack font-bold sm:text-center mb-[30px]">Подтвердите бронирование</h1>
             <p class="text-lg lg:text-2xl text-[#32373D] font-bold sm:text-center mb-[15px]">Уважаемый(ая) <span class="text-fred">Иван Иванов</span></p>
             <p class="text-sm sm:text-center text-ftext3 leading-[1.4] mb-[15px] lg:mb-5">Благодарим за бронирование в Туристско-информационном центре</p>
-        </div>   
-        <FormsDatepicker/>
+        </div> 
         <div class="flex flex-col gap-[30px] max-w-[794px] mx-auto w-full">
             <div>
                 <div class="flex max-sm:flex-col gap-[15px] justify-between py-[15px] lg:py-2.5 border-b border-fline text-fblack text-sm leading-[1.4]">
