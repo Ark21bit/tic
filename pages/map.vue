@@ -9,6 +9,7 @@
             <Button tag="router-link"  to="/contacts">Контакты</Button>
             <Button tag="router-link"  to="/hotels">страница отели</Button>
             <Button tag="router-link"  to="/transfer">страница трансферы/интерактивные программы/музеи</Button>
+            <Button tag="router-link"  to="/tour">страница тур</Button>
         </div>
     </main>
 </template>

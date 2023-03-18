@@ -2,7 +2,7 @@
     <!-- Шапка -->
     <header class="relative grid-container group shadow-[0_2px_34px_0_rgba(0,0,0,.06)]" :class="{'menu-active':isMobileMenuShow}">
         <div class="py-4 flex gap-10 justify-between items-center">
-            <NuxtLink to="/map"><Logo class="text-fred w-[135px] lg:w-[169px]"/></NuxtLink>
+            <NuxtLink to="/map"><IconsLogo class="text-fred w-[135px] lg:w-[169px]"/></NuxtLink>
             <nav class="lg:flex hidden items-center gap-[35px] text-sm text-fblack">
                 <NuxtLink to="#">Экскурсии</NuxtLink>
                 <NuxtLink to="#">Туры</NuxtLink>
@@ -79,7 +79,5 @@
 </template>
 
 <script setup>
-import Logo from "./icons/Logo.vue"; 
-
 let isMobileMenuShow = ref( false )
 </script>
