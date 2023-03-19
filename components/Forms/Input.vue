@@ -1,0 +1,64 @@
+<template>  
+    <label class="grid gap-x-5 gap-y-[5px] text-fblack group" :class="[{ 'error':ErrorTitle }, labelDirectionClass, labelClass]">      
+        <slot/>                
+      
+      <input v-bind="$attrs" v-model="value" class="rounded-[5px] p-[15px] placeholder:text-[#90A4B8] text-sm group-[.error]:bg-[#EDF1F4] group-[.error]:border-[#E12525] group-[.error]:border-[1.5px] text-fblack" :class="inputClass">  
+      <slot name="error">
+        <span v-if="ErrorTitle" :class="errorClass" class="text-fred">{{ ErrorTitle }}</span>
+      </slot>
+    </label>      
+  </template>
+
+<script>
+export default {
+  inheritAttrs: false
+}
+</script>
+
+<script setup>
+const props = defineProps({            
+        decoration: { type: String, default: "default" },
+        direction: { type:String, default:'vertical' },
+        ErrorTitle : { type:String },
+        modelValue: { default:null },
+        decoration:{ type:String, default:'default'},
+        labelClass: { type:String, default:null },
+    })
+  
+    
+
+const labelDirectionClass = computed(()=>{
+  if (props.direction == 'vertical') return 'text-xs' 
+  if (props.direction == 'horizontal') return 'text-sm grid-cols-[auto_auto] items-center' 
+})
+
+const errorClass = computed(()=>{
+  if (props.direction == 'vertical') return '' 
+  if (props.direction == 'horizontal') return 'col-start-2' 
+})
+
+const buttonDecorationClasses = {  
+    default: 'focus:border-transparent border-transparent focus:ring-transparent',    
+    border: 'border border-[#d7d7d7] bg-transparent focus:border-[#d7d7d7] focus:ring-transparent' 
+}
+
+const inputClass = computed(()=>{
+  return buttonDecorationClasses[props.decoration]
+})
+
+/* двухсторонее звязывание v-model */
+
+const emit = defineEmits(['update:modelValue']) 
+
+const value = computed({    
+get() {
+  return props.modelValue
+},
+set(value) {
+  emit('update:modelValue', value)
+}
+})
+
+
+</script>
+
