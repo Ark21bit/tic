@@ -3,7 +3,7 @@ export default defineNuxtConfig({
     css: ['~/assets/css/fonts.css', '~/assets/css/main.css'],
     modules: ['nuxt-swiper'],
     swiper: {      
-      modules: ['navigation', 'pagination']
+      modules: ['navigation', 'pagination', 'autoplay']
     },
     postcss: {
       plugins: {
