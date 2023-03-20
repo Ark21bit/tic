@@ -15,7 +15,7 @@
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10 max-lg:mt-[30px] pb-5 lg:pb-[60px]">
             <div class="relative">
-                <SideBar class="w-full sticky top-0" />               
+                <SideBar class="w-full sticky top-[50px]" />               
             </div>
             <div class="flex flex-col gap-[30px]">
                 <div class="text-sm text-fblack mb-2.5 max-lg:hidden">

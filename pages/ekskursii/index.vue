@@ -7,7 +7,7 @@
             </div>
             <div class="grid lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10">
                 <div class="relative">
-                    <SideBar class="w-full sticky top-0" />
+                    <SideBar class="w-full sticky top-[50px]" />
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     <CardCatalog />
