@@ -16,7 +16,8 @@ export default function CarouselSlider({ swiper, on }) {
     if (swiper.params.effect !== "carousel") return;
     swiper.classNames.push(`${swiper.params.containerModifierClass}carousel`);
     const overwriteParams = {
-      watchSlidesProgress: true,      
+      watchSlidesProgress: true,  
+      loop:true,    
     };
 
     Object.assign(swiper.params, overwriteParams);

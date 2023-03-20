@@ -5,7 +5,7 @@
       <!-- <SwiperSlide v-for="n in 10" :key="n" class="relative ">
           <img src="@/assets/imgs/cards/img2.png" alt="" class="w-full h-full object-cover blur scale-[1.05]">          
       </SwiperSlide>       -->
-      <SwiperSlide v-for="n in 7" :key="n" class="relative">
+      <SwiperSlide v-for="n in 7" class="relative">
           <img :src="`/img${n}.webp`" alt="" class="w-full h-full object-cover blur scale-[1.05]">          
       </SwiperSlide>      
   </swiper>
@@ -14,9 +14,9 @@
       <!-- <SwiperSlide >
         <Card textClass="lg:text-2xl text-base" :isSale="true" textSaleClass="lg:text-base text-sm" class="h-[360px] w-[290px] lg:h-[499px] lg:w-[487px]"/>
       </SwiperSlide> -->
-      <SwiperSlide class="cursor-pointer"  v-for="n in 7" :key="n" @click="SwiperIndex.slideToLoop(n-1)">
+      <SwiperSlide class="cursor-pointer"  v-for="n in 7" @click="SwiperIndex.slideToLoop(n-1)">
        <!--   <Card textClass="lg:text-2xl text-base" :isSale="true" textSaleClass="lg:text-base text-sm" class="h-[360px] w-[290px] lg:h-[499px] lg:w-[487px]"/>-->
-       <img :src="`/img${n}.webp`" alt="" class="w-full h-full object-cover">
+       <img :src="`/img${n}.webp`" alt="" class="h-[360px] w-[290px] lg:h-[499px] lg:w-[487px] object-cover" >
       </SwiperSlide>
       <div class="flex gap-[15px] mt-[25px] lg:mt-[30px] max-sm:mx-auto">
         <Button size="arrowM" class="prev rotate-180 max-lg:p-3.5" color="white">
