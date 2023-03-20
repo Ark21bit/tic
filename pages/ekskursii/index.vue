@@ -88,5 +88,5 @@
 </template>
 
 <script setup>
-    
+    let date = ref()
 </script>

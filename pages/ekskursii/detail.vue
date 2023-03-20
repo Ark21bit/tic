@@ -9,6 +9,7 @@
                      <p class="text-sm leading-[1.4]">Какое-нибудь описание</p>
                 </div>
             </SwiperSlide>
+            
         </SwiperOne>       
         <div class="col-[full] grid-container border-b border-b-fline mb-10 max-lg:hidden">
             <ExcursionCategories/>

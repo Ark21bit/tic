@@ -1,12 +1,12 @@
 <template>
     <div>
-        <swiper class="swiper-partners border-t" :slidesPerView="'auto'" :loop="true" :speed="2000" :modules="[SwiperAutoplay]" :autoplay="{delay:0, disableOnInteraction: false, pauseOnMouseEnter:true, reverseDirection:true }">
+        <swiper class="swiper-partners" :slidesPerView="'auto'" :loop="true" :speed="2000" :modules="[SwiperAutoplay]" :autoplay="{delay:0, disableOnInteraction: false, pauseOnMouseEnter:true, reverseDirection:true }">
             <SwiperSlide v-for="n in 20" :key="n">           
                 <img src="@/assets/imgs/partners/img1.png" class="contain w-full" alt="">    
                 <p class="absolute bottom-2.5 text-sm text-[#9F9F9F]">Кума</p>        
             </SwiperSlide> 
         </swiper>    
-        <swiper class="swiper-partners border-t" :slidesPerView="'auto'" :loop="true" :speed="2000" :modules="[SwiperAutoplay]" :autoplay="{delay:0, disableOnInteraction: false, pauseOnMouseEnter:true, reverseDirection:false }">
+        <swiper class="swiper-partners" :slidesPerView="'auto'" :loop="true" :speed="2000" :modules="[SwiperAutoplay]" :autoplay="{delay:0, disableOnInteraction: false, pauseOnMouseEnter:true, reverseDirection:false }">
             <SwiperSlide v-for="n in 20" :key="n">           
                 <img src="@/assets/imgs/partners/img1.png" class="contain w-full" alt="">  
                 <p class="absolute bottom-2.5 text-sm text-[#9F9F9F]">Кума</p>                
@@ -22,7 +22,7 @@
 
 <style type="text/tailwindcss"> 
     .swiper-partners{
-        @apply w-full border-b border-fline 
+        @apply w-full border-b border-fline first:border-t
     }
 
     .swiper-partners .swiper-wrapper {

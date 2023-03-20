@@ -1,7 +1,7 @@
 <template>
     <footer class="bg-[#022B40] relative mt-20 lg:mt-[150px]">
-        <img src="@/assets/imgs/imgFooter.png" alt="" class="max-lg:hidden absolute right-0 top-0 -translate-y-1/2">
-        <div class="wrapper flex items-center py-4  gap-12 justify-between">
+        <img src="@/assets/imgs/imgFooter.png" alt="" class="max-[1300px]:hidden absolute right-0 top-0 -translate-y-1/2">
+        <div class="wrapper flex items-center py-4  gap-12 justify-between ">
             <IconsLogo class="text-white w-[135px] lg:w-[169px]" />
             <nav class="lg:flex hidden items-center gap-[35px] text-sm text-white ml-auto max-lg:hidden">
                 <NuxtLink to="#">Экскурсии</NuxtLink>

@@ -24,7 +24,7 @@
                 </div>
                 <div class="flex max-sm:flex-col gap-[15px] lg:gap-5 sm:items-center">                    
                      <h1 class="text-[1.5625rem] leading-1.2 lg:text-4xl text-fblack font-bold">Ханума</h1>
-                     <Rating :rating="5" />
+                     <Rating :rating="5"  />
                 </div>
                 <div class="flex gap-2 lg:gap-3 flex-wrap">
                     <div class="flex gap-[15px] items-center font-medium text-sm lg:text-base text-fblack py-2.5 px-[15px] border border-fline rounded-[10px]">
