@@ -14,7 +14,7 @@
       <!-- <SwiperSlide >
         <Card textClass="lg:text-2xl text-base" :isSale="true" textSaleClass="lg:text-base text-sm" class="h-[360px] w-[290px] lg:h-[499px] lg:w-[487px]"/>
       </SwiperSlide> -->
-      <SwiperSlide class="cursor-pointer"  v-for="n in 7" @click="SwiperIndex.slideToLoop(n-1)">
+      <SwiperSlide class="cursor-pointer"  v-for="n in 7" @click="slideToIndex(n-1)">
        <!--   <Card textClass="lg:text-2xl text-base" :isSale="true" textSaleClass="lg:text-base text-sm" class="h-[360px] w-[290px] lg:h-[499px] lg:w-[487px]"/>-->
        <img :src="`/img${n}.webp`" alt="" class="h-[360px] w-[290px] lg:h-[499px] lg:w-[487px] object-cover" >
       </SwiperSlide>
@@ -40,6 +40,11 @@ import EffectCarousel from "@/assets/effect-carousel.esm";
 let thumbsSwiper = ref(null);
 let SwiperIndex = ref(null);
 
+const slideToIndex = (index)=>{
+  SwiperIndex.value.slideNext()
+  SwiperIndex.value.slideToLoop(index) 
+}
+
 const setSwiper = (swiper) => {
   SwiperIndex.value = swiper;
 }
@@ -60,20 +65,20 @@ const setThumbsSwiper = (swiper) => {
 }
 
 .swiper-carousel .swiper-slide> *{
-  visibility: hidden;
+  @apply invisible
 }
 
 .swiper-carousel .swiper-slide img{
-  visibility: visible;
+  @apply visible
 }
 
 .swiper-carousel .swiper-slide-active>*{
-  visibility: visible;
+  @apply visible
 }
 
 .swiper-carousel .swiper-slide,
 .swiper-carousel swiper-slide {
-  position: relative;
+  @apply relative
 }
 
 </style>
