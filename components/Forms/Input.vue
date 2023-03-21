@@ -1,10 +1,10 @@
 <template>  
-    <label class="grid gap-x-5 gap-y-[5px] text-fblack group" :class="[{ 'error':ErrorTitle }, labelDirectionClass, labelClass]">      
+    <label class="grid gap-x-5 gap-y-[5px] text-fblack group" :class="[{ 'error':errorTitle }, labelDirectionClass, labelClass]">      
         <slot/>                
       
       <input v-bind="$attrs" v-model="value" class="rounded-[5px] p-[15px] placeholder:text-[#90A4B8] text-sm group-[.error]:bg-[#EDF1F4] group-[.error]:border-[#E12525] group-[.error]:border-[1.5px] text-fblack" :class="inputClass">  
       <slot name="error">
-        <span v-if="ErrorTitle" :class="errorClass" class="text-fred">{{ ErrorTitle }}</span>
+        <span v-if="errorTitle" :class="errorClass" class="text-fred">{{ errorTitle }}</span>
       </slot>
     </label>      
   </template>
@@ -16,15 +16,13 @@ export default {
 </script>
 
 <script setup>
-const props = defineProps({            
-        decoration: { type: String, default: "default" },
+const props = defineProps({      
         direction: { type:String, default:'vertical' },
-        ErrorTitle : { type:String },
+        errorTitle : { type:String },
         modelValue: { default:null },
         decoration:{ type:String, default:'default'},
         labelClass: { type:String, default:null },
-    })
-  
+    }) 
     
 
 const labelDirectionClass = computed(()=>{
@@ -38,7 +36,7 @@ const errorClass = computed(()=>{
 })
 
 const buttonDecorationClasses = {  
-    default: 'focus:border-transparent border-transparent focus:ring-transparent',    
+    default: 'focus:border-transparent border border-transparent focus:ring-transparent',    
     border: 'border border-[#d7d7d7] bg-transparent focus:border-[#d7d7d7] focus:ring-transparent' 
 }
 

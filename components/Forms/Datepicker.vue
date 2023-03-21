@@ -1,5 +1,5 @@
 <template>  
-  <div class="grid gap-x-5 gap-y-[5px] group" :class="[{ 'error': ErrorTitle }, boxClass, boxDirectionClass, inputClass]">
+  <div class="grid gap-x-5 gap-y-[5px] group" :class="[{ 'error': errorTitle }, boxClass, boxDirectionClass, inputClass]">
     
       <slot>
         <label class="text-ftext2 " v-if="labelTitle" :for="`dp-input-${props.id}`" >
@@ -30,7 +30,7 @@
       </template>     
     </VueDatePicker>
     <slot name="error">
-      <span v-if="ErrorTitle" :class="errorClass" class="text-fred">{{ ErrorTitle }}</span>
+      <span v-if="errorTitle" :class="errorClass" class="text-fred">{{ errorTitle }}</span>
     </slot>
   </div>
     
@@ -49,7 +49,7 @@ export default {
   const props = defineProps({
     modelValue: { type:Date, default:null },
     direction: { type:String, default:'vertical' },
-    ErrorTitle : { type:String },
+    errorTitle : { type:String },
     labelTitle : { type:String },
     id: { type:String, default:'id' },
     decoration:{ type:String, default:'default'},
