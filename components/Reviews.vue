@@ -8,22 +8,24 @@
             <div class="swiper-reviews-pagination"/>        
         </swiper>
         <Button size="L" class="mt-[30px] max-sm:mx-auto" @click="openModal">Добавить отзыв</Button>
-        <Teleport to="#teleported">
-            <Modal @close="closeModal" modalMaxSizeClass="max-w-[714px]" v-show="isShowModal">
-                <h2 class="text-[1.5625rem] lg:text-3xl font-bold text-fblack max-lg:mt-[37px]">Оставить отзыв</h2>                
-                <form class="flex flex-col gap-5 mt-5 text-fblack">
-                    <p class="flex gap-[15px] max-sm:mb-2.5 text-[#32373D] font-bold">Ваша оценка <Rating/></p>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-y-[25px]">
-                        <FormsInput decoration="border" type="text">ФИО</FormsInput>                                                                             
-                        <FormsInput decoration="border" type="email">Email*</FormsInput> 
-                        <FormsSelect decoration="border">Экскурсия</FormsSelect>                                                                      
-                        <FormsDatepicker decoration="border" >Дата</FormsDatepicker>                                                                      
-                        <FormsTextArea decoration="border" class="h-[85px]" labelClass="col-[full]">Отзыв</FormsTextArea>       
-                    </div>
-                    <Button size="L" class="lg:w-fit min-w-[150px] max-sm:mt-5">Отправить</Button>                    
-                </form>
-            </Modal>
-        </Teleport>
+        <ClientOnly>            
+            <Teleport to="#teleported">
+                <Modal @close="closeModal" modalMaxSizeClass="max-w-[714px]" v-show="isShowModal">
+                    <h2 class="text-[1.5625rem] lg:text-3xl font-bold text-fblack max-lg:mt-[37px]">Оставить отзыв</h2>                
+                    <form class="flex flex-col gap-5 mt-5 text-fblack">
+                        <p class="flex gap-[15px] max-sm:mb-2.5 text-[#32373D] font-bold">Ваша оценка <Rating/></p>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-y-[25px]">
+                            <FormsInput decoration="border" type="text">ФИО</FormsInput>                                                                             
+                            <FormsInput decoration="border" type="email">Email*</FormsInput> 
+                            <FormsSelect decoration="border">Экскурсия</FormsSelect>                                                                      
+                            <FormsDatepicker decoration="border" >Дата</FormsDatepicker>                                                                      
+                            <FormsTextArea decoration="border" class="h-[85px]" labelClass="col-[full]">Отзыв</FormsTextArea>       
+                        </div>
+                        <Button size="L" class="lg:w-fit min-w-[150px] max-sm:mt-5">Отправить</Button>                    
+                    </form>
+                </Modal>
+            </Teleport>
+        </ClientOnly>
     </div>
 </template>
 
@@ -32,10 +34,12 @@ let isShowModal = ref(false)
 
 const closeModal = ()=>{
     isShowModal.value = false;
+    document.querySelector('body').style.overflowY = ""
 }
 
 const openModal = ()=>{
     isShowModal.value = true;
+    document.querySelector('body').style.overflowY = "hidden"
 }
 </script>
 

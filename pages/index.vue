@@ -21,13 +21,15 @@
                         <FormsInput type="text" placeholder="Кол-во человек"></FormsInput>
                         <FormsTextArea placeholder="Пожелания" labelClass="col-span-2" class="col-span-2 h-[90px]"></FormsTextArea>
                         <Button size="L" @click.prevent="openModal" class="max-w-[150px]">Отправить</Button>
-                        <Teleport to="#teleported">   
-                            <Modal @close="closeModal" modalMaxSizeClass="max-w-[336px]" modal-img-bg-class="modal-thanks-bg" v-show="isShowModal">
-                                <h3 class="text-xl font-bold text-[#32373D] mt-5 text-center">Спасибо!</h3>                
-                                <p class="mt-1 text-center">Ваша заявка успешно отправлена</p>
-                                <Button tag="router-link" to="/" class="mt-5 w-fit mx-auto">На главную</Button>
-                            </Modal>   
-                        </Teleport>                
+                        <ClientOnly>
+                            <Teleport to="#teleported">   
+                                <Modal @close="closeModal" modalMaxSizeClass="max-w-[336px]" modal-img-bg-class="modal-thanks-bg" v-show="isShowModal">
+                                    <h3 class="text-xl font-bold text-[#32373D] mt-5 text-center">Спасибо!</h3>                
+                                    <p class="mt-1 text-center">Ваша заявка успешно отправлена</p>
+                                    <Button tag="router-link" to="/" class="mt-5 w-fit mx-auto">На главную</Button>
+                                </Modal>   
+                            </Teleport>                
+                        </ClientOnly>
                     </form>
                 </div>
             </div>
@@ -56,10 +58,12 @@ let isShowModal = ref(false)
 
 const closeModal = ()=>{
     isShowModal.value = false;
+    document.querySelector('body').style.overflowY = ""
 }
 
 const openModal = ()=>{
     isShowModal.value = true;
+    document.querySelector('body').style.overflowY = "hidden"
 }
 let date = ref()
 </script>

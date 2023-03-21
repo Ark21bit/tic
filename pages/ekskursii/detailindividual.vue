@@ -77,66 +77,68 @@
             <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">Рекомендации</h2>                    
             <Recommendations class="wrapper col-[full]" /> 
         </div>
-        <Teleport to="#teleported">
-            <Modal @close="closeModal" v-show="isShowModal">
-                <h2 class="text-[1.5625rem] lg:text-3xl font-bold text-fblack max-lg:mt-[37px]">Вечерняя НеоПанорамы</h2>
-                <form class="flex flex-col lg:gap-10 gap-[30px] mt-[30px] lg:mt-[50px] text-fblack">
-                    <div>
-                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Выбор даты и времени</p>
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                            <FormsDatepicker decoration="border">Дата</FormsDatepicker>
-                            <FormsSelect decoration="border" :options="[13,14,15]">Время</FormsSelect>
+        <ClientOnly>
+            <Teleport to="#teleported">
+                <Modal @close="closeModal" v-show="isShowModal">
+                    <h2 class="text-[1.5625rem] lg:text-3xl font-bold text-fblack max-lg:mt-[37px]">Вечерняя НеоПанорамы</h2>
+                    <form class="flex flex-col lg:gap-10 gap-[30px] mt-[30px] lg:mt-[50px] text-fblack">
+                        <div>
+                            <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Выбор даты и времени</p>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                                <FormsDatepicker decoration="border">Дата</FormsDatepicker>
+                                <FormsSelect decoration="border" :options="[13,14,15]">Время</FormsSelect>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex flex-wrap items-baseline">
-                        <p class="leading-[1.2] text-[1.0625rem] mb-5 lg:mb-[25px]">Дополнительные услуги</p>
-                        <div class="flex gap-[30px] max-sm:w-full font-medium items-center max-lg:mt-5 lg:ml-auto max-lg:order-1">
-                            <p class="text-sm font-medium max-lg:basis-[213px]">Выбрано <span class="text-fred">4 доп. услуги</span></p>
-                            <p class="text-sm font-medium text-fred shrink-0 ml-auto">200 ₽</p> 
+                        <div class="flex flex-wrap items-baseline">
+                            <p class="leading-[1.2] text-[1.0625rem] mb-5 lg:mb-[25px]">Дополнительные услуги</p>
+                            <div class="flex gap-[30px] max-sm:w-full font-medium items-center max-lg:mt-5 lg:ml-auto max-lg:order-1">
+                                <p class="text-sm font-medium max-lg:basis-[213px]">Выбрано <span class="text-fred">4 доп. услуги</span></p>
+                                <p class="text-sm font-medium text-fred shrink-0 ml-auto">200 ₽</p> 
+                            </div>
+                            <table class="table-primary">
+                                <thead class="table-primary-thead">
+                                    <tr class="group/table">
+                                        <th class="table-primary-th">Тип билета</th>
+                                        <th class="table-primary-th">Цена</th>
+                                        <th class="table-primary-th text-right">Количество</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="group/table">
+                                        <td data-label="Тип билета" class="table-primary-td">Аренда оборудования (для лучшей слышимости гида)</td>
+                                        <td data-label="Цена" class="table-primary-td">100 ₽</td>
+                                        <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                    </tr>
+                                    <tr class="group/table">
+                                        <td data-label="Тип билета" class="table-primary-td">Дождевик</td>
+                                        <td data-label="Цена" class="table-primary-td">100 ₽</td>
+                                        <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                    </tr>                                           
+                                </tbody>                                        
+                            </table>
                         </div>
-                        <table class="table-primary">
-                            <thead class="table-primary-thead">
-                                <tr class="group/table">
-                                    <th class="table-primary-th">Тип билета</th>
-                                    <th class="table-primary-th">Цена</th>
-                                    <th class="table-primary-th text-right">Количество</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="group/table">
-                                    <td data-label="Тип билета" class="table-primary-td">Аренда оборудования (для лучшей слышимости гида)</td>
-                                    <td data-label="Цена" class="table-primary-td">100 ₽</td>
-                                    <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
-                                </tr>
-                                <tr class="group/table">
-                                    <td data-label="Тип билета" class="table-primary-td">Дождевик</td>
-                                    <td data-label="Цена" class="table-primary-td">100 ₽</td>
-                                    <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
-                                </tr>                                           
-                            </tbody>                                        
-                        </table>
-                    </div>
-                    <div>                                    
-                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Комментарий к заказу</p>                                        
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                            <FormsInput decoration="border" type="text" labelClass="col-[full]"></FormsInput>                                        
+                        <div>                                    
+                            <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Комментарий к заказу</p>                                        
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                                <FormsInput decoration="border" type="text" labelClass="col-[full]"></FormsInput>                                        
+                            </div>
                         </div>
-                    </div>
-                    <div>                                    
-                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Персональные данные (на чье имя заключается договор)</p>                                        
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-y-[25px]">
-                            <FormsInput decoration="border" type="text">ФИО</FormsInput>                                                                   
-                            <FormsInput decoration="border" type="email">Email</FormsInput>        
-                            <FormsInput decoration="border" type="tel">Номер телефона*</FormsInput>   
-                            <FormsSelect decoration="border" :options="[1,2,4]">Количество Человек</FormsSelect>                                      
-                            <FormsCheckbox class="col-[full]">Подтверждаю свое согласие с Порядком предоставления экскурсионных услуг</FormsCheckbox>                               
-                            <FormsCheckbox class="col-[full]">Даю согласие на обработку и хранение своих персональных данных в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</FormsCheckbox>                               
+                        <div>                                    
+                            <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Персональные данные (на чье имя заключается договор)</p>                                        
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-y-[25px]">
+                                <FormsInput decoration="border" type="text">ФИО</FormsInput>                                                                   
+                                <FormsInput decoration="border" type="email">Email</FormsInput>        
+                                <FormsInput decoration="border" type="tel">Номер телефона*</FormsInput>   
+                                <FormsSelect decoration="border" :options="[1,2,4]">Количество Человек</FormsSelect>                                      
+                                <FormsCheckbox class="col-[full]">Подтверждаю свое согласие с Порядком предоставления экскурсионных услуг</FormsCheckbox>                               
+                                <FormsCheckbox class="col-[full]">Даю согласие на обработку и хранение своих персональных данных в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</FormsCheckbox>                               
+                            </div>
                         </div>
-                    </div>
-                    <Button size="L" class="lg:w-fit">Забронировать экскурсию</Button>
-                </form>
-            </Modal>
-        </Teleport>
+                        <Button size="L" class="lg:w-fit">Забронировать экскурсию</Button>
+                    </form>
+                </Modal>
+            </Teleport>
+        </ClientOnly>
     </main>
 </template>
 
@@ -145,9 +147,11 @@ let isShowModal = ref(false)
 
 const closeModal = ()=>{
     isShowModal.value = false;
+    document.querySelector('body').style.overflowY = ""
 }
 
 const openModal = ()=>{
     isShowModal.value = true;
+    document.querySelector('body').style.overflowY = "hidden"
 }
 </script>
