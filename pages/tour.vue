@@ -256,11 +256,13 @@ let isShowModal = ref(false)
 
 const closeModal = ()=>{
     isShowModal.value = false;
-    document.querySelector('body').style.overflowY = ""
+    setTimeout(() => {        
+        document.querySelector('body').style.overflowY = ""
+    }, 500);
 }
 
 const openModal = ()=>{
-    isShowModal.value = true;
     document.querySelector('body').style.overflowY = "hidden"
+    isShowModal.value = true;
 }
 </script>
