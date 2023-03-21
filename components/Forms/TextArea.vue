@@ -3,7 +3,7 @@
     <label class="grid gap-x-5 gap-y-[5px] text-fblack group" :class="[{ 'error':ErrorTitle }, labelDirectionClass, labelClass]">      
         <slot/>                
       
-      <textarea v-bind="$attrs" v-model="value" class="resize-none rounded-[5px] p-[15px] placeholder:text-[#90A4B8] text-sm group-[.error]:bg-[#EDF1F4] group-[.error]:border-[#E12525] group-[.error]:border-[1.5px] text-fblack" :class="inputClass"/>  
+      <textarea v-bind="$attrs" v-model="value" class="resize-none rounded-[5px] px-[15px] py-3 placeholder:text-[#90A4B8] text-sm group-[.error]:bg-[#EDF1F4] group-[.error]:border-[#E12525] group-[.error]:border-[1.5px] text-fblack" :class="inputClass"/>  
       <slot name="error">
         <span v-if="ErrorTitle" :class="errorClass" class="text-fred">{{ ErrorTitle }}</span>
       </slot>
@@ -18,15 +18,13 @@ export default {
 
 <script setup>
 const props = defineProps({            
-        decoration: { type: String, default: "default" },
-        direction: { type:String, default:'vertical' },
-        ErrorTitle : { type:String },
-        modelValue: { default:null },
-        decoration:{ type:String, default:'default'},
-        labelClass: { type:String, default:null },
-    })
-  
-    
+  decoration: { type: String, default: "default" },
+  direction: { type:String, default:'vertical' },
+  ErrorTitle : { type:String },
+  modelValue: { default:null },
+  decoration:{ type:String, default:'default'},
+  labelClass: { type:String, default:null },
+})
 
 const labelDirectionClass = computed(()=>{
   if (props.direction == 'vertical') return 'text-xs' 

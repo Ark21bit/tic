@@ -26,7 +26,7 @@
                 <div>                    
                      <h1 class="text-[1.5625rem] leading-1.2 lg:text-4xl text-fblack  font-bold mb-5">Вечерняя Казань</h1>
                      <p class="text-ftext3 text-sm leading-[1.4] mb-[30px]">Увидеть Казань в свете вечерних огней — обязательный пункт путешествия в наш город. В ходе экскурсии вы проедете по центру города с рассказом экскурсовода об истории улиц и памятников и сделаете несколько фотоостановок у самых ярко подсвеченных достопримечательностей. У Центра семьи «Казан» вы узнаете, почему наш город так назван и что за таинственные существа охраняют центральный ЗАГС города, у Дворца земледельцев восхититесь роскошью, торжественностью и величием современного памятника архитектуры, рядом с Театром кукол погрузитесь в атмосферу детской сказки и волшебства. Панорама ночного Казанского Кремля с красавицей мечетью Кул-Шариф и древним Благовещенским собором пополнит вашу серию фотографий тысячелетней Казани. ВНИМАНИЕ! В период новогодних каникул заезд к чаше по возможности (возможно перекрытие дорог в связи с установкой у чаши центральной городской елки)</p>
-                     <Button size="L">Заказать экскурсию</Button>
+                     <Button @click="openModal" size="L">Заказать экскурсию</Button>
                 </div>
                 <div>
                     <h2 class="text-2xl font-bold  text-fblack mb-[25px]">Общее описание</h2>
@@ -101,7 +101,112 @@
                         <li class="before:w-2 before:h-2 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5">Входной билет в Памятный знак</li>
                         <li class="before:w-2 before:h-2 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5">Входной билет в музей «Дом Лекаря»</li>
                     </ul>
-                    <Button size="L" class="">Заказать экскурсию</Button>
+                    <Button size="L" class="" @click="openModal">Заказать экскурсию</Button>
+                    <Teleport to="#teleported">
+                        <Modal @close="closeModal" v-show="isShowModal">
+                            <h2 class="text-[1.5625rem] lg:text-3xl font-bold text-fblack max-lg:mt-[37px]">Вечерняя Казань</h2>
+                            <form class="flex flex-col lg:gap-10 gap-[30px] mt-[30px] lg:mt-[50px] text-fblack">
+                                <div>
+                                    <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Выбор даты и времени</p>
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                                        <FormsDatepicker decoration="border">Дата</FormsDatepicker>
+                                        <FormsSelect decoration="border" :options="[13,14,15]">Время</FormsSelect>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap items-baseline">
+                                    <p class="leading-[1.2] text-[1.0625rem] mb-5 lg:mb-[25px]">Выберите категорию (осталось 18 билетов!)</p>
+                                    <div class="flex gap-[30px] max-sm:w-full font-medium items-center max-lg:mt-5 lg:ml-auto max-lg:order-1">
+                                        <p class="text-sm font-medium max-lg:basis-[213px]">Выбрано <span class="text-fred">8 билетов</span></p>
+                                        <p class="text-sm font-medium text-fred shrink-0 ml-auto">30 434 ₽</p> 
+                                    </div>
+                                    <table class="table-primary w-full">
+                                        <thead class="table-primary-thead">
+                                            <tr class="group/table">
+                                                <th class="table-primary-th">Тип билета</th>
+                                                <th class="table-primary-th">Цена</th>
+                                                <th class="table-primary-th text-right">Количество</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="group/table">
+                                                <td data-label="Тип билета" class="table-primary-td">Взрослые</td>
+                                                <td data-label="Цена" class="table-primary-td">3999 ₽</td>
+                                                <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                            </tr>
+                                            <tr class="group/table">
+                                                <td data-label="Тип билета" class="table-primary-td">Детский</td>
+                                                <td data-label="Цена" class="table-primary-td">3999 ₽</td>
+                                                <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                            </tr>
+                                            <tr class="group/table">
+                                                <td data-label="Тип билета" class="table-primary-td">Пенсионеры</td>
+                                                <td data-label="Цена" class="table-primary-td">3999 ₽</td>
+                                                <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                            </tr>
+                                            <tr class="group/table">
+                                                <td data-label="Тип билета" class="table-primary-td">Студенты</td>
+                                                <td data-label="Цена" class="table-primary-td">3999 ₽</td>
+                                                <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>                                    
+                                    <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Промокод</p>                                        
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                                        <FormsInput decoration="border" type="text"></FormsInput>                                        
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap items-baseline">
+                                    <p class="leading-[1.2] text-[1.0625rem] mb-5 lg:mb-[25px]">Дополнительные услуги</p>
+                                    <div class="flex gap-[30px] max-sm:w-full font-medium items-center max-lg:mt-5 lg:ml-auto max-lg:order-1">
+                                        <p class="text-sm font-medium max-lg:basis-[213px]">Выбрано <span class="text-fred">4 доп. услуги</span></p>
+                                        <p class="text-sm font-medium text-fred shrink-0 ml-auto">200 ₽</p> 
+                                    </div>
+                                    <table class="table-primary">
+                                        <thead class="table-primary-thead">
+                                            <tr class="group/table">
+                                                <th class="table-primary-th">Тип билета</th>
+                                                <th class="table-primary-th">Цена</th>
+                                                <th class="table-primary-th text-right">Количество</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="group/table">
+                                                <td data-label="Тип билета" class="table-primary-td">Аренда оборудования (для лучшей слышимости гида)</td>
+                                                <td data-label="Цена" class="table-primary-td">100 ₽</td>
+                                                <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                            </tr>
+                                            <tr class="group/table">
+                                                <td data-label="Тип билета" class="table-primary-td">Дождевик</td>
+                                                <td data-label="Цена" class="table-primary-td">100 ₽</td>
+                                                <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                            </tr>                                           
+                                        </tbody>                                        
+                                    </table>
+                                </div>
+                                <div>                                    
+                                    <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Комментарий к заказу</p>                                        
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                                        <FormsInput decoration="border" type="text" labelClass="col-[full]"></FormsInput>                                        
+                                    </div>
+                                </div>
+                                <div>                                    
+                                    <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Персональные данные (на чье имя заключается договор)</p>                                        
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-y-[25px]">
+                                        <FormsInput decoration="border" type="text">ФИО</FormsInput>
+                                        <FormsSelect decoration="border" :options="['пункт 1','пункт 2']">Место начала экскурсии</FormsSelect>                                        
+                                        <FormsInput decoration="border" type="tel">Номер телефона*</FormsInput>   
+                                        <FormsSelect decoration="border" :options="['Наличными','Картой']">Вид оплаты*</FormsSelect>                                      
+                                        <FormsInput decoration="border" type="email">Email*</FormsInput>        
+                                        <FormsCheckbox class="col-[full]">Подтверждаю свое согласие с Порядком предоставления экскурсионных услуг</FormsCheckbox>                               
+                                        <FormsCheckbox class="col-[full]">Даю согласие на обработку и хранение своих персональных данных в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</FormsCheckbox>                               
+                                    </div>
+                                </div>
+                                <Button size="L" class="lg:w-fit">Забронировать экскурсию</Button>
+                            </form>
+                        </Modal>
+                    </Teleport>
                 </div>
                 <div class="lg:border-y border-y-fline lg:py-[30px] max-lg:hidden flex flex-col gap-[30px]">
                     <div >
@@ -123,21 +228,25 @@
                         </p>
                     </div>
                     <NuxtLink to="#" class="link font-medium text-sm max-lg:hidden">Читать полностью</NuxtLink>
-                </div>     
-                <div >
-                    <h2 class="text-2xl font-bold  text-fblack sm:mb-5 mb-[30px]">Отзывы</h2>                    
-                    <Reviews class="scrollbar-h-0 w-screen"/>                    
-                    <Button size="L" class="mt-[30px] max-sm:mx-auto">Добавить отзыв</Button>
-                </div>
+                </div>             
+                <Reviews/> 
             </div>            
         </div>
         <div class="col-[full] grid-container pt-10 lg:pt-[60px] lg:border-t border-t-fline">
             <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">Рекомендации</h2>                    
             <Recommendations /> 
-        </div>
+        </div>            
     </main>
 </template>
 
 <script setup>
-    
+let isShowModal = ref(false)
+
+const closeModal = ()=>{
+    isShowModal.value = false;
+}
+
+const openModal = ()=>{
+    isShowModal.value = true;
+}
 </script>

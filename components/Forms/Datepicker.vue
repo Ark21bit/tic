@@ -89,7 +89,7 @@ export default {
 <style type="text/tailwindcss">
   
   .dp__input {            
-      @apply text-sm font-Inter font-medium p-[15px]  
+      @apply text-sm font-Inter font-medium px-[15px] py-3  
       group-[.default]:focus:border-transparent group-[.default]:border-transparent 
       group-[.decoration-border]:border group-[.decoration-border]:border-[#d7d7d7] group-[.decoration-border]:bg-transparent group-[.decoration-border]:focus:border-[#d7d7d7] 
       group-[.error]:border-[1.5px] group-[.error]:border-[#E12525] group-[.error]:focus:border-[#E12525] group-[.error]:bg-[#EDF1F4]

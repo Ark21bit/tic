@@ -44,7 +44,7 @@
     .table-primary-td{
         @apply sm:px-5 px-[15px] pb-[15px] first:pt-[15px] sm:py-[15px] sm:border-b first:border-l last:border-r border-fline sm:group-last/table:first:rounded-bl-[5px] 
         group-last/table:last:rounded-br-[5px] max-sm:group-first/table:first:border-t max-sm:last:border-b max-sm:group-first/table:first:rounded-tl 
-        max-sm:group-first/table:first:rounded-tr max-sm:flex max-sm:justify-between max-sm:text-right max-sm:before:text-fmainText max-sm:before:content-[attr(data-label)]
+        max-sm:group-first/table:first:rounded-tr max-sm:flex max-sm:justify-between max-sm:flex-wrap max-sm:gap-y-2.5 max-sm:before:text-fmainText max-sm:before:content-[attr(data-label)]
         max-sm:border-x max-sm:group-last/table:last:rounded-bl-[5px] 
     }
 
@@ -71,6 +71,10 @@
 @layer utilities{
     .scrollbar-h-0::-webkit-scrollbar{
         @apply h-0
+    }
+
+    .scrollbar-w-0::-webkit-scrollbar{
+        @apply w-0
     }
 
     .contain-paint{

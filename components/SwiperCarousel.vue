@@ -14,9 +14,9 @@
       <!-- <SwiperSlide >
         <Card textClass="lg:text-2xl text-base" :isSale="true" textSaleClass="lg:text-base text-sm" class="h-[360px] w-[290px] lg:h-[499px] lg:w-[487px]"/>
       </SwiperSlide> -->
-      <SwiperSlide class="cursor-pointer"  v-for="n in 7" @click="slideToIndex(n-1)">
+      <SwiperSlide class="cursor-pointer relative"  v-for="n in 7" @click="slideToIndex(n-1)">
        <!--   <Card textClass="lg:text-2xl text-base" :isSale="true" textSaleClass="lg:text-base text-sm" class="h-[360px] w-[290px] lg:h-[499px] lg:w-[487px]"/>-->
-       <img :src="`/img${n}.webp`" alt="" class="h-[360px] w-[290px] lg:h-[499px] lg:w-[487px] object-cover" >
+        <img :src="`/img${n}.webp`" alt="" class="h-[360px] w-[290px] lg:h-[499px] lg:w-[487px] object-cover" >      
       </SwiperSlide>
       <div class="flex gap-[15px] mt-[25px] lg:mt-[30px] max-sm:mx-auto">
         <Button size="arrowM" class="prev rotate-180 max-lg:p-3.5" color="white">
