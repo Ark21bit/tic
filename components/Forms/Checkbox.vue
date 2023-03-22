@@ -14,6 +14,8 @@ const props = defineProps({
     modelValue: { default:null },
 }) 
 
+/* двухстороннее связывание v-model */
+
 const emit = defineEmits(['update:modelValue']) 
 
 const value = computed({    

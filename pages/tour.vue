@@ -107,25 +107,25 @@
                                 </thead>
                                 <tbody>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="#" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
                                         <td class="table-primary-td" data-label="1-ное размещение">3999 ₽</td>
                                         <td class="table-primary-td" data-label="2-ное размещение">3999 ₽</td>
                                         <td class="table-primary-td" data-label="Дополнительное место">3999 ₽</td>
                                     </tr>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="#" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
                                         <td class="table-primary-td" data-label="1-ное размещение">3999 ₽</td>
                                         <td class="table-primary-td" data-label="2-ное размещение">3999 ₽</td>
                                         <td class="table-primary-td" data-label="Дополнительное место">3999 ₽</td>
                                     </tr>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="#" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
                                         <td class="table-primary-td" data-label="1-ное размещение">3999 ₽</td>
                                         <td class="table-primary-td" data-label="2-ное размещение">3999 ₽</td>
                                         <td class="table-primary-td" data-label="Дополнительное место">3999 ₽</td>
                                     </tr>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="#" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
                                         <td class="table-primary-td" data-label="1-ное размещение">3999 ₽</td>
                                         <td class="table-primary-td" data-label="2-ное размещение">3999 ₽</td>
                                         <td class="table-primary-td" data-label="Дополнительное место">3999 ₽</td>
@@ -169,7 +169,7 @@
                             Ещё один любопытный пункт экскурсии в город Болгар - посещение музея лекаря, в котором экскурсанты познакомятся с технологиями средневекового врачевания. Немногие знают, что государство Волжская Булгария до прихода татаро-монголов уже была очень развитым государством с четкой системой государственного управления, развитой медициной и собственными традициями строительства. Дошедшие до наших дней здания Болгара поражают экскурсантов продуманностью и масштабом.
                         </p>
                     </div>
-                    <NuxtLink to="#" class="link font-medium text-sm max-lg:hidden">Читать полностью</NuxtLink>
+                    <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">Читать полностью</NuxtLink>
                 </div>          
                 <Reviews/>
             </div>            
@@ -217,8 +217,8 @@
                             <tbody>
                                 <tr class="group/table">
                                     <td data-label="Тип билета" class="table-primary-td">Взрослые</td>
-                                    <td data-label="Цена" class="table-primary-td">3999 ₽</td>
-                                    <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                    <td data-label="Цена" class="table-primary-td">{{test}}</td>
+                                    <td data-label="Количество" class="table-primary-td"><FormsCounter v-model="test" class="float-right"/></td>
                                 </tr>
                                 <tr class="group/table">
                                     <td data-label="Тип билета" class="table-primary-td">Детский</td>
@@ -252,13 +252,13 @@
 </template>
 
 <script setup>
+let test = ref()
+
 let isShowModal = ref(false)
 
 const closeModal = ()=>{
-    isShowModal.value = false;
-    setTimeout(() => {        
-        document.querySelector('body').style.overflowY = ""
-    }, 500);
+    isShowModal.value = false;         
+    document.querySelector('body').style.overflowY = ""    
 }
 
 const openModal = ()=>{

@@ -13,7 +13,7 @@
                 <Modal @close="closeModal" modalMaxSizeClass="max-w-[714px]" v-show="isShowModal">
                     <h2 class="text-[1.5625rem] lg:text-3xl font-bold text-fblack max-lg:mt-[37px]">Оставить отзыв</h2>                
                     <form class="flex flex-col gap-5 mt-5 text-fblack">
-                        <p class="flex gap-[15px] max-sm:mb-2.5 text-[#32373D] font-bold">Ваша оценка <Rating/></p>
+                        <p class="flex gap-[15px] max-sm:mb-2.5 text-[#32373D] font-bold">Ваша оценка <Rating v-model="rating" :is-interactive="true"/></p>
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-y-[25px]">
                             <FormsInput decoration="border" type="text">ФИО</FormsInput>                                                                             
                             <FormsInput decoration="border" type="email">Email*</FormsInput> 
@@ -30,6 +30,8 @@
 </template>
 
 <script setup>
+let rating = ref()
+
 let isShowModal = ref(false)
 
 const closeModal = ()=>{

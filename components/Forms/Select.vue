@@ -35,26 +35,30 @@ const props = defineProps({
 
 let isOptionsShow = ref(false)
 
+  /* классы для label */
 const labelDirectionClass = computed(()=>{
   if (props.direction == 'vertical') return 'text-xs' 
   if (props.direction == 'horizontal') return 'text-sm grid-cols-[auto_auto] items-center' 
 })
 
+  /* классы для текста ошибки */
 const errorClass = computed(()=>{
   if (props.direction == 'vertical') return '' 
   if (props.direction == 'horizontal') return 'col-start-2' 
 })
 
+  /* классы для декорации кнопки */
 const buttonDecorationClasses = {  
     default: 'focus:border-transparent border bg-white border-transparent focus:ring-transparent',    
     border: 'border border-[#d7d7d7] bg-transparent focus:border-[#d7d7d7] focus:ring-transparent' 
 }
 
+/* сбор всех классов для select */
 const selectClass = computed(()=>{
   return buttonDecorationClasses[props.decoration]
 })
 
-/* двухсторонее звязывание v-model */
+/* двухстороннее cвязывание v-model */
 
 const emit = defineEmits(['update:modelValue']) 
 

@@ -4,15 +4,15 @@
         <div class="py-4 flex gap-10 justify-between items-center">
             <NuxtLink to="/map"><IconsLogo class="text-fred w-[135px] lg:w-[169px]"/></NuxtLink>
             <nav class="lg:flex hidden items-center gap-[35px] text-sm text-fblack">
-                <NuxtLink to="#">Экскурсии</NuxtLink>
-                <NuxtLink to="#">Туры</NuxtLink>
-                <NuxtLink to="#">Дополнительно</NuxtLink>
-                <NuxtLink to="#">О нас</NuxtLink>
-                <NuxtLink to="#">Контакты</NuxtLink>
+                <NuxtLink to="/">Экскурсии</NuxtLink>
+                <NuxtLink to="/">Туры</NuxtLink>
+                <NuxtLink to="/">Дополнительно</NuxtLink>
+                <NuxtLink to="/">О нас</NuxtLink>
+                <NuxtLink to="/">Контакты</NuxtLink>
             </nav>
             <div class="lg:flex hidden text-finactive text-sm font-medium">
-                <NuxtLink to="#" class="flex text-fred after:w-[1px] after:h-full after:bg-[rgba(28,25,25,0.4)] after:mx-2.5">РУ</NuxtLink>            
-                <NuxtLink to="#" class="flex">EN</NuxtLink>
+                <NuxtLink to="/" class="flex text-fred after:w-[1px] after:h-full after:bg-[rgba(28,25,25,0.4)] after:mx-2.5">РУ</NuxtLink>            
+                <NuxtLink to="/" class="flex">EN</NuxtLink>
             </div>
             <div class="flex gap-4 max-sm:hidden max-lg:ml-auto">
                 <div class="flex flex-col text-sm justify-evenly font-medium text-fblack" > 
@@ -63,8 +63,8 @@
             <NuxtLink class="p-[15px] border-b border-b-[#E8E8E8]">О нас</NuxtLink>
             <NuxtLink class="p-[15px] border-b border-b-[#E8E8E8]">Контакты</NuxtLink>
             <div class="flex text-finactive mt-10 text-sm font-medium px-[15px]">
-                <NuxtLink to="#" class="flex text-fred after:w-[1px] after:h-full after:bg-[rgba(28,25,25,0.4)] after:mx-2.5">РУ</NuxtLink>            
-                <NuxtLink to="#" class="flex">EN</NuxtLink>
+                <NuxtLink to="/" class="flex text-fred after:w-[1px] after:h-full after:bg-[rgba(28,25,25,0.4)] after:mx-2.5">РУ</NuxtLink>            
+                <NuxtLink to="/" class="flex">EN</NuxtLink>
             </div>
             <div class="flex flex-col gap-5 sm:hidden mt-[55px] px-[15px]">
                 <div class="flex text-sm gap-x-10 font-medium text-fblack" > 

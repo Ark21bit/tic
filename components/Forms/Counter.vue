@@ -11,21 +11,7 @@
     const props = defineProps({            
         modelValue: { default:0, type:Number },
     }) 
-
-    const emit = defineEmits(['update:modelValue']) 
     
-    let count = ref(props.modelValue)
-
-    watch(count, (oldValue, newValue)=>{
-        count.value = Number(String(count.value).replace(/\D/g, ""))       
-        if(count.value<0) return count.value = 0
-        emit('update:modelValue', count.value)
-    })
-
-    onUpdated(() => {
-        if (props.modelValue) count.value = props.modelValue        
-    })  
-
     const increment = ()=> {
         count.value++        
     }
@@ -33,4 +19,20 @@
     const decrement = ()=> {
         count.value--    
     }
+
+/* двухстороннее связывание v-model */
+    const emit = defineEmits(['update:modelValue']) 
+    
+    let count = ref(props.modelValue)
+
+    watch(count, (oldValue, newValue)=>{
+        if(count.value<0) count.value = 0
+        count.value = Number(String(count.value).replace(/\D/g, ""))       
+        emit('update:modelValue', count.value)
+    })
+
+    onUpdated(() => {
+        if (props.modelValue) count.value = props.modelValue        
+    })  
+
 </script>

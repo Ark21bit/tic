@@ -4,16 +4,16 @@
         <div class="wrapper flex items-center py-4  gap-12 justify-between ">
             <IconsLogo class="text-white w-[135px] lg:w-[169px]" />
             <nav class="lg:flex hidden items-center gap-[35px] text-sm text-white ml-auto max-lg:hidden">
-                <NuxtLink to="#">Экскурсии</NuxtLink>
-                <NuxtLink to="#">Туры</NuxtLink>
-                <NuxtLink to="#">Дополнительно</NuxtLink>
-                <NuxtLink to="#">О нас</NuxtLink>
-                <NuxtLink to="#">Контакты</NuxtLink>
-                <NuxtLink to="#">Блог</NuxtLink>
+                <NuxtLink to="/">Экскурсии</NuxtLink>
+                <NuxtLink to="/">Туры</NuxtLink>
+                <NuxtLink to="/">Дополнительно</NuxtLink>
+                <NuxtLink to="/">О нас</NuxtLink>
+                <NuxtLink to="/">Контакты</NuxtLink>
+                <NuxtLink to="/">Блог</NuxtLink>
             </nav>
             <div class="flex text-[rgba(255,255,255,0.4)] text-sm">
-                <NuxtLink to="#" class="flex text-white after:w-[1px] after:h-full after:bg-[rgba(255,255,255,0.4)] after:mx-2.5">РУ</NuxtLink>            
-                <NuxtLink to="#" class="flex">EN</NuxtLink>
+                <NuxtLink to="/" class="flex text-white after:w-[1px] after:h-full after:bg-[rgba(255,255,255,0.4)] after:mx-2.5">РУ</NuxtLink>            
+                <NuxtLink to="/" class="flex">EN</NuxtLink>
             </div>
         </div>
         <div class="py-5 lg:py-[30px] border text-white border-y-[#123A4F] border-transparent sm:max-lg:border-b-transparent sm:max-lg:border-t-[#123A4F]">

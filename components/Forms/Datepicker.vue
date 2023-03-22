@@ -55,7 +55,26 @@ export default {
     decoration:{ type:String, default:'default'},
     boxClass:{ type:String, default:'default'},
   })
+  
+  /* классы для обертки */
+  const boxDirectionClass = computed(()=>{
+    if (props.direction == 'vertical') return 'text-xs' 
+    if (props.direction == 'horizontal') return 'text-sm grid-cols-[auto_auto] items-center' 
+  })
 
+  /* классы для текста ошибки */
+  const errorClass = computed(()=>{
+    if (props.direction == 'vertical') return '' 
+    if (props.direction == 'horizontal') return 'col-start-2' 
+  })
+
+  /* классы для input внутри datepicker */
+  const inputClass = computed(()=>{
+    if (props.decoration == 'default') return 'default' 
+    if (props.decoration == 'border') return 'decoration-border' 
+  })
+  
+/* двухстороннее связывание v-model */
   const emit = defineEmits(['update:modelValue']) 
 
   const value = computed({    
@@ -66,23 +85,7 @@ export default {
     emit('update:modelValue', value)
   }
   })
-
-  const boxDirectionClass = computed(()=>{
-    if (props.direction == 'vertical') return 'text-xs' 
-    if (props.direction == 'horizontal') return 'text-sm grid-cols-[auto_auto] items-center' 
-  })
-
-  const errorClass = computed(()=>{
-    if (props.direction == 'vertical') return '' 
-    if (props.direction == 'horizontal') return 'col-start-2' 
-  })
-
-  const inputClass = computed(()=>{
-    if (props.decoration == 'default') return 'default' 
-    if (props.decoration == 'border') return 'decoration-border' 
-  })
-
-
+  
 
 </script>
 
