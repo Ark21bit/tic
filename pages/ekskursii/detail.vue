@@ -38,12 +38,12 @@
                         </div>
                         <div class="p-[15px] rounded-[10px] shadow-[0_4px_23px_0_rgba(0,0,0,.07)]">
                             <img src="@/assets/imgs/icons/price.svg" alt="" class="mb-6">
-                            <p class="text-ftext3 text-xs leading-[1.4] mb-1.5">Стоимость</p>
+                            <p class="text-ftext3 text-xs leading-[1.4] mb-1.5">{{generalConfigStore.value.static_info.global_words.price_list}}</p>
                             <p class="text-fblack font-medium lg:text-xl ">2499 ₽</p>
                         </div>
                         <div class="p-[15px] rounded-[10px] shadow-[0_4px_23px_0_rgba(0,0,0,.07)]">
                             <img src="@/assets/imgs/icons/time.svg" alt="" class="mb-6">
-                            <p class="text-ftext3 text-xs leading-[1.4] mb-1.5">Длительность</p>
+                            <p class="text-ftext3 text-xs leading-[1.4] mb-1.5">{{ generalConfigStore.value.static_info.global_words.duration }}</p>
                             <p class="text-fblack font-medium lg:text-xl ">10 ч. 00 мин</p>
                         </div>
                         <div class="p-[15px] sm:max-lg:row-start-1 sm:max-lg:row-span-2 sm:max-lg:col-start-3 col-span-2 rounded-[10px] shadow-[0_4px_23px_0_rgba(0,0,0,.07)]">
@@ -108,9 +108,9 @@
                                 <h2 class="text-[1.5625rem] lg:text-3xl font-bold text-fblack max-lg:mt-[37px]">Вечерняя Казань</h2>
                                 <form class="flex flex-col lg:gap-10 gap-[30px] mt-[30px] lg:mt-[50px] text-fblack">
                                     <div>
-                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Выбор даты и времени</p>
+                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.select_datetime}}</p>
                                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                                            <FormsDatepicker decoration="border">Дата</FormsDatepicker>
+                                            <FormsDatepicker decoration="border">{{generalConfigStore.value.static_info.global_words.date}}</FormsDatepicker>
                                             <FormsSelect decoration="border" :options="[13,14,15]">Время</FormsSelect>
                                         </div>
                                     </div>
@@ -123,43 +123,43 @@
                                         <table class="table-primary w-full">
                                             <thead class="table-primary-thead">
                                                 <tr class="group/table">
-                                                    <th class="table-primary-th">Тип билета</th>
-                                                    <th class="table-primary-th">Цена</th>
-                                                    <th class="table-primary-th text-right">Количество</th>
+                                                    <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.type_ticket}}</th>
+                                                    <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.price}}</th>
+                                                    <th class="table-primary-th text-right">{{generalConfigStore.value.static_info.global_words.count}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="group/table">
-                                                    <td data-label="Тип билета" class="table-primary-td">Взрослые</td>
-                                                    <td data-label="Цена" class="table-primary-td">3999 ₽</td>
-                                                    <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Взрослые</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">3999 ₽</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
                                                 </tr>
                                                 <tr class="group/table">
-                                                    <td data-label="Тип билета" class="table-primary-td">Детский</td>
-                                                    <td data-label="Цена" class="table-primary-td">3999 ₽</td>
-                                                    <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Детский</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">3999 ₽</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
                                                 </tr>
                                                 <tr class="group/table">
-                                                    <td data-label="Тип билета" class="table-primary-td">Пенсионеры</td>
-                                                    <td data-label="Цена" class="table-primary-td">3999 ₽</td>
-                                                    <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Пенсионеры</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">3999 ₽</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
                                                 </tr>
                                                 <tr class="group/table">
-                                                    <td data-label="Тип билета" class="table-primary-td">Студенты</td>
-                                                    <td data-label="Цена" class="table-primary-td">3999 ₽</td>
-                                                    <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Студенты</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">3999 ₽</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div>                                    
-                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Промокод</p>                                        
+                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.sale_coupon}}</p>                                        
                                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                                             <FormsInput decoration="border" type="text"></FormsInput>                                        
                                         </div>
                                     </div>
                                     <div class="flex flex-wrap items-baseline">
-                                        <p class="leading-[1.2] text-[1.0625rem] mb-5 lg:mb-[25px]">Дополнительные услуги</p>
+                                        <p class="leading-[1.2] text-[1.0625rem] mb-5 lg:mb-[25px]">{{generalConfigStore.value.static_info.global_words.additional_service}}</p>
                                         <div class="flex gap-[30px] max-sm:w-full font-medium items-center max-lg:mt-5 lg:ml-auto max-lg:order-1">
                                             <p class="text-sm font-medium max-lg:basis-[213px]">Выбрано <span class="text-fred">4 доп. услуги</span></p>
                                             <p class="text-sm font-medium text-fred shrink-0 ml-auto">200 ₽</p> 
@@ -167,41 +167,41 @@
                                         <table class="table-primary">
                                             <thead class="table-primary-thead">
                                                 <tr class="group/table">
-                                                    <th class="table-primary-th">Тип билета</th>
-                                                    <th class="table-primary-th">Цена</th>
-                                                    <th class="table-primary-th text-right">Количество</th>
+                                                    <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.type_ticket}}</th>
+                                                    <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.price}}</th>
+                                                    <th class="table-primary-th text-right">{{generalConfigStore.value.static_info.global_words.count}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="group/table">
-                                                    <td data-label="Тип билета" class="table-primary-td">Аренда оборудования (для лучшей слышимости гида)</td>
-                                                    <td data-label="Цена" class="table-primary-td">100 ₽</td>
-                                                    <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Аренда оборудования (для лучшей слышимости гида)</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">100 ₽</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
                                                 </tr>
                                                 <tr class="group/table">
-                                                    <td data-label="Тип билета" class="table-primary-td">Дождевик</td>
-                                                    <td data-label="Цена" class="table-primary-td">100 ₽</td>
-                                                    <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Дождевик</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">100 ₽</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
                                                 </tr>                                           
                                             </tbody>                                        
                                         </table>
                                     </div>
                                     <div>                                    
-                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Комментарий к заказу</p>                                        
+                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.comment_for_order}}</p>                                        
                                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                                             <FormsInput decoration="border" type="text" labelClass="col-[full]"></FormsInput>                                        
                                         </div>
                                     </div>
                                     <div>                                    
-                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Персональные данные (на чье имя заключается договор)</p>                                        
+                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.person_data_contract}}</p>                                        
                                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-y-[25px]">
-                                            <FormsInput decoration="border" type="text">ФИО</FormsInput>
-                                            <FormsSelect decoration="border" :options="['пункт 1','пункт 2']">Место начала экскурсии</FormsSelect>                                        
+                                            <FormsInput decoration="border" type="text">{{generalConfigStore.value.static_info.global_words.fio}}</FormsInput>
+                                            <FormsSelect decoration="border" :options="['пункт 1','пункт 2']">{{generalConfigStore.value.static_info.global_words.fio}}</FormsSelect>                                        
                                             <FormsInput decoration="border" type="tel">Номер телефона*</FormsInput>   
-                                            <FormsSelect decoration="border" :options="['Наличными','Картой']">Вид оплаты*</FormsSelect>                                      
-                                            <FormsInput decoration="border" type="email">Email*</FormsInput>        
-                                            <FormsCheckbox class="col-[full]">Подтверждаю свое согласие с Порядком предоставления экскурсионных услуг</FormsCheckbox>                               
-                                            <FormsCheckbox class="col-[full]">Даю согласие на обработку и хранение своих персональных данных в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</FormsCheckbox>                               
+                                            <FormsSelect decoration="border" :options="['Наличными','Картой']">{{generalConfigStore.value.static_info.global_words.type_payment}}</FormsSelect>                                      
+                                            <FormsInput decoration="border" type="email">{{generalConfigStore.value.static_info.global_words.email_text}}</FormsInput>        
+                                            <FormsCheckbox class="col-[full]">{{generalConfigStore.value.static_info.global_words.order_confirm_procedure_provision_excursion_services}}</FormsCheckbox>                               
+                                            <FormsCheckbox class="col-[full]">{{generalConfigStore.value.static_info.global_words.order_fz_confirm_text}}</FormsCheckbox>                               
                                         </div>
                                     </div>
                                     <Button size="L" class="lg:w-fit">Забронировать экскурсию</Button>
@@ -229,19 +229,23 @@
                             Ещё один любопытный пункт экскурсии в город Болгар - посещение музея лекаря, в котором экскурсанты познакомятся с технологиями средневекового врачевания. Немногие знают, что государство Волжская Булгария до прихода татаро-монголов уже была очень развитым государством с четкой системой государственного управления, развитой медициной и собственными традициями строительства. Дошедшие до наших дней здания Болгара поражают экскурсантов продуманностью и масштабом.
                         </p>
                     </div>
-                    <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">Читать полностью</NuxtLink>
+                    <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
                 </div>             
                 <Reviews/> 
             </div>            
         </div>
         <div class="col-[full] grid-container pt-10 lg:pt-[60px] lg:border-t border-t-fline">
-            <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">Рекомендации</h2>                    
+            <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">{{generalConfigStore.value.static_info.global_words.recommendations}}</h2>                    
             <Recommendations /> 
         </div>            
     </main>
 </template>
 
 <script setup>
+import { useGeneralConfigStore} from '@/stores/generalConfigStore'
+
+const generalConfigStore = useGeneralConfigStore()
+
 let isShowModal = ref(false)
 
 const closeModal = ()=>{

@@ -13,20 +13,20 @@
                     <p class="text-ftext text-sm leading-normal max-w-[350px]">Отправьте заявку на индивидуальную экскурсию, и мы свяжемся с вами!</p>                    
                     <form class="grid grid-cols-2 gap-5 items-start">
                         <FormsInput type="text" placeholder="Название экскурсии" labelClass="col-span-2"></FormsInput>
-                        <FormsInput type="text" placeholder="ФИО"></FormsInput>
+                        <FormsInput type="text" :placeholder="generalConfigStore.value.static_info.global_words.fio"></FormsInput>
                         <FormsInput type="text" placeholder="Адрес начала"></FormsInput>
                         <FormsInput type="tel" placeholder="Телефон"></FormsInput>
-                        <FormsInput type="email" placeholder="Email"></FormsInput>
+                        <FormsInput type="email" :placeholder="generalConfigStore.value.static_info.global_words.email_text"></FormsInput>
                         <FormsDatepicker v-model="date"></FormsDatepicker>
                         <FormsInput type="text" placeholder="Кол-во человек"></FormsInput>
                         <FormsTextArea placeholder="Пожелания" labelClass="col-span-2" class="col-span-2 h-[90px]"></FormsTextArea>
-                        <Button size="L" @click.prevent="openModal" class="max-w-[150px]">Отправить</Button>
+                        <Button size="L" @click.prevent="openModal" class="max-w-[150px]">{{generalConfigStore.value.static_info.global_words.send}}</Button>
                         <ClientOnly>
                             <Teleport to="#teleported">   
                                 <Modal @close="closeModal" modalMaxSizeClass="max-w-[336px]" modal-img-bg-class="modal-thanks-bg" v-show="isShowModal">
-                                    <h3 class="text-xl font-bold text-[#32373D] mt-5 text-center">Спасибо!</h3>                
-                                    <p class="mt-1 text-center">Ваша заявка успешно отправлена</p>
-                                    <Button tag="router-link" to="/" class="mt-5 w-fit mx-auto">На главную</Button>
+                                    <h3 class="text-xl font-bold text-[#32373D] mt-5 text-center">{{generalConfigStore.value.static_info.global_words.thank_you}}</h3>                
+                                    <p class="mt-1 text-center">{{generalConfigStore.value.static_info.global_words.success_send_request}}</p>
+                                    <Button tag="router-link" to="/" class="mt-5 w-fit mx-auto">{{generalConfigStore.value.static_info.global_words.on_main_page}}</Button>
                                 </Modal>   
                             </Teleport>                
                         </ClientOnly>
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>         
-        <Partners class="col-[full] mt-[150px] max-lg:hidden"/> 
+        <Partners  class="col-[full] mt-[150px] max-lg:hidden"/> 
     </main>           
 </template>
 
@@ -54,6 +54,10 @@
 </style>
 
 <script setup>
+import { useGeneralConfigStore} from '@/stores/generalConfigStore'
+
+const generalConfigStore = useGeneralConfigStore()
+
 let isShowModal = ref(false)
 
 const closeModal = ()=>{

@@ -28,7 +28,7 @@
                         <div class="inline-flex items-center gap-[15px] px-[15px] py-2.5 shadow-[0_4px_23px_0_rgba(0,0,0,.07)] rounded-[10px] text-fblack text-xl font-medium"><img src="@/assets/imgs/icons/price.svg" alt=""> от 2499 ₽</div>
                      </div>
                      <p class="text-sm leading-[1.4] text-ftext3">Загородная автобусная экскурсия, на которой мы познакомимся с Древним городом Болгар, объектом всемирного наследия ЮНЕСКО.Болгар расположен в 190 км от Казани. Это древняя столица Волжской Булгарии, в которой в 922 г. был принят ислам. Ехать до Болгара будем около трех часов, которые пролетят незаметно: живописные пейзажами и путевой рассказ экскурсовода не дадут заскучать. В Болгаре мы увидим и древнее болгарское городище, где сохранились памятники архитектуры XIII-XIV вв., комплекс мавзолеев XIV в., и современную красавицу-мечеть Белую мечеть, и «Памятный знак в честь принятия ислама» — здание, воздвигнутое на месте принятия ислама. Мы зайдем в этот музей и увидим самый дорогой и большой в мире печатный Коран (500 кг), внесенный в книгу рекордов Гиннеса. А еще познакомимся с болгарской средневековой медициной, посетив Музей «Дом лекаря».</p>
-                     <Button size="L" class="lg:mt-2.5 w-full max-w-[150px]">Заказать</Button>
+                     <Button size="L" class="lg:mt-2.5 w-full max-w-[150px]">{{ generalConfigStore.value.static_info.global_words.order }}</Button>
                 </div>    
                 <div class="lg:border-y border-y-fline lg:py-[30px] max-lg:hidden flex flex-col gap-[30px]">
                     <div >
@@ -49,17 +49,19 @@
                             Ещё один любопытный пункт экскурсии в город Болгар - посещение музея лекаря, в котором экскурсанты познакомятся с технологиями средневекового врачевания. Немногие знают, что государство Волжская Булгария до прихода татаро-монголов уже была очень развитым государством с четкой системой государственного управления, развитой медициной и собственными традициями строительства. Дошедшие до наших дней здания Болгара поражают экскурсантов продуманностью и масштабом.
                         </p>
                     </div>
-                    <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">Читать полностью</NuxtLink>
+                    <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
                 </div>            
             </div>            
         </div>
         <div class="pt-[60px]">
-            <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">Рекомендации</h2>                    
+            <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">{{generalConfigStore.value.static_info.global_words.recommendations}}</h2>                    
             <Recommendations /> 
         </div>
     </main>
 </template>
 
 <script setup>
+    import { useGeneralConfigStore} from '@/stores/generalConfigStore'
     
+    const generalConfigStore = useGeneralConfigStore()
 </script>

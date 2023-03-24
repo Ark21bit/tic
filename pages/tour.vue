@@ -28,7 +28,7 @@
                         <template #buttonHeader>
                             <Button size="L" @click="openModal" class="lg:ml-auto max-lg:mt-[30px] self-start lg:self-center">Заказать экскурсию</Button>
                         </template>
-                        <Tab title="Программа тура" name="Программа тура" class="flex flex-col gap-[25px] mt-[30px]">
+                        <Tab :title="generalConfigStore.value.static_info.global_words.product_program" :name="generalConfigStore.value.static_info.global_words.product_program" class="flex flex-col gap-[25px] mt-[30px]">
                             <div>
                                 <p class="text-fblack font-medium mb-[15px]">Первый день</p>
                                 <table class="table-primary">
@@ -94,48 +94,48 @@
                                 </table>
                             </div>
                         </Tab>
-                        <Tab title="Стоимость" name="Стоимость" class="flex flex-col gap-[30px] mt-[30px]">                            
+                        <Tab :title="generalConfigStore.value.static_info.global_words.price_list" :name="generalConfigStore.value.static_info.global_words.price_list" class="flex flex-col gap-[30px] mt-[30px]">                            
                             <p class="text-ftext3 text-sm leading-[1.4]">Загородная автобусная экскурсия, на которой мы познакомимся с Древним городом Болгар, объектом всемирного наследия ЮНЕСКО.Болгар расположен в 190 км от Казани. Это древняя столица Волжской Булгарии, в которой в 922 г. был принят ислам. Ехать до Болгара будем около трех часов, которые пролетят незаметно: живописные пейзажами и путевой рассказ экскурсовода не дадут заскучать. В Болгаре мы увидим и древнее болгарское городище, где сохранились памятники архитектуры XIII-XIV вв., комплекс мавзолеев XIV в., и современную красавицу-мечеть Белую мечеть, и «Памятный знак в честь принятия ислама» — здание, воздвигнутое на месте принятия ислама. Мы зайдем в этот музей и увидим самый дорогой и большой в мире печатный Коран (500 кг), внесенный в книгу рекордов Гиннеса. А еще познакомимся с болгарской средневековой медициной, посетив Музей «Дом лекаря».</p>
                             <table class="table-primary" >
                                 <thead class="table-primary-thead">
                                     <tr>
-                                        <th class="table-primary-th">Отель</th>
-                                        <th class="table-primary-th">1-ное размещение</th>
-                                        <th class="table-primary-th">2-ное размещение</th>
-                                        <th class="table-primary-th">Дополнительное место</th>
+                                        <th class="table-primary-th">{{ generalConfigStore.value.static_info.global_words.hotel }}</th>
+                                        <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words['1_people_placement']}}</th>
+                                        <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words['2_people_placement']}}</th>
+                                        <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.additional_people_placement}}</th>
                                     </tr>                                    
                                 </thead>
                                 <tbody>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
-                                        <td class="table-primary-td" data-label="1-ное размещение">3999 ₽</td>
-                                        <td class="table-primary-td" data-label="2-ное размещение">3999 ₽</td>
-                                        <td class="table-primary-td" data-label="Дополнительное место">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['1_people_placement']">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['2_people_placement']">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.additional_people_placement">3999 ₽</td>
                                     </tr>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
-                                        <td class="table-primary-td" data-label="1-ное размещение">3999 ₽</td>
-                                        <td class="table-primary-td" data-label="2-ное размещение">3999 ₽</td>
-                                        <td class="table-primary-td" data-label="Дополнительное место">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['1_people_placement']">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['2_people_placement']">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.additional_people_placement">3999 ₽</td>
                                     </tr>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
-                                        <td class="table-primary-td" data-label="1-ное размещение">3999 ₽</td>
-                                        <td class="table-primary-td" data-label="2-ное размещение">3999 ₽</td>
-                                        <td class="table-primary-td" data-label="Дополнительное место">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['1_people_placement']">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['2_people_placement']">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.additional_people_placement">3999 ₽</td>
                                     </tr>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" data-label="Отель"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
-                                        <td class="table-primary-td" data-label="1-ное размещение">3999 ₽</td>
-                                        <td class="table-primary-td" data-label="2-ное размещение">3999 ₽</td>
-                                        <td class="table-primary-td" data-label="Дополнительное место">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['1_people_placement']">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['2_people_placement']">3999 ₽</td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.additional_people_placement">3999 ₽</td>
                                     </tr>                                    
                                 </tbody>
                             </table>
                             <p class="text-ftext3 text-sm leading-[1.4]">Загородная автобусная экскурсия, на которой мы познакомимся с Древним городом Болгар, объектом всемирного наследия ЮНЕСКО.Болгар расположен в 190 км от Казани. Это древняя столица Волжской Булгарии, в которой в 922 г. был принят ислам. </p>
                             
                         </Tab>
-                        <Tab title="Дополнительные услуги" name="Дополнительные услуги" class="mt-[30px] lg:mt-10">
+                        <Tab :title="generalConfigStore.value.static_info.global_words.additional_service" :name="generalConfigStore.value.static_info.global_words.additional_service" class="mt-[30px] lg:mt-10">
                             <div class="flex-col flex border-b border-fline py-5 first:border-t gap-5 lg:gap-[15px]">
                                 <p class="text-base font-medium text-black">Аренда оборудования (для лучшей слышимости гида)</p>
                                 <p class="lg:mb-[5px] text-sm leading-[1.4] text-ftext3">Загородная автобусная экскурсия, на которой мы познакомимся с Древним городом Болгар, объектом всемирного наследия ЮНЕСКО.Болгар расположен в 190 км от Казани. Это древняя столица Волжской Булгарии, в которой в 922 г. был принят ислам. Ехать до Болгара будем около трех часов</p>
@@ -169,13 +169,13 @@
                             Ещё один любопытный пункт экскурсии в город Болгар - посещение музея лекаря, в котором экскурсанты познакомятся с технологиями средневекового врачевания. Немногие знают, что государство Волжская Булгария до прихода татаро-монголов уже была очень развитым государством с четкой системой государственного управления, развитой медициной и собственными традициями строительства. Дошедшие до наших дней здания Болгара поражают экскурсантов продуманностью и масштабом.
                         </p>
                     </div>
-                    <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">Читать полностью</NuxtLink>
+                    <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
                 </div>          
                 <Reviews/>
             </div>            
         </div>
         <div class="col-[full] grid-container pt-10 lg:pt-[60px] lg:border-t border-t-fline">
-            <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">Рекомендации</h2>                    
+            <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">{{generalConfigStore.value.static_info.global_words.recommendations}}</h2>                    
             <Recommendations class="wrapper col-[full]" /> 
         </div>
     </main>
@@ -191,11 +191,11 @@
                         </div>
                     </div>
                     <div>
-                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Выбор отеля</p>                                   
+                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.select_hotel}}</p>                                   
                         <FormsSelect decoration="border" :options="['отель1','отель2','отель3']"></FormsSelect> 
                     </div>
                     <div>
-                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Количество людей</p>  
+                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.count_people}}</p>  
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">                                 
                             <FormsSelect decoration="border" :options="[1,3,6]"></FormsSelect> 
                         </div>
@@ -209,39 +209,39 @@
                         <table class="table-primary w-full">
                             <thead class="table-primary-thead">
                                 <tr class="group/table">
-                                    <th class="table-primary-th">Тип билета</th>
-                                    <th class="table-primary-th">Цена</th>
-                                    <th class="table-primary-th text-right">Количество</th>
+                                    <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.type_ticket}}</th>
+                                    <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.price}}</th>
+                                    <th class="table-primary-th text-right">{{generalConfigStore.value.static_info.global_words.count}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="group/table">
-                                    <td data-label="Тип билета" class="table-primary-td">Взрослые</td>
-                                    <td data-label="Цена" class="table-primary-td">{{test}}</td>
-                                    <td data-label="Количество" class="table-primary-td"><FormsCounter v-model="test" class="float-right"/></td>
+                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Взрослые</td>
+                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td"></td>
+                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter  class="float-right"/></td>
                                 </tr>
                                 <tr class="group/table">
-                                    <td data-label="Тип билета" class="table-primary-td">Детский</td>
-                                    <td data-label="Цена" class="table-primary-td">3999 ₽</td>
-                                    <td data-label="Количество" class="table-primary-td"><FormsCounter class="float-right"/></td>
+                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Детский</td>
+                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">3999 ₽</td>
+                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
                                 </tr>                                            
                             </tbody>
                         </table>
                     </div>                                
                     <div>                                    
-                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Комментарий к заказу</p>                                        
+                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.comment_for_order}}</p>                                        
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                             <FormsInput decoration="border" type="text" labelClass="col-[full]"></FormsInput>                                        
                         </div>
                     </div>
                     <div>                                    
-                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">Персональные данные (на чье имя заключается договор)</p>                                        
+                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.person_data_contract}}</p>                                        
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-y-[25px]">
-                            <FormsInput decoration="border" type="text">ФИО</FormsInput>                                                                             
+                            <FormsInput decoration="border" type="text">{{generalConfigStore.value.static_info.global_words.fio}}</FormsInput>                                                                             
                             <FormsInput decoration="border" type="tel">Номер телефона*</FormsInput>                                                                      
-                            <FormsInput decoration="border" type="email">Email*</FormsInput>        
-                            <FormsCheckbox class="col-[full]">Подтверждаю свое согласие с Порядком предоставления экскурсионных услуг</FormsCheckbox>                               
-                            <FormsCheckbox class="col-[full]">Даю согласие на обработку и хранение своих персональных данных в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</FormsCheckbox>                               
+                            <FormsInput decoration="border" type="email">{{generalConfigStore.value.static_info.global_words.email_text}}</FormsInput>        
+                            <FormsCheckbox class="col-[full]">{{generalConfigStore.value.static_info.global_words.order_confirm_procedure_provision_excursion_services}}</FormsCheckbox>                               
+                            <FormsCheckbox class="col-[full]">{{generalConfigStore.value.static_info.global_words.order_fz_confirm_text}}</FormsCheckbox>                               
                         </div>
                     </div>
                     <Button size="L" class="lg:w-fit">Забронировать экскурсию</Button>
@@ -252,7 +252,9 @@
 </template>
 
 <script setup>
-let test = ref()
+import { useGeneralConfigStore} from '@/stores/generalConfigStore'
+    
+const generalConfigStore = useGeneralConfigStore()
 
 let isShowModal = ref(false)
 

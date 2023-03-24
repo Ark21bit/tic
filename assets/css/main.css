@@ -7,6 +7,10 @@
     html{
         @apply font-Onest
     }
+
+    body{
+        @apply whitespace-pre-line
+    }
         
     :root{
         /* макимальная ширина контента */

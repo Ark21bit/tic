@@ -11,6 +11,7 @@
             <Button tag="router-link"  to="/transfer">страница трансферы/интерактивные программы/музеи</Button>
             <Button tag="router-link"  to="/tour">страница тур</Button>
             <Button tag="router-link"  to="/confirmation">страница подтверждения</Button>
+            <Button tag="router-link"  to="/old_test_slug/98">редирект</Button>
         </div>
     </main>
 </template>

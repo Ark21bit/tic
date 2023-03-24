@@ -8,28 +8,32 @@
             <div class="space-y-2.5">
                 <div class="flex gap-[7px] items-center text-sm">
                     <img src="@/assets/imgs/icons/time.svg" alt="">
-                    <p class="text-fmainText">Длительность:</p>
+                    <p class="text-fmainText">{{ generalConfigStore.value.static_info.global_words.duration }}:</p>
                     <span class="text-fblack font-medium">08:00</span>
                 </div>
                 <div class="flex gap-[7px] items-center text-sm">
                     <img src="@/assets/imgs/icons/star.svg" alt="">
-                    <p class="text-fmainText">Отзывы:</p>
+                    <p class="text-fmainText">{{ generalConfigStore.value.static_info.global_words.reviews }}:</p>
                     <span class="text-fblack font-medium">10</span>
                 </div>                
             </div>            
-            <NuxtLink to="/" class="font-medium text-sm link">Подробнее</NuxtLink>
+            <NuxtLink to="/" class="font-medium text-sm link">{{ generalConfigStore.value.static_info.global_words.more }}</NuxtLink>
         </div>
         <div class="p-5 flex flex-col gap-[15px]">
             <div class="flex items-start">
                 <p class="font-bold text-[1.375rem] leading-[1.2] text-fblack ">1999 ₽</p>
                 <p v-if="props.isSale" class="text-sm ml-2.5 text-fred  font-medium line-through"><span class="text-fmainText">2899 ₽</span></p>
             </div>
-            <Button color="secondary" size="L" class="w-full hover:bg-fred">Заказать</Button>
+            <Button color="secondary" size="L" class="w-full hover:bg-fred">{{ generalConfigStore.value.static_info.global_words.order }}</Button>
         </div>
     </div>
 </template>
 
 <script setup >
+    import { useGeneralConfigStore} from '@/stores/generalConfigStore'
+    
+    const generalConfigStore = useGeneralConfigStore()
+
     const props = defineProps(
         {
             isSale: { type: Boolean, default:false }, 

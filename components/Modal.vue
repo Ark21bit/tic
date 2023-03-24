@@ -1,8 +1,8 @@
 <template>
     <transition name="fade">
-        <div class="fixed top-0 left-0 w-full h-screen overflow-y-auto scrollbar-w-0" v-bind="$attrs">
-            <div @click.self="$emit('close')" class="flex items-center justify-center lg:py-[105px] py-16 w-full h-fit min-h-screen scroll-y-auto bg-[rgba(0,0,0,.5)] z-20">
-                <div :class="[props.modalMaxSizeClass, props.modalImgBgClass]" class="relative bg-white w-[calc(100%-var(--widthContentMargin)*2)] z-30 p-5 lg:p-[30px] rounded-[10px]">
+        <div class="fixed z-30 top-0 left-0 w-full h-screen overflow-y-auto scrollbar-w-0" v-bind="$attrs">
+            <div @click.self="$emit('close')" class="flex items-center justify-center lg:py-[105px] py-16 w-full h-fit min-h-screen scroll-y-auto bg-[rgba(0,0,0,.5)] z-40">
+                <div :class="[props.modalMaxSizeClass, props.modalImgBgClass]" class="relative bg-white w-[calc(100%-var(--widthContentMargin)*2)] z-50 p-5 lg:p-[30px] rounded-[10px]">
                     <slot/>        
                     <button @click="$emit('close')" class="absolute top top-5 lg:top-[30px] right-5 lg:right-[30px]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">

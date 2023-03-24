@@ -3,7 +3,7 @@
         <div class="pt-[30px] lg:pt-[73px] pb-[100px]">
             <div class="flex max-lg:flex-col justify-between gap-6 lg:items-center mb-10 lg:mb-[50px]">
                 <h1 class="text-4xl font-bold  text-fblack">Сборные экскурсии</h1>                                 
-                <FormsDatepicker decoration="border" text-input v-model="date" class="max-w-[162px]" :id="'1'" :direction="'horizontal'" labelTitle="Выберите дату"></FormsDatepicker>                
+                <FormsDatepicker decoration="border" text-input v-model="date" class="max-w-[162px]" :id="'1'" :direction="'horizontal'" :labelTitle="generalConfigStore.value.static_info.global_words.select_date"></FormsDatepicker>                
             </div>
             <div class="grid lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10">
                 <div class="relative">
@@ -88,5 +88,9 @@
 </template>
 
 <script setup>
-    let date = ref()
+import { useGeneralConfigStore} from '@/stores/generalConfigStore'
+
+const generalConfigStore = useGeneralConfigStore()
+
+let date = ref()
 </script>

@@ -4,11 +4,7 @@
         <div class="py-4 flex gap-10 justify-between items-center">
             <NuxtLink to="/map"><IconsLogo class="text-fred w-[135px] lg:w-[169px]"/></NuxtLink>
             <nav class="lg:flex hidden items-center gap-[35px] text-sm text-fblack">
-                <NuxtLink to="/">Экскурсии</NuxtLink>
-                <NuxtLink to="/">Туры</NuxtLink>
-                <NuxtLink to="/">Дополнительно</NuxtLink>
-                <NuxtLink to="/">О нас</NuxtLink>
-                <NuxtLink to="/">Контакты</NuxtLink>
+                <NuxtLink :to="link.slug" v-for="link in generalConfigStore.value.static_info.menu.header" to="/">{{ link.title }}</NuxtLink>
             </nav>
             <div class="lg:flex hidden text-finactive text-sm font-medium">
                 <NuxtLink to="/" class="flex text-fred after:w-[1px] after:h-full after:bg-[rgba(28,25,25,0.4)] after:mx-2.5">РУ</NuxtLink>            
@@ -16,10 +12,10 @@
             </div>
             <div class="flex gap-4 max-sm:hidden max-lg:ml-auto">
                 <div class="flex flex-col text-sm justify-evenly font-medium text-fblack" > 
-                    <a href="tel:+78432676116" class="w-max">+7 843 267-61-16</a>
-                    <a href="tel:+79270331133" class="w-max">+7 927 033 11 33</a>
+                    <NuxtLink :to="`tel:${generalConfigStore.value.static_info.contact.telephones[0].replace(/\s/g,'')}`" class="w-max">{{generalConfigStore.value.static_info.contact.telephones[0]}}</NuxtLink>
+                    <NuxtLink :to="`tel:${generalConfigStore.value.static_info.contact.telephones[1].replace(/\s/g,'')}`" class="w-max">{{generalConfigStore.value.static_info.contact.telephones[1]}}</NuxtLink>                    
                 </div>
-                <Button size="L" class="lg:p-2.5"><img src="@/assets/imgs/icons/phone.svg" alt="" class="max-lg:hidden"><span class="lg:hidden">Заказать звонок</span></Button>
+                <Button size="L" class="lg:p-2.5"><img src="@/assets/imgs/icons/phone.svg" alt="" class="max-lg:hidden"><span class="lg:hidden">{{ generalConfigStore.value.static_info.global_words.request_call }}</span></Button>
             </div>
             <button @click="isMobileMenuShow = !isMobileMenuShow" class="lg:hidden flex flex-col justify-between w-[26px] group-[.menu-active]:h-5 h-3.5 transition-[height] ease-linear duration-100">
                 <span class="w-full h-0.5 bg-fblack rounded-[1px] group-[.menu-active]:rotate-45 origin-[0] transition-transform ease-linear duration-500"/>
@@ -68,10 +64,10 @@
             </div>
             <div class="flex flex-col gap-5 sm:hidden mt-[55px] px-[15px]">
                 <div class="flex text-sm gap-x-10 font-medium text-fblack" > 
-                    <a href="tel:+78432676116">+7 843 267-61-16</a>
-                    <a href="tel:+79270331133">+7 927 033 11 33</a>
+                    <NuxtLink to="tel:+78432676116">+7 843 267-61-16</NuxtLink>
+                    <NuxtLink to="tel:+79270331133">+7 927 033 11 33</NuxtLink>
                 </div>
-                <Button size="L">Заказать звонок</Button>
+                <Button size="L">{{generalConfigStore.value.static_info.global_words.request_call}}</Button>
             </div>
         </div>
         <!-- ------------- -->
@@ -79,5 +75,9 @@
 </template>
 
 <script setup>
+import { useGeneralConfigStore} from '@/stores/generalConfigStore'
+
+const generalConfigStore = useGeneralConfigStore()
+
 let isMobileMenuShow = ref( false )
 </script>
