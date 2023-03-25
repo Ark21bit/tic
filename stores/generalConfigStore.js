@@ -3,6 +3,7 @@ import { useRuntimeConfig } from '../node_modules/nuxt/dist/app'
 export const useGeneralConfigStore = defineStore('generalConfigStore', {
   state: () => ({ 
     value: {}, 
+    
   }),
   actions: {
     async getGeneralConfig() {

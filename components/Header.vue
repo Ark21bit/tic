@@ -7,8 +7,8 @@
                 <NuxtLink :to="link.slug" v-for="link in generalConfigStore.value.static_info.menu.header" to="/">{{ link.title }}</NuxtLink>
             </nav>
             <div class="lg:flex hidden text-finactive text-sm font-medium">
-                <NuxtLink to="/" class="flex text-fred after:w-[1px] after:h-full after:bg-[rgba(28,25,25,0.4)] after:mx-2.5">РУ</NuxtLink>            
-                <NuxtLink to="/" class="flex">EN</NuxtLink>
+                <NuxtLink to="/" :class="{'text-fred':locale == item.slice(0,2)}" class="flex after:w-[1px] last:after:hidden after:h-full after:bg-[rgba(28,25,25,0.4)] after:mx-2.5" v-for="item in generalConfigStore.value.locales">{{ item.slice(0,2) }}</NuxtLink>            
+                <!-- <NuxtLink to="/" class="flex">EN</NuxtLink> -->
             </div>
             <div class="flex gap-4 max-sm:hidden max-lg:ml-auto">
                 <div class="flex flex-col text-sm justify-evenly font-medium text-fblack" > 
@@ -80,4 +80,11 @@ import { useGeneralConfigStore} from '@/stores/generalConfigStore'
 const generalConfigStore = useGeneralConfigStore()
 
 let isMobileMenuShow = ref( false )
+
+const route = useRoute()
+
+let locale = 'ru'
+if (route.params.locale) {
+    locale = route.params.locale
+}
 </script>

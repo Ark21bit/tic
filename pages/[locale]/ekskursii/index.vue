@@ -1,4 +1,4 @@
-<template>
+<template> 
     <main class="grid-container">
         <div class="pt-[30px] lg:pt-[73px] pb-[100px]">
             <div class="flex max-lg:flex-col justify-between gap-6 lg:items-center mb-10 lg:mb-[50px]">
@@ -92,5 +92,22 @@ import { useGeneralConfigStore} from '@/stores/generalConfigStore'
 
 const generalConfigStore = useGeneralConfigStore()
 
+definePageMeta({
+    alias:"/ekskursii"
+})
+
+const route = useRoute()
+let locale = 'ru'
+if (route.params.locale) {
+    locale = route.params.locale
+}
+
 let date = ref()
+
+
+
+
+
 </script>
+/регулярныеэкскурсии/название
+/индивидуальныеэкскурсии/название

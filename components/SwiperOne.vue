@@ -1,7 +1,14 @@
 <template>
     <swiper :slidesPerView="1"  :navigation="{nextEl:'.next', prevEl:'.prev' }" :modules="[SwiperNavigation]" class="swiper-one w-full h-[391px] lg:h-[600px]" :loop="true">
         
-        <slot/>
+        <SwiperSlide v-for="(item, key) in props.data" :key="key">
+            <!-- <img src="@/assets/imgs/img4.png" alt="" class=""> -->
+            <div v-html="item.html" class="[&>img]:w-full [&>img]:h-full [&>img]:z-[-1] [&>img]:relative [&>img]:object-cover w-full h-full [background:linear-gradient(357.9deg,rgba(0,0,0,.6)_3.51%,rgba(0,0,0,0)_43.65%)]"></div>
+            <div class="absolute left-1/2 -translate-x-1/2 wrapper flex flex-col gap-2.5 items-center bottom-5 lg:bottom-[30px] text-white">
+                 <p class="text-lg lg:text-xl font-medium ">{{item.title}}</p>
+                 <p class="text-sm leading-[1.4]">{{item.description}}</p>
+            </div>
+        </SwiperSlide>    
         
         <div class="absolute wrapper flex justify-between top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
             <Button size="arrowM" class="prev rotate-180 max-lg:p-2.5" color="white">
@@ -20,7 +27,9 @@
 
 <script setup>
 
-    
+    const props = defineProps({
+        data:{type: Array}
+    })
 
 </script>
 

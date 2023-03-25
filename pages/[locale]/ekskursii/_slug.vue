@@ -1,16 +1,7 @@
 <template>
     <main class="grid-container contain-paint">
         
-        <SwiperOne class="col-[full]">
-            <SwiperSlide v-for="n in 10" :key="n">
-                <img src="@/assets/imgs/img4.png" alt="" class="w-full h-full object-cover">
-                <div class="absolute left-1/2 -translate-x-1/2 wrapper flex flex-col gap-2.5 items-center bottom-5 lg:bottom-[30px] text-white">
-                     <p class="text-lg lg:text-xl font-medium ">Остров-град Свияжск</p>
-                     <p class="text-sm leading-[1.4]">Какое-нибудь описание</p>
-                </div>
-            </SwiperSlide>
-            
-        </SwiperOne>       
+        <SwiperOne class="col-[full]" :data="product.data.media_gallery.data"/>              
         <div class="col-[full] grid-container border-b border-b-fline mb-10 max-lg:hidden">
             <ExcursionCategories/>
         </div>
@@ -19,9 +10,12 @@
                 <SideBar class="w-full sticky top-[50px]" />               
             </div>
             <div class="flex flex-col gap-[60px]">
-                <div class="text-sm text-fblack -mb-5 max-lg:hidden">
+                <!-- <div class="text-sm text-fblack -mb-5 max-lg:hidden">
                     <span class="last:text-finactive after:content-['/'] last:after:content-['']">Экскурсии по Татарстану</span>                    
                     <span class="last:text-finactive after:content-['/'] last:after:content-['']">Остров-град Свияжск</span>
+                </div> -->
+                <div class="text-sm text-fblack -mb-5 max-lg:hidden">
+                    <NuxtLink class="last:text-finactive after:content-['/'] last:after:content-['']" v-for="item in product.data.info_breadcrumbs.data" :to="item.url">{{ item.lang_info.title }}</NuxtLink>
                 </div>
                 <div>                    
                      <h1 class="text-[1.5625rem] leading-1.2 lg:text-4xl text-fblack  font-bold mb-5">Вечерняя Казань</h1>
@@ -39,7 +33,7 @@
                         <div class="p-[15px] rounded-[10px] shadow-[0_4px_23px_0_rgba(0,0,0,.07)]">
                             <img src="@/assets/imgs/icons/price.svg" alt="" class="mb-6">
                             <p class="text-ftext3 text-xs leading-[1.4] mb-1.5">{{generalConfigStore.value.static_info.global_words.price_list}}</p>
-                            <p class="text-fblack font-medium lg:text-xl ">2499 ₽</p>
+                            <p class="text-fblack font-medium lg:text-xl ">{{ product.data.price_see }} ₽</p>
                         </div>
                         <div class="p-[15px] rounded-[10px] shadow-[0_4px_23px_0_rgba(0,0,0,.07)]">
                             <img src="@/assets/imgs/icons/time.svg" alt="" class="mb-6">
@@ -66,7 +60,7 @@
                         <div class="p-[15px] rounded-[10px] shadow-[0_4px_23px_0_rgba(0,0,0,.07)]">
                             <img src="@/assets/imgs/icons/trail.svg" alt="" class="mb-6">
                             <p class="text-ftext3 text-xs leading-[1.4] mb-1.5">Вид экскурсии</p>
-                            <p class="text-fblack font-medium lg:text-xl ">Пешеходная</p>
+                            <p class="text-fblack font-medium lg:text-xl ">{{getTitleCategoriesProduct(product.data.category_id)}}</p>
                         </div>
                     </div>
                 </div>
@@ -110,17 +104,17 @@
                                     <div>
                                         <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.select_datetime}}</p>
                                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                                            <FormsDatepicker decoration="border">{{generalConfigStore.value.static_info.global_words.date}}</FormsDatepicker>
-                                            <FormsSelect decoration="border" :options="[13,14,15]">Время</FormsSelect>
+                                            <FormsDatepicker decoration="border" v-model="timeatableDate">{{generalConfigStore.value.static_info.global_words.date}}</FormsDatepicker>
+                                            <FormsSelect decoration="border" v-model="selectTimeatableTime" :options="timeatableTime.title" :optionsValue="timeatableTime.value">Время</FormsSelect>                                            
                                         </div>
                                     </div>
-                                    <div class="flex flex-wrap items-baseline">
+                                    <div class="flex flex-wrap items-baseline" v-if="timeatables">
                                         <p class="leading-[1.2] text-[1.0625rem] mb-5 lg:mb-[25px]">Выберите категорию (осталось 18 билетов!)</p>
                                         <div class="flex gap-[30px] max-sm:w-full font-medium items-center max-lg:mt-5 lg:ml-auto max-lg:order-1">
                                             <p class="text-sm font-medium max-lg:basis-[213px]">Выбрано <span class="text-fred">8 билетов</span></p>
-                                            <p class="text-sm font-medium text-fred shrink-0 ml-auto">30 434 ₽</p> 
+                                            <p class="text-sm font-medium text-fred shrink-0 ml-auto">30 434 ₽</p>
                                         </div>
-                                        <table class="table-primary w-full">
+                                        <table class="table-primary w-full" >
                                             <thead class="table-primary-thead">
                                                 <tr class="group/table">
                                                     <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.type_ticket}}</th>
@@ -129,26 +123,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="group/table">
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Взрослые</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">3999 ₽</td>
+                                                <tr class="group/table" v-for="timetable in timeatables.data">
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">{{getTitleTypeTicket(timetable.type_ticket_id)}}</td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">{{timetable.price}} ₽</td>
                                                     <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
-                                                </tr>
-                                                <tr class="group/table">
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Детский</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">3999 ₽</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
-                                                </tr>
-                                                <tr class="group/table">
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Пенсионеры</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">3999 ₽</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
-                                                </tr>
-                                                <tr class="group/table">
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Студенты</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">3999 ₽</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
-                                                </tr>
+                                                </tr>                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -173,16 +152,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="group/table">
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Аренда оборудования (для лучшей слышимости гида)</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">100 ₽</td>
+                                                <tr class="group/table" v-for="additional_product in product.data.info_additional_products.data">
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td"><NuxtLink :to="`/${additional_product.addition_info.slug}`">{{additional_product.addition_info.lang_info.title}}</NuxtLink></td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">{{additional_product.price}} ₽</td>
                                                     <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
-                                                </tr>
-                                                <tr class="group/table">
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Дождевик</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">100 ₽</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
-                                                </tr>                                           
+                                                </tr>                                                                                     
                                             </tbody>                                        
                                         </table>
                                     </div>
@@ -196,12 +170,13 @@
                                         <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.person_data_contract}}</p>                                        
                                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-y-[25px]">
                                             <FormsInput decoration="border" type="text">{{generalConfigStore.value.static_info.global_words.fio}}</FormsInput>
-                                            <FormsSelect decoration="border" :options="['пункт 1','пункт 2']">{{generalConfigStore.value.static_info.global_words.fio}}</FormsSelect>                                        
+                                            <FormsSelect decoration="border" :options-value="product.data.start_place_types" :options="getTitlePlacesStart(product.data.start_place_types)">{{generalConfigStore.value.static_info.global_words.starting_point}}</FormsSelect>                                        
                                             <FormsInput decoration="border" type="tel">Номер телефона*</FormsInput>   
-                                            <FormsSelect decoration="border" :options="['Наличными','Картой']">{{generalConfigStore.value.static_info.global_words.type_payment}}</FormsSelect>                                      
+                                            <FormsSelect decoration="border" :options-value="product.data.payment_types" v-model="test" :options="getTitlePaymentTypes(product.data.payment_types)">{{generalConfigStore.value.static_info.global_words.type_payment}}</FormsSelect>                                      
                                             <FormsInput decoration="border" type="email">{{generalConfigStore.value.static_info.global_words.email_text}}</FormsInput>        
                                             <FormsCheckbox class="col-[full]">{{generalConfigStore.value.static_info.global_words.order_confirm_procedure_provision_excursion_services}}</FormsCheckbox>                               
                                             <FormsCheckbox class="col-[full]">{{generalConfigStore.value.static_info.global_words.order_fz_confirm_text}}</FormsCheckbox>                               
+                                            {{ test }}
                                         </div>
                                     </div>
                                     <Button size="L" class="lg:w-fit">Забронировать экскурсию</Button>
@@ -211,23 +186,13 @@
                     </ClientOnly>
                 </div>
                 <div class="lg:border-y border-y-fline lg:py-[30px] max-lg:hidden flex flex-col gap-[30px]">
-                    <div >
-                        <h3 class="text-xl font-medium text-fblack mb-5">Экскурсии в Булгар из Казани</h3>
-                        <p class="text-sm leading-[1.4] text-ftext3">
-                            Узнать одну из древних жемчужин Республики Татарстан можно на экскурсии в Булгар с выездом из Казани. Булгар (также Болгар) - это древний город, расположенный в Спасском районе Татарстана, в котором сохранилось множество древних построек и любопытных современных зданий. Экскурсии в Булгар популярны, прежде всего, потому, что это место, где впервые на территории России был принят ислам. Помимо этого Булгары славятся великолепными зданиями, пожалуй, самое известное из которых - Белая Мечеть - это здрание очень напоминает туристам индийский Тадж-Махал по архитектуре и окружению.
-                            <br><br>
-                            Экскурсия в Болгар: цена, программа
-                            <br><br>
-                            Классическая экскурсия в Болгар включает в себя посещение древнего городища (столицы Волжской Булгарии), включенного в список объектов культурного наследия ЮНЕСКО. В рамках экскурсии в Болгар туристы увидят великую русскую реку Каму в одном из самых широких ее мест, знаковые памятники архитектуры 13-14 веков нашей эры, мавзолеи 15 века, современное здание - Белую мечеть, и самый необычный памятник - здание, олицетворяющее место принятия ислама на территории современной России.
-                        </p>
+                    <div>
+                        <h3 class="text-xl font-medium text-fblack mb-5">{{ product.data.lang_info.title }}</h3>
+                        <p class="text-sm leading-[1.4] text-ftext3">{{ product.data.lang_info.mini_description }}</p>                      
                     </div>
-                    <div > 
-                        <h3 class="text-xl font-medium text-fblack mb-5">Древний город Болгар: экскурсия с выездом из Казани</h3>
-                        <p class="text-sm leading-[1.4] text-ftext3">
-                            Кроме упомянутых объектов, справедливо включенных ЮНЕСКО в список материального культурного наследия человечества, Болгар способен удивить туристов любопытным объектом, включенным в список рекордов Гиннеса. Речь о самом большом в мире печатном коране. Он хранится в здании памятного знака, а его вес насчитывает более 500 кг. Священная книга украшена драгоценными и полудрагоценными камнями и золотом, а чтобы перелистнуть ее страницы требуется помощь нескольких человек.
-                            <br><br>
-                            Ещё один любопытный пункт экскурсии в город Болгар - посещение музея лекаря, в котором экскурсанты познакомятся с технологиями средневекового врачевания. Немногие знают, что государство Волжская Булгария до прихода татаро-монголов уже была очень развитым государством с четкой системой государственного управления, развитой медициной и собственными традициями строительства. Дошедшие до наших дней здания Болгара поражают экскурсантов продуманностью и масштабом.
-                        </p>
+                    <div> 
+                        <h3 class="text-xl font-medium text-fblack mb-5">{{ product.data.lang_info.description }}</h3>
+                        <p class="text-sm leading-[1.4] text-ftext3">{{ product.data.lang_info.text }}</p>                       
                     </div>
                     <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
                 </div>             
@@ -237,7 +202,7 @@
         <div class="col-[full] grid-container pt-10 lg:pt-[60px] lg:border-t border-t-fline">
             <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">{{generalConfigStore.value.static_info.global_words.recommendations}}</h2>                    
             <Recommendations /> 
-        </div>            
+        </div>  
     </main>
 </template>
 
@@ -246,6 +211,59 @@ import { useGeneralConfigStore} from '@/stores/generalConfigStore'
 
 const generalConfigStore = useGeneralConfigStore()
 
+const runtimeConfig = useRuntimeConfig()
+const route = useRoute()
+
+let test = ref()
+
+definePageMeta({
+    alias:"/ekskursii/:slug"
+})
+
+/* локализация страницы */
+
+let locale = 'ru'
+if (route.params.locale) {
+    locale = route.params.locale
+}
+
+/* получение прродукта из api */
+      
+const { data:product, error } = await useFetch(`${runtimeConfig.public.apiBase}/api/search/slugs`,{
+    headers:{Locale:locale.value},
+    query:{slug:route.params.slug}
+})
+
+if(error.value) throw createError({statusCode:error.value.statusCode, statusMessage:error.value.statusMessage})
+
+let timeatables = ref(null)
+let timeatableDate = ref(null)
+let selectTimeatableTime = ref(null)
+
+const timeatableTime = computed(()=>{
+    let object = {title:[], value:[]}
+    for (const timetable of product.value.data.info_timetables.data){
+        if (new Intl.DateTimeFormat('ru-RU').format(timeatableDate.value) == timetable.start_event_at_format_day) {           
+            object.title.push(timetable.start_event_at_format_time)
+            object.value.push(timetable.id)
+        } 
+    }
+    if (object.value.length > 0) {        
+        selectTimeatableTime.value = object.value[0]
+    }else{
+        selectTimeatableTime.value = null
+    }
+    return object
+})
+
+watch(selectTimeatableTime, async ()=>{
+    const { data, error } = await useFetch(`${runtimeConfig.public.apiBase}/api/products/${selectTimeatableTime.value}/price-timetable`,{
+        headers:{Locale:locale.value},   
+    })
+    timeatables.value = data.value 
+})
+
+/* модальные окна */
 let isShowModal = ref(false)
 
 const closeModal = ()=>{
@@ -259,4 +277,35 @@ const openModal = ()=>{
     document.querySelector('body').style.overflowY = "hidden"
     isShowModal.value = true;
 }
+
+/* функции для получения названий по id */
+
+const getTitlePlacesStart = (placesStart)=>{
+    return placesStart.map(a=>{
+        for(const item of generalConfigStore.value.orders.places_start){
+            if(item.id == a) return item.title
+        }       
+    })
+}
+
+const getTitlePaymentTypes = (paymentTypes)=>{
+    return paymentTypes.map(a=>{
+        for(const item of generalConfigStore.value.orders.payment_types){
+            if(item.id == a) return item.title
+        }       
+    })
+}
+
+const getTitleCategoriesProduct = ( productCategories )=>{    
+    for(const item of generalConfigStore.value.products.categories){
+        if(item.id == productCategories) return item.title
+    }       
+}
+
+const getTitleTypeTicket = ( typeTicket )=>{    
+    for(const item of generalConfigStore.value.orders.ticket_types){
+        if(item.id == typeTicket) return item.title
+    }       
+}
+
 </script>
