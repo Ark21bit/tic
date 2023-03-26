@@ -32,6 +32,4 @@ const { data:about_info } = await useFetch(`${runtimeConfig.public.apiBase}/api/
     headers:{Locale:locale.value},
     query:{key:'about'}
 })
-
-console.log(about_info.value)
 </script>

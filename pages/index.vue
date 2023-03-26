@@ -1,16 +1,14 @@
 <template>
     <main class="grid-container">       
-        <swiper-carousel/>
-        <div class="col-[full] bg-[url(@/assets/imgs/RecommendationsBg.png)] bg-no-repeat bg-[length:100%_auto] grid-container pt-20 lg:pt-[150px]">       
-            <h2 class="lg:text-3xl text-2xl font-bold  text-fblack mb-[30px]">Наши рекомендации</h2>            
-            <RecommendationsIndex/>  
-        </div>
+        <swiper-carousel :data="mainInfo.slider.data"/>                   
+        <RecommendationsIndex :title="mainInfo.content.recommendation.title" :data="mainInfo.recommendations.data" class="col-[full] bg-[url(@/assets/imgs/RecommendationsBg.png)] bg-no-repeat bg-[length:100%_auto] grid-container pt-20 lg:pt-[150px]"/> 
+       
         <div class=" max-lg:hidden relative col-[full] grid-container bg-no-repeat bg-cover py-10 mt-[150px] bgForm">
             <img src="@/assets/imgs/img2.png" alt="" class="max-[1380px]:hidden absolute top-0 left-0 col-[full] -translate-y-1/2">
             <div >
                 <div class="max-w-[510px] space-y-5" >
-                    <h2 class="text-[2.1875rem] text-white  font-bold ">Не нашли подходящую экскурсию?</h2>
-                    <p class="text-ftext text-sm leading-normal max-w-[350px]">Отправьте заявку на индивидуальную экскурсию, и мы свяжемся с вами!</p>                    
+                    <h2 class="text-[2.1875rem] text-white  font-bold ">{{ mainInfo.content.form_search.title }}</h2>
+                    <p class="text-ftext text-sm leading-normal max-w-[350px]">{{ mainInfo.content.form_search.description }}</p>                    
                     <form class="grid grid-cols-2 gap-5 items-start">
                         <FormsInput type="text" placeholder="Название экскурсии" labelClass="col-span-2"></FormsInput>
                         <FormsInput type="text" :placeholder="generalConfigStore.value.static_info.global_words.fio"></FormsInput>
@@ -34,7 +32,7 @@
                 </div>
             </div>
         </div>         
-        <Partners  class="col-[full] mt-[150px] max-lg:hidden"/> 
+        <Partners :title="mainInfo.content.partners.title" :data="mainInfo.partners.data" class="col-[full] mt-[150px] max-lg:hidden"/> 
     </main>           
 </template>
 
@@ -58,6 +56,15 @@ import { useGeneralConfigStore} from '@/stores/generalConfigStore'
 
 const generalConfigStore = useGeneralConfigStore()
 
+const route = useRoute() 
+const runtimeConfig = useRuntimeConfig()
+
+definePageMeta({
+    alias:"/about"
+})
+
+/* код для модального окна */
+
 let isShowModal = ref(false)
 
 const closeModal = ()=>{
@@ -71,6 +78,19 @@ const openModal = ()=>{
     document.querySelector('body').style.overflowY = "hidden"
     isShowModal.value = true;
 }
+
+/* запрос на полчукние данных с api */ 
+
+let locale = 'ru'
+if (route.params.locale) {
+    locale = route.params.locale
+}
+      
+const { data:mainInfo } = await useFetch(`${runtimeConfig.public.apiBase}/api/search/page`,{
+    headers:{Locale:locale.value},
+    query:{key:'main'}
+})
+
 let date = ref()
 </script>
 

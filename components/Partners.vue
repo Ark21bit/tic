@@ -1,28 +1,56 @@
 <template>
-    <div>
-        <swiper class="swiper-partners" :slidesPerView="'auto'" :loop="true" :speed="2000" :modules="[SwiperAutoplay]" :autoplay="{delay:0, disableOnInteraction: false, pauseOnMouseEnter:true, reverseDirection:true }">
-            <SwiperSlide v-for="n in 20" :key="n">           
-                <img src="@/assets/imgs/partners/img1.png" class="contain w-full" alt="">    
-                <p class="absolute bottom-2.5 text-sm text-[#9F9F9F]">Кума</p>        
+    <div>  
+        <h2 class="lg:text-3xl text-2xl font-bold wrapper  text-fblack mb-[30px]">{{title}}</h2>      
+        <swiper class="swiper-partners border-t" :slidesPerView="'auto'" :loop="true" :speed="2000" :modules="[SwiperAutoplay]" :autoplay="{delay:0, disableOnInteraction: false, pauseOnMouseEnter:true, reverseDirection:true }">
+            <SwiperSlide v-for="item, index in props.data">               
+                <div v-html="item.media_preview" class="[&>img]:contain [&>img]:w-full w-full"></div>  
+                <p class="absolute bottom-2.5 text-sm text-[#9F9F9F] text-center">{{ item.lang_info.title }}</p>        
+            </SwiperSlide> 
+            <SwiperSlide v-for="item, index in props.data">               
+                <div v-html="item.media_preview" class="[&>img]:contain [&>img]:w-full w-full"></div>  
+                <p class="absolute bottom-2.5 text-sm text-[#9F9F9F] text-center">{{ item.lang_info.title }}</p>        
+            </SwiperSlide> 
+            <SwiperSlide v-for="item, index in props.data">               
+                <div v-html="item.media_preview" class="[&>img]:contain [&>img]:w-full w-full"></div>  
+                <p class="absolute bottom-2.5 text-sm text-[#9F9F9F] text-center">{{ item.lang_info.title }}</p>        
+            </SwiperSlide> 
+            <SwiperSlide v-for="item, index in props.data">               
+                <div v-html="item.media_preview" class="[&>img]:contain [&>img]:w-full w-full"></div>  
+                <p class="absolute bottom-2.5 text-sm text-[#9F9F9F] text-center">{{ item.lang_info.title }}</p>        
             </SwiperSlide> 
         </swiper>    
         <swiper class="swiper-partners" :slidesPerView="'auto'" :loop="true" :speed="2000" :modules="[SwiperAutoplay]" :autoplay="{delay:0, disableOnInteraction: false, pauseOnMouseEnter:true, reverseDirection:false }">
-            <SwiperSlide v-for="n in 20" :key="n">           
-                <img src="@/assets/imgs/partners/img1.png" class="contain w-full" alt="">  
-                <p class="absolute bottom-2.5 text-sm text-[#9F9F9F]">Кума</p>                
+            <SwiperSlide v-for="item, index in props.data">           
+                <div v-html="item.media_preview" class="[&>img]:contain [&>img]:w-full w-full"></div> 
+                <p class="absolute bottom-2.5 text-sm text-[#9F9F9F] text-center">{{ item.lang_info.title }}</p>                
+            </SwiperSlide> 
+            <SwiperSlide v-for="item, index in props.data">               
+                <div v-html="item.media_preview" class="[&>img]:contain [&>img]:w-full w-full"></div>  
+                <p class="absolute bottom-2.5 text-sm text-[#9F9F9F] text-center">{{ item.lang_info.title }}</p>        
+            </SwiperSlide> 
+            <SwiperSlide v-for="item, index in props.data">               
+                <div v-html="item.media_preview" class="[&>img]:contain [&>img]:w-full w-full"></div>  
+                <p class="absolute bottom-2.5 text-sm text-[#9F9F9F] text-center">{{ item.lang_info.title }}</p>        
+            </SwiperSlide> 
+            <SwiperSlide v-for="item, index in props.data">               
+                <div v-html="item.media_preview" class="[&>img]:contain [&>img]:w-full w-full"></div>  
+                <p class="absolute bottom-2.5 text-sm text-[#9F9F9F] text-center">{{ item.lang_info.title }}</p>        
             </SwiperSlide> 
         </swiper>    
     </div>
 </template>
 
 <script setup>
-
+const props = defineProps({      
+    title: { type:String },    
+    data:{type:Array}
+}) 
 </script>
 
 
 <style type="text/tailwindcss"> 
     .swiper-partners{
-        @apply w-full border-b border-fline first:border-t
+        @apply w-full border-b border-fline
     }
 
     .swiper-partners .swiper-wrapper {

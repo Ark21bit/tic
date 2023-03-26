@@ -1,28 +1,19 @@
 <template>
-    <swiper :slidesPerView="'auto'" :breakpoints="{'1024': {  slidesPerView: 6,  spaceBetween: 0, slidesPerGroup:6 }}" class="w-full swiper-recommendations-index" :spaceBetween="20">
-        <SwiperSlide class="lg:[width:100%!important] col-span-2">
-            <Card class="w-full h-full"/>
-        </SwiperSlide>                
-        <SwiperSlide class="lg:[width:100%!important]">
-            <Card class="w-full h-full" />
-        </SwiperSlide>                
-        <SwiperSlide class="lg:[width:100%!important]">
-            <Card class="w-full h-full" />                
-        </SwiperSlide>                
-        <SwiperSlide class="lg:[width:100%!important]">
-            <Card class="w-full h-full" />
-        </SwiperSlide>                
-        <SwiperSlide class="lg:[width:100%!important] col-span-2">
-            <Card class="w-full h-full" />
-        </SwiperSlide>                
-        <SwiperSlide class="lg:[width:100%!important]">
-            <Card class="w-full h-full" />
-        </SwiperSlide>                
-    </swiper>
+    <div>       
+        <h2 class="lg:text-3xl text-2xl font-bold  text-fblack mb-[30px]">{{title}}</h2>  
+        <swiper :slidesPerView="'auto'" :breakpoints="{'1024': {  slidesPerView: 6,  spaceBetween: 0, slidesPerGroup:6 }}" class="w-full swiper-recommendations-index" :spaceBetween="20">
+            <SwiperSlide v-for="item, index in data" class="lg:[width:100%!important]" :class="{'col-span-2':index==0||index==4}">
+                <Card class="w-full h-full" :title="item.lang_info.title" :img="item.media_preview" :slug="item.slug"/>
+            </SwiperSlide> 
+        </swiper>
+    </div>
 </template>
 
 <script setup>
-
+const props = defineProps({      
+    title: { type:String },
+    data: { default:[], type:Array },    
+}) 
 </script>
 
 <style type="text/tailwindcss">
