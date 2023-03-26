@@ -3,9 +3,9 @@
         <slot/>                
       
         <div v-bind="$attrs" @click="isOptionsShow = !isOptionsShow"  :class="[{'active':isOptionsShow}, selectClass]" class="relative group cursor-pointer rounded-[5px] px-[15px] py-3 placeholder:text-[#90A4B8] text-sm group-[.error]:bg-[#EDF1F4] group-[.error]:border-[#E12525] group-[.error]:border-[1.5px] text-fblack">
-            <span class="min-h-[1.2em] block">{{  selectedOption }}</span>
+            <span class="min-h-[1.2em] block">{{ SelectTitle }}</span>
             <div v-show="isOptionsShow" class="rounded-[5px] z-10 bg-white w-full overflow-hidden shadow-[0_4px_23px_0_rgba(0,0,0,.07)] absolute top-[calc(100%+5px)] left-0 ">
-                <div class="w-full px-[14px] cursor-pointer hover:bg-fred hover:text-white py-2.5" v-for="option, index in props.options" :class="{'bg-fred text-white':selectedOption == option , 'bg-white':selectedOption != option}" @click="selectOption(option, optionsValue[index])">{{option}}</div>
+                <div class="w-full px-[14px] cursor-pointer hover:bg-fred hover:text-white py-2.5" v-for="(option, index) in props.optionsValue" :class="{'bg-fred text-white':selectOptionValue == option , 'bg-white':selectOptionValue != option}" @click="selectOptionValue = option">{{props.optionsTitle[index]}}</div>
             </div>
             <div class="absolute top-1/2 -translate-y-1/2 right-[15px] transition-transform duration-500 ease-linear text-fred group-[.active]:rotate-180">
                 <IconsDropdownArrow/>
@@ -24,14 +24,15 @@ export default {
 </script>
 
 <script setup>
+
 const props = defineProps({            
     decoration: { type: String, default: "default" },
     direction: { type:String, default:'vertical' },
     errorTitle : { type:String },
     modelValue: { default:null },
     labelClass: { type:String, default:null },
-    options:{type:Array, default:null},
-    optionsValue:{type:Array, default:null}
+    optionsTitle:{type:Array, default:[]},
+    optionsValue:{type:Array, default:[]}
 }) 
 
 let isOptionsShow = ref(false)
@@ -61,20 +62,24 @@ const selectClass = computed(()=>{
 
 /* двухстороннее cвязывание v-model */
 
+const SelectTitle = computed(()=>{
+  const index = props.optionsValue.findIndex(item=>item == selectOptionValue.value) 
+  if(index != -1){
+    return props.optionsTitle[index]
+  }
+  return null
+})
+
 const emit = defineEmits(['update:modelValue']) 
 
-let selectedOption = ref(null)
-
-onUpdated(() => {
-  if (props.modelValue) return selectedOption.value = props.modelValue  
-})  
-
-const selectOption = (option, value)=> {    
-    selectedOption.value = option
+const selectOptionValue = computed({
+  get(){
+    return props.modelValue
+  },
+  set(value){
     emit('update:modelValue', value)
-}
-
-
+  }
+})
 </script>
 
 
