@@ -100,7 +100,7 @@
                                     <div>
                                         <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.select_datetime}}</p>
                                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                                            <FormsDatepicker decoration="border" v-model="SelectTimeatableDate">{{generalConfigStore.value.static_info.global_words.date}}</FormsDatepicker>
+                                            <FormsDatepicker decoration="border" :highlightedDates="availableSelectDate" v-model="SelectTimeatableDate">{{generalConfigStore.value.static_info.global_words.date}}</FormsDatepicker>
                                             <FormsSelect decoration="border" v-model="selectTimeatableTime" :optionsTitle="timeatableTime.title" :optionsValue="timeatableTime.value">Время</FormsSelect>                                            
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@
         </div>
         <div class="col-[full] grid-container pt-10 lg:pt-[60px] lg:border-t border-t-fline">
             <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">{{generalConfigStore.value.static_info.global_words.recommendations}}</h2>                    
-            <Recommendations /> 
+            <Recommendations :data="product.data.info_recommendations.data"/> 
         </div>  
     </main>
 </template>
@@ -238,6 +238,14 @@ let priceTimeatables = ref([])
 let SelectTimeatableDate = ref(null)
 let selectTimeatableTime = ref(null)
 
+let availableSelectDate = computed(()=>{
+    const uniqueDate = new Set()
+    for (const timetable of product.value.data.info_timetables.data){        
+        uniqueDate.add(timetable.start_event_at)
+    }
+    return [...uniqueDate]
+})
+
 const countPeople = computed(()=>{
   const index = timeatableTime.value.value.findIndex(item=>item == selectTimeatableTime.value) 
   if(index != -1){
@@ -270,18 +278,20 @@ const sumPriceTicket = computed(()=>{
 
 const timeatableTime = computed(()=>{
     let object = {title:[], value:[], countPeople:[]}
+   
     for (const timetable of product.value.data.info_timetables.data){
         if (new Intl.DateTimeFormat('ru-RU').format(SelectTimeatableDate.value) == timetable.start_event_at_format_day) {           
             object.title.push(timetable.start_event_at_format_time)
             object.value.push(timetable.id)
-            object.countPeople.push(timetable.max_count_people)
-        } 
+            object.countPeople.push(timetable.max_count_people)            
+        }        
     }
     if (object.value.length > 0) {        
         selectTimeatableTime.value = object.value[0]
     }else{
         selectTimeatableTime.value = null
     }
+    
     return object
 })
 
@@ -304,11 +314,13 @@ const closeModal = ()=>{
     isShowModal.value = false;
     setTimeout(() => {        
         document.querySelector('body').style.overflowY = ""
-    }, 500);
+        document.querySelector('#__nuxt').style.paddingRight = ""
+    }, 400);
 }
 
 const openModal = ()=>{
     document.querySelector('body').style.overflowY = "hidden"
+    document.querySelector('#__nuxt').style.paddingRight = "17px"
     isShowModal.value = true;
 }
 

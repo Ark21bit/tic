@@ -6,7 +6,7 @@
           {{ labelTitle }}
         </label>
       </slot>                    
-    <VueDatePicker v-bind="$attrs" :uid="props.id" month-name-format="long" v-model="value" :clearable="false" :close-on-auto-apply="false" :auto-apply="true" format="dd.MM.yyyy" locale="ru" position="right" :no-today="true" :enable-time-picker="false">
+    <VueDatePicker :highlight="props.highlightedDates" v-bind="$attrs" :uid="props.id" month-name-format="long" v-model="value" :clearable="false" :close-on-auto-apply="false" :auto-apply="true" format="dd.MM.yyyy" locale="ru" position="right" :no-today="true" :enable-time-picker="false">
       <template #input-icon>
             <IconsDatepicker class="transition ease-linear duration-200"/>
       </template>      
@@ -54,6 +54,7 @@ export default {
     id: { type:String, default:'id' },
     decoration:{ type:String, default:'default'},
     boxClass:{ type:String, default:'default'},
+    highlightedDates:{type:Array}
   })
   
   /* классы для обертки */
@@ -96,7 +97,7 @@ export default {
       group-[.default]:focus:border-transparent group-[.default]:border-transparent 
       group-[.decoration-border]:border group-[.decoration-border]:border-[#d7d7d7] group-[.decoration-border]:bg-transparent group-[.decoration-border]:focus:border-[#d7d7d7] 
       group-[.error]:border-[1.5px] group-[.error]:border-[#E12525] group-[.error]:focus:border-[#E12525] group-[.error]:bg-[#EDF1F4]
-    }
+    }  
 
   .dp__theme_light  {
     @apply [--dp-background-color:white]
@@ -126,7 +127,7 @@ export default {
 
     .dp__input_focus ~ .dp__input_icon{
       @apply text-fred
-    }
+    }    
    
     .dp__menu{
       @apply font-Onest text-sm
@@ -154,6 +155,10 @@ export default {
 
     .dp__cell_inner{
       @apply w-[25px] h-[25px] p-0
+    }
+
+    .dp__cell_highlight {
+      @apply outline-fred -outline-offset-1 outline outline-1 bg-transparent
     }
 
     .dp__calendar{

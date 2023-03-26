@@ -1,9 +1,7 @@
-<template>
-    <div>
-      <NuxtLayout>
-        <NuxtPage/>
-      </NuxtLayout>
-    </div>
+<template>    
+    <NuxtLayout>
+      <NuxtPage/>
+    </NuxtLayout>    
     <div id="teleported"></div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
     <swiper :slidesPerView="'auto'" :navigation="{nextEl:'.next', prevEl:'.prev' }" :modules="[SwiperNavigation]" class="swiper-recommendations h-[330px] lg:h-[397px]" :spaceBetween="20">
-        <SwiperSlide v-for="n in 10" :key="n" class="max-w-[260px]  lg:max-w-[285px]">
-            <Card class="w-full h-full"/>
+        <SwiperSlide v-for="item, index in data" :key="index" class="max-w-[260px]  lg:max-w-[285px]">
+            <Card class="w-full h-full" :cardInfo="item.data"/>
         </SwiperSlide>
         <Button size="arrowM" class="prev rotate-180 absolute top-1/2 left-0 -translate-y-1/2 z-10 -translate-x-1/2 max-lg:hidden" color="white">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -17,7 +17,9 @@
 </template>
 
 <script setup>
-
+    const props = defineProps({            
+        data: { default:[], type:Array },
+    })
 </script>
 
 <style type="text/tailwindcss">
