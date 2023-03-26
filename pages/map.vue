@@ -3,8 +3,8 @@
         <div class="flex flex-wrap gap-5 py-5">
             <Button tag="router-link"  to="/">Главная</Button>
             <Button tag="router-link"  to="/ekskursii">Экскурсии Каталог</Button>
-            <Button tag="router-link"  to="/ekskursii/detail">Раздел экскурсии</Button>
-            <Button tag="router-link"  to="/ekskursii/detailindividual">индивидуальные экскурсии </Button>
+            <Button tag="router-link"  to="/ekskursii/ostrov-grad-sviiazsk-raifskii-monastyr-i-xram-vsex-religii">Раздел экскурсии</Button>
+            <Button tag="router-link"  to="ru/ekskursii/detailindividual">индивидуальные экскурсии </Button>
             <Button tag="router-link"  to="/about">О нас</Button>
             <Button tag="router-link"  to="/contacts">Контакты</Button>
             <Button tag="router-link"  to="/hotels">страница отели</Button>

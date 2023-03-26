@@ -19,7 +19,7 @@ const props = defineProps(
         textClass: { type: String, default:'lg:text-lg text-base' }, 
         textSaleClass: { type: String, default:'text-base' },
         imgSrc: { type: String },
-        cardInfo:{type:Object, default:{}}
+        cardInfo:{type:Object, default:{media_preview:"<img src='https://storage.kazantravel.ru/135/Храм-всех-религий-(1).jpg'>" ,lang_info:{is_sale:false,title:"Храм всех религий (с посещением)"}, slug:'/'}}
     }
 )
 

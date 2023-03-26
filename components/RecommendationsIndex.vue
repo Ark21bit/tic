@@ -1,7 +1,7 @@
 <template>
     <swiper :slidesPerView="'auto'" :breakpoints="{'1024': {  slidesPerView: 6,  spaceBetween: 0, slidesPerGroup:6 }}" class="w-full swiper-recommendations-index" :spaceBetween="20">
         <SwiperSlide class="lg:[width:100%!important] col-span-2">
-            <Card class="w-full h-full" :isSale="true"/>
+            <Card class="w-full h-full"/>
         </SwiperSlide>                
         <SwiperSlide class="lg:[width:100%!important]">
             <Card class="w-full h-full" />
