@@ -24,7 +24,7 @@
 
 <style type="text/tailwindcss">
     .swiper-recommendations{
-        @apply overflow-visible 
+        @apply overflow-visible w-full
     }     
 </style>
 

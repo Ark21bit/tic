@@ -1,10 +1,9 @@
 <template>
     <main class="grid-container contain-paint">
         
-        <SwiperOne class="col-[full]" />     
-        <div class="col-[full] grid-container border-b border-b-fline mb-10 max-lg:hidden">
-            <ExcursionCategories/>
-        </div>
+        <SwiperOne class="col-[full]" v-if="hotel.data.media_gallery.status" :data="hotel.data.media_gallery.data"/>
+        <ExcursionCategories class="col-[full] grid-container border-b border-b-fline mb-10 max-lg:hidden"/>
+        
         <div class="grid grid-cols-1 lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10 max-lg:mt-[30px]">
             <div class="relative">
                 <SideBar class="w-full sticky top-[50px]" />               
@@ -15,8 +14,8 @@
                     <span class="last:text-finactive after:content-['/'] last:after:content-['']">Остров-град Свияжск</span>
                 </div>
                 <div class="flex max-sm:flex-col gap-[15px] lg:gap-5 sm:items-center">                    
-                     <h1 class="text-[1.5625rem] leading-1.2 lg:text-4xl text-fblack font-bold">Ханума</h1>
-                     <Rating :rating="5"  />
+                     <h1 class="text-[1.5625rem] leading-1.2 lg:text-4xl text-fblack font-bold">{{ hotel.data.lang_info.title }}</h1>
+                     <Rating :rating="hotel.data.stars"  />
                 </div>
                 <div class="flex gap-2 lg:gap-3 flex-wrap">
                     <div class="flex gap-[15px] items-center font-medium text-sm lg:text-base text-fblack py-2.5 px-[15px] border border-fline rounded-[10px]">
@@ -45,10 +44,10 @@
                     </div>                    
                 </div>                
                 <div>
-                    <p class="text-sm leading-[1.4] text-ftext3 mb-[30px] lg:mb-5">Загородная автобусная экскурсия, на которой мы познакомимся с Древним городом Болгар, объектом всемирного наследия ЮНЕСКО.Болгар расположен в 190 км от Казани. Это древняя столица Волжской Булгарии, в которой в 922 г. был принят ислам. Ехать до Болгара будем около трех часов, которые пролетят незаметно: живописные пейзажами и путевой рассказ экскурсовода не дадут заскучать. В Болгаре мы увидим и древнее болгарское городище, где сохранились памятники архитектуры XIII-XIV вв., комплекс мавзолеев XIV в., и современную красавицу-мечеть Белую мечеть, и «Памятный знак в честь принятия ислама» — здание, воздвигнутое на месте принятия ислама. Мы зайдем в этот музей и увидим самый дорогой и большой в мире печатный Коран (500 кг), внесенный в книгу рекордов Гиннеса. А еще познакомимся с болгарской средневековой медициной, посетив Музей «Дом лекаря».</p>
+                    <p class="text-sm leading-[1.4] text-ftext3 mb-[30px] lg:mb-5">{{ hotel.data.lang_info.description }}</p>
                     <div class="flex gap-1 items-start sm:items-center">
                         <img src="@/assets/imgs/icons/map2.svg" alt="">
-                        <a href="#" class="link text-sm leading-[1.4]">Республика Татарстан, Казань, улица Баумана, 68</a>
+                        <NuxtLink to="/" class="link text-sm leading-[1.4]">{{ hotel.data.lang_info.fiz_address }}</NuxtLink>
                     </div>
                 </div>
                 <div class="lg:border-y border-y-fline lg:py-[30px] max-lg:hidden flex flex-col gap-[30px]">
@@ -76,7 +75,7 @@
         </div>
         <div class="pt-[60px]">
             <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">{{generalConfigStore.value.static_info.global_words.recommendations}}</h2>                    
-            <Recommendations /> 
+            <Recommendations :data="hotel.data.info_recommendations.data"/> 
         </div>
     </main>
 </template>
@@ -85,4 +84,29 @@
     import { useGeneralConfigStore} from '@/stores/generalConfigStore'
 
     const generalConfigStore = useGeneralConfigStore()
+
+    definePageMeta({
+    alias:["/hotels/:slug"]
+    })
+
+    const runtimeConfig = useRuntimeConfig()
+    const route = useRoute()
+
+    /* локализация страницы */
+
+    let locale = 'ru'
+    if (route.params.locale) {
+        locale = route.params.locale
+    }
+
+    /* получение отеля из api */
+
+    const { data:hotel, error } = await useFetch(`${runtimeConfig.public.apiBase}/api/search/slugs`,{
+        headers:{Locale:locale.value},
+        query:{slug:route.params.slug, type:'hotel'}
+    })
+
+    if(error.value) throw createError({statusCode:error.value.statusCode, statusMessage:error.value.statusMessage})
+
+
 </script>
