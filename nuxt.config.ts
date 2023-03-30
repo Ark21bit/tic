@@ -1,7 +1,8 @@
+
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({  
     css: ['~/assets/css/fonts.css', '~/assets/css/main.css'],
-    modules: ['nuxt-swiper','@pinia/nuxt', '@nuxt/devtools'],
+    modules: ['nuxt-swiper', '@pinia/nuxt', '@nuxt/devtools', '@nuxtjs/i18n'],
     swiper: {      
       modules: ['navigation', 'pagination', 'autoplay', 'thumbs', 'effect-fade', ]
     },    
@@ -13,6 +14,10 @@ export default defineNuxtConfig({
     },
     devtools: {
       enabled: true,      
+    },
+    i18n: {         
+      locales: ['ru', 'en'],
+      defaultLocale: 'ru',
     },
     postcss: {
       plugins: {

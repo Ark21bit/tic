@@ -7,7 +7,7 @@
                 <NuxtLink :to="link.slug" v-for="link in generalConfigStore.value.static_info.menu.header" to="/">{{ link.title }}</NuxtLink>
             </nav>
             <div class="lg:flex hidden text-finactive text-sm font-medium">
-                <NuxtLink to="/" :class="{'text-fred':locale == item.slice(0,2)}" class="flex after:w-[1px] last:after:hidden after:h-full after:bg-[rgba(28,25,25,0.4)] after:mx-2.5" v-for="item in generalConfigStore.value.locales">{{ item.slice(0,2) }}</NuxtLink>            
+                <NuxtLink :to="switchLocalePath(key)" :class="{'text-fred':locale.locale._value == key}" class="flex after:w-[1px] last:after:hidden after:h-full after:bg-[rgba(28,25,25,0.4)] after:mx-2.5" v-for="item, key in generalConfigStore.value.locales">{{ item.slice(0,2)}}</NuxtLink>            
                 <!-- <NuxtLink to="/" class="flex">EN</NuxtLink> -->
             </div>
             <div class="flex gap-4 max-sm:hidden max-lg:ml-auto">
@@ -26,38 +26,17 @@
         <!-- меню на мобилках -->
         <div class="absolute leading-tight group-[.menu-active]:flex hidden lg:group-[.menu-active]:hidden flex-col col-[full] bg-white z-50 top-full left-0 w-full pt-[25px] pb-[15px] border-t border-t-[#E8E8E8]">            
            
-            <Dropdown class="p-[15px] border-b border-b-[#E8E8E8]">
-                <template #dropdown-header-content>
-                    Туры
-                </template>
-                <div class="flex mt-5 flex-col text-fblack gap-5">
-                    <NuxtLink to="/">Название тура 1</NuxtLink>
-                    <NuxtLink to="/">Название тура 2</NuxtLink>
-                    <NuxtLink to="/">Название тура 3</NuxtLink>
-                </div>
-            </Dropdown>
-            <Dropdown class="p-[15px] border-b border-b-[#E8E8E8]">
-                <template #dropdown-header-content>
-                    Экскурсии
-                </template>
-                <div class="flex mt-5 flex-col text-fblack gap-5">
-                    <NuxtLink to="/">Название Экскурсии 1</NuxtLink>
-                    <NuxtLink to="/">Название Экскурсии 2</NuxtLink>
-                    <NuxtLink to="/">Название Экскурсии 3</NuxtLink>
-                </div>
-            </Dropdown>
-            <Dropdown class="p-[15px] border-b border-b-[#E8E8E8]">
-                <template #dropdown-header-content>
-                    Дополнительно
-                </template>
-                <div class="flex mt-5 flex-col text-fblack gap-5">
-                    <NuxtLink to="/">Дополнительно 1</NuxtLink>
-                    <NuxtLink to="/">Дополнительно 2</NuxtLink>
-                    <NuxtLink to="/">Дополнительно 3</NuxtLink>
-                </div>
-            </Dropdown> 
-            <NuxtLink class="p-[15px] border-b border-b-[#E8E8E8]">О нас</NuxtLink>
-            <NuxtLink class="p-[15px] border-b border-b-[#E8E8E8]">Контакты</NuxtLink>
+            <template v-for="link in generalConfigStore.value.static_info.menu.header">
+                <Dropdown v-if="link.hasOwnProperty('children')" class="p-[15px] border-b border-b-[#E8E8E8]">
+                    <template #dropdown-header-content>
+                        {{ link.title }}
+                    </template>
+                    <div class="flex mt-5 flex-col text-fblack gap-5">
+                        <NuxtLink :to="item.slug" v-for="item in link.children">{{ item.title }}</NuxtLink>
+                    </div>
+                </Dropdown>
+                <NuxtLink v-else :to="link.slug" class="p-[15px] border-b border-b-[#E8E8E8]">{{ link.title }}</NuxtLink>
+            </template>            
             <div class="flex text-finactive mt-10 text-sm font-medium px-[15px]">
                 <NuxtLink to="/" class="flex text-fred after:w-[1px] after:h-full after:bg-[rgba(28,25,25,0.4)] after:mx-2.5">РУ</NuxtLink>            
                 <NuxtLink to="/" class="flex">EN</NuxtLink>
@@ -81,10 +60,6 @@ const generalConfigStore = useGeneralConfigStore()
 
 let isMobileMenuShow = ref( false )
 
-const route = useRoute()
+const locale = useI18n()
 
-let locale = 'ru'
-if (route.params.locale) {
-    locale = route.params.locale
-}
 </script>

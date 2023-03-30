@@ -169,6 +169,7 @@
             <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">{{generalConfigStore.value.static_info.global_words.recommendations}}</h2>                    
             <Recommendations class="wrapper col-[full]" /> 
         </div>
+        <Button @click="router.push({name:'asd___ru', path:'/test'})">asdasd</Button>
     </main>
     <ClientOnly>
         <Teleport to="#teleported">
@@ -236,6 +237,7 @@
                         </div>
                     </div>
                     <Button size="L" class="lg:w-fit">Забронировать экскурсию</Button>
+                
                 </form>
             </Modal>
         </Teleport>
@@ -245,15 +247,21 @@
 <script setup>
 const generalConfigStore = useGeneralConfigStore()
 
+/* модальные окна */
+
 let isShowModal = ref(false)
 
 const closeModal = ()=>{
-    isShowModal.value = false;         
-    document.querySelector('body').style.overflowY = ""    
+    isShowModal.value = false;
+    setTimeout(() => {        
+        document.querySelector('body').style.overflowY = ""
+        document.querySelector('#__nuxt').style.paddingRight = ""
+    }, 400);
 }
 
 const openModal = ()=>{
     document.querySelector('body').style.overflowY = "hidden"
+    document.querySelector('#__nuxt').style.paddingRight = "17px"
     isShowModal.value = true;
 }
 </script>

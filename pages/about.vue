@@ -16,9 +16,9 @@
 
 <script setup>
 
-definePageMeta({
+/* definePageMeta({
     alias:"/about"
-})
+}) */
 
 const route = useRoute() 
 const runtimeConfig = useRuntimeConfig()

@@ -9,54 +9,26 @@
             </button></div>
         <div class="flex-col group-[.menu-active]/side:flex lg:flex hidden border-t border-t-fline">
             <div class="flex flex-col gap-5 py-5 ">
-                <Dropdown class="px-5 border-b-fline" active-class="active border-b">
-                    <template #dropdown-header-content>
-                        Экскурсии
-                    </template>
-                    <template #dropdown-header-icon>
-                        <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180 transition-transform duration-500 ease-linear"/>
-                    </template>
-                    <ul class="flex py-5 flex-col text-fblack gap-[15px]">
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Казань</NuxtLink></li>
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Татарстан</NuxtLink></li>
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Обзорные</NuxtLink></li>
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Автобусные</NuxtLink></li>                        
-                    </ul>
-                </Dropdown>
-                <Dropdown class="px-5 border-b-fline" active-class="active border-b">
-                    <template #dropdown-header-content>
-                        Туры
-                    </template>
-                    <template #dropdown-header-icon>
-                        <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180 transition-transform duration-500 ease-linear"/>
-                    </template>
-                    <ul class="flex py-5 flex-col text-fblack gap-[15px]">
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Групповые</NuxtLink></li>
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Сборные туры</NuxtLink></li>
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Казань</NuxtLink></li>
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Татарстан</NuxtLink></li>
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Йошкар-Ола</NuxtLink></li>
-                    </ul>
-                </Dropdown>
-                <Dropdown class="px-5 border-b-fline" active-class="active border-b">
-                    <template #dropdown-header-content>
-                        Услуги
-                    </template>
-                    <template #dropdown-header-icon>
-                        <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180 transition-transform duration-500 ease-linear"/>
-                    </template>
-                    <ul class="flex py-5 flex-col text-fblack  gap-[15px]">
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Интерактивные программы</NuxtLink></li>
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Встреча</NuxtLink></li>
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Трансфер</NuxtLink></li>
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Питание</NuxtLink></li>
-                        <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5"><NuxtLink to="/">Музеи</NuxtLink></li>
-                    </ul>
-                </Dropdown>   
-                <NuxtLink to="/" class="px-5">Индивидуальные экскурсии</NuxtLink>
-                <NuxtLink to="/" class="px-5">Контакты</NuxtLink>                             
+                <!-- <template v-for="link in generalConfigStore.value.structure">
+                    <Dropdown class="px-5 border-b-fline" active-class="active border-b" v-if="link.parent_id != 0 && (link.slug.split('/').length - 1) > 0">
+                        <template #dropdown-header-content>
+                            {{link.title}}
+                        </template>
+                        <template #dropdown-header-icon>
+                            <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180 transition-transform duration-500 ease-linear"/>
+                        </template>
+                        <ul class="flex py-5 flex-col text-fblack gap-[15px]">
+                            <template v-for="children in generalConfigStore.value.structure">
+                                <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5" v-if="children.parent_id == link.id"><NuxtLink to="/">{{children.title}}</NuxtLink></li>                        
+                            </template>
+                        </ul>
+                    </Dropdown>
+                   
+                    <NuxtLink v-else-if="link.parent_id == 0" to="/" class="px-5">{{link.title}}</NuxtLink>                             
+                </template> -->
             </div>            
         </div>
+        <!-- {{ arrayMenyLink }} -->
     </div>
 </template>
 
@@ -66,5 +38,22 @@
     const generalConfigStore = useGeneralConfigStore()
 
     let isSideBarShow = ref( false )
+
+    /* const arrayMenyLink = computed(()=>{
+        let array = []
+        generalConfigStore.value.structure.forEach(item=>{
+            if (item.parent_id == 0) {
+               return array.push(item)               
+            }
+        })
+        generalConfigStore.value.structure.forEach(item=>{
+            if (item.parent_id == 0) {
+               return array.push(item)               
+            }
+            array.forEach()
+        })
+        return array
+    }) */
+ 
 </script>
 

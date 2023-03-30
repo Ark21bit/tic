@@ -1,0 +1,23 @@
+<template>
+    <template v-if="data.type == 'product'">
+        <PagesRegularE v-if="data.data.type_id == 11" :product="data" /> 
+        <PagesIndividualE v-else-if="data.data.type_id == 12" :product="data" /> 
+        <PagesTour v-else :product="data" /> 
+    </template>    
+    <PagesHotel v-else-if="data.type == 'hotel'" :hotel="data.data" />    
+</template>
+
+<script setup>
+    const route = useRoute()
+    const runtimeConfig = useRuntimeConfig()
+    const locale = useI18n()
+
+    /* получение информации о запршиваемой странице из api */
+    const { data, error } = await useFetch(`${runtimeConfig.public.apiBase}/api/search/slugs`,{
+        headers:{Locale:locale.value},
+        query:{slug:route.params.pathMatch.join("/")}
+    })
+
+    if(error.value) throw createError({statusCode:error.value.statusCode, statusMessage:error.value.statusMessage})
+</script>
+

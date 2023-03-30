@@ -1,7 +1,7 @@
-<template>
+<template>  
     <main class="grid-container contain-paint">
         
-        <SwiperOne class="col-[full]" v-if="hotel.data.media_gallery.status" :data="hotel.data.media_gallery.data"/>
+        <SwiperOne class="col-[full]" v-if="hotel.media_gallery.status" :data="hotel.media_gallery.data"/>
         <ExcursionCategories class="col-[full] grid-container border-b border-b-fline mb-10 max-lg:hidden"/>
         
         <div class="grid grid-cols-1 lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10 max-lg:mt-[30px]">
@@ -14,8 +14,8 @@
                     <span class="last:text-finactive after:content-['/'] last:after:content-['']">Остров-град Свияжск</span>
                 </div>
                 <div class="flex max-sm:flex-col gap-[15px] lg:gap-5 sm:items-center">                    
-                     <h1 class="text-[1.5625rem] leading-1.2 lg:text-4xl text-fblack font-bold">{{ hotel.data.lang_info.title }}</h1>
-                     <Rating :rating="hotel.data.stars"  />
+                     <h1 class="text-[1.5625rem] leading-1.2 lg:text-4xl text-fblack font-bold">{{ hotel.lang_info.title }}</h1>
+                     <Rating :rating="hotel.stars"  />
                 </div>
                 <div class="flex gap-2 lg:gap-3 flex-wrap">
                     <div class="flex gap-[15px] items-center font-medium text-sm lg:text-base text-fblack py-2.5 px-[15px] border border-fline rounded-[10px]">
@@ -44,10 +44,10 @@
                     </div>                    
                 </div>                
                 <div>
-                    <p class="text-sm leading-[1.4] text-ftext3 mb-[30px] lg:mb-5">{{ hotel.data.lang_info.description }}</p>
+                    <p class="text-sm leading-[1.4] text-ftext3 mb-[30px] lg:mb-5">{{ hotel.lang_info.description }}</p>
                     <div class="flex gap-1 items-start sm:items-center">
                         <img src="@/assets/imgs/icons/map2.svg" alt="">
-                        <NuxtLink to="/" class="link text-sm leading-[1.4]">{{ hotel.data.lang_info.fiz_address }}</NuxtLink>
+                        <NuxtLink to="/" class="link text-sm leading-[1.4]">{{ hotel.lang_info.fiz_address }}</NuxtLink>
                     </div>
                 </div>
                 <div class="lg:border-y border-y-fline lg:py-[30px] max-lg:hidden flex flex-col gap-[30px]">
@@ -75,7 +75,7 @@
         </div>
         <div class="pt-[60px]">
             <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">{{generalConfigStore.value.static_info.global_words.recommendations}}</h2>                    
-            <Recommendations :data="hotel.data.info_recommendations.data"/> 
+            <Recommendations :data="hotel.info_recommendations.data"/> 
         </div>
     </main>
 </template>
@@ -84,29 +84,16 @@
     import { useGeneralConfigStore} from '@/stores/generalConfigStore'
 
     const generalConfigStore = useGeneralConfigStore()
+    
 
-    definePageMeta({
-    alias:["/hotels/:slug"]
+    const { locale } = useI18n()
+ 
+
+    const props = defineProps({            
+        hotel: { type:Object },
     })
 
-    const runtimeConfig = useRuntimeConfig()
-    const route = useRoute()
-
-    /* локализация страницы */
-
-    let locale = 'ru'
-    if (route.params.locale) {
-        locale = route.params.locale
-    }
-
-    /* получение отеля из api */
-
-    const { data:hotel, error } = await useFetch(`${runtimeConfig.public.apiBase}/api/search/slugs`,{
-        headers:{Locale:locale.value},
-        query:{slug:route.params.slug, type:'hotel'}
+    const hotel = computed(()=>{
+        return props.hotel
     })
-
-    if(error.value) throw createError({statusCode:error.value.statusCode, statusMessage:error.value.statusMessage})
-
-
 </script>

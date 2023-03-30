@@ -207,28 +207,17 @@ const generalConfigStore = useGeneralConfigStore()
 
 const runtimeConfig = useRuntimeConfig()
 const route = useRoute()
+const locale = useI18n()
 
 let test = ref()
 
-definePageMeta({
-    alias:"/ekskursii/:slug"
+const props = defineProps({            
+    product: { type:Object },
 })
 
-/* локализация страницы */
-
-let locale = 'ru'
-if (route.params.locale) {
-    locale = route.params.locale
-}
-
-/* получение прродукта из api */
-      
-const { data:product, error } = await useFetch(`${runtimeConfig.public.apiBase}/api/search/slugs`,{
-    headers:{Locale:locale.value},
-    query:{slug:route.params.slug}
+const product = computed(()=>{
+    return props.product
 })
-
-if(error.value) throw createError({statusCode:error.value.statusCode, statusMessage:error.value.statusMessage})
 
 /* блок timetable */
 

@@ -1,7 +1,7 @@
 <template>
     <main class="grid-container contain-paint">
         
-        <SwiperOne class="col-[full]"/>     
+        <SwiperOne class="col-[full]" :data="product.data.media_gallery.data"/>     
         <ExcursionCategories class="col-[full] grid-container border-b border-b-fline mb-10 max-lg:hidden"/>
         <div class="grid grid-cols-1 lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10 max-lg:mt-[30px] pb-5 lg:pb-[60px]">
             <div class="relative">
@@ -47,16 +47,12 @@
                 </div>                
                 <div class="lg:border-y border-y-fline lg:py-[30px] max-lg:hidden flex flex-col gap-[30px]">
                     <div >
-                        <h3 class="text-xl font-medium text-fblack mb-5">Экскурсия "Ночная Казань с колесом обозрения"</h3>
-                        <p class="text-sm leading-[1.4] text-ftext3">Всем гостям и жителям нашего города предлагаем познакомиться с ночной Казанью на нашей экскурсии, предполагающей посещение колеса обозрения. Лучшие панорамные виды улиц нашего города откроются всем экскурсантам: вы увидите самые живописные объекты Казанского Кремля в вечерней подсветке, Дворец Земледельцев и великолепную казанскую набережную. Со второй точки осмотра в теплых и полностью закрытых кабинках колеса обозрения вы увидите современные городские постройки: спортивные комплексы, мост "Миллениум", здание Национальной библиотеки РТ и другие красивейшие здания ночной Казани.</p>
+                        <h3 class="text-xl font-medium text-fblack mb-5">{{product.data.lang_info.title}}</h3>
+                        <p class="text-sm leading-[1.4] text-ftext3">{{product.data.lang_info.mini_description}}</p>
                     </div>
                     <div > 
-                        <h3 class="text-xl font-medium text-fblack mb-5">Древний город Болгар: экскурсия с выездом из Казани</h3>
-                        <p class="text-sm leading-[1.4] text-ftext3">
-                            Кроме упомянутых объектов, справедливо включенных ЮНЕСКО в список материального культурного наследия человечества, Болгар способен удивить туристов любопытным объектом, включенным в список рекордов Гиннеса. Речь о самом большом в мире печатном коране. Он хранится в здании памятного знака, а его вес насчитывает более 500 кг. Священная книга украшена драгоценными и полудрагоценными камнями и золотом, а чтобы перелистнуть ее страницы требуется помощь нескольких человек.
-                            <br><br>
-                            Ещё один любопытный пункт экскурсии в город Болгар - посещение музея лекаря, в котором экскурсанты познакомятся с технологиями средневекового врачевания. Немногие знают, что государство Волжская Булгария до прихода татаро-монголов уже была очень развитым государством с четкой системой государственного управления, развитой медициной и собственными традициями строительства. Дошедшие до наших дней здания Болгара поражают экскурсантов продуманностью и масштабом.
-                        </p>
+                        <h3 class="text-xl font-medium text-fblack mb-5">{{product.data.lang_info.description}}</h3>
+                        <p class="text-sm leading-[1.4] text-ftext3">{{product.data.lang_info.text}}</p>
                     </div>
                     <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
                 </div>            
@@ -65,7 +61,7 @@
         </div>
         <div class="col-[full] grid-container pt-10 lg:pt-[60px] lg:border-t border-t-fline">
             <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">{{generalConfigStore.value.static_info.global_words.recommendations}}</h2>                    
-            <Recommendations class="wrapper col-[full]" /> 
+            <Recommendations :data="product.data.info_recommendations.data" /> 
         </div>
         <ClientOnly>
             <Teleport to="#teleported">
@@ -94,16 +90,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="group/table">
-                                        <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Аренда оборудования (для лучшей слышимости гида)</td>
-                                        <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">100 ₽</td>
+                                    <tr class="group/table" v-for="additional_product in product.data.info_additional_products.data">
+                                        <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td"><NuxtLink :to="`/${additional_product.addition_info.slug}`">{{additional_product.addition_info.lang_info.title}}</NuxtLink></td>
+                                        <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">{{additional_product.price}} ₽</td>
                                         <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
-                                    </tr>
-                                    <tr class="group/table">
-                                        <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">Дождевик</td>
-                                        <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">100 ₽</td>
-                                        <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
-                                    </tr>                                           
+                                    </tr>                                                                            
                                 </tbody>                                        
                             </table>
                         </div>
@@ -137,17 +128,40 @@ import { useGeneralConfigStore} from '@/stores/generalConfigStore'
     
 const generalConfigStore = useGeneralConfigStore()
 
+const runtimeConfig = useRuntimeConfig()
+const route = useRoute()
+
+/* локализация страницы */
+
+let locale = 'ru'
+if (route.params.locale) {
+    locale = route.params.locale
+}
+
+/* получение прродукта из api */
+      
+const { data:product, error } = await useFetch(`${runtimeConfig.public.apiBase}/api/search/slugs`,{
+    headers:{Locale:locale.value},
+    query:{slug:'individualnaia-ekskursiia-vecernie-ogni-kazani'}
+})
+
+if(error.value) throw createError({statusCode:error.value.statusCode, statusMessage:error.value.statusMessage})
+
+/* модальные окна */
+
 let isShowModal = ref(false)
 
 const closeModal = ()=>{
     isShowModal.value = false;
     setTimeout(() => {        
         document.querySelector('body').style.overflowY = ""
-    }, 500);
+        document.querySelector('#__nuxt').style.paddingRight = ""
+    }, 400);
 }
 
 const openModal = ()=>{
     document.querySelector('body').style.overflowY = "hidden"
+    document.querySelector('#__nuxt').style.paddingRight = "17px"
     isShowModal.value = true;
 }
 </script>

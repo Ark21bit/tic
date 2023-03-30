@@ -92,15 +92,7 @@ import { useGeneralConfigStore} from '@/stores/generalConfigStore'
 
 const generalConfigStore = useGeneralConfigStore()
 
-definePageMeta({
-    alias:"/ekskursii"
-})
-
 const route = useRoute()
-let locale = 'ru'
-if (route.params.locale) {
-    locale = route.params.locale
-}
 
 let date = ref()
 

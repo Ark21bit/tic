@@ -59,11 +59,11 @@ const generalConfigStore = useGeneralConfigStore()
 const route = useRoute() 
 const runtimeConfig = useRuntimeConfig()
 
-definePageMeta({
+/* definePageMeta({
     alias:"/about"
-})
+}) */
 
-/* код для модального окна */
+/* модальные окна */
 
 let isShowModal = ref(false)
 
@@ -71,11 +71,13 @@ const closeModal = ()=>{
     isShowModal.value = false;
     setTimeout(() => {        
         document.querySelector('body').style.overflowY = ""
-    }, 500);
+        document.querySelector('#__nuxt').style.paddingRight = ""
+    }, 400);
 }
 
 const openModal = ()=>{
     document.querySelector('body').style.overflowY = "hidden"
+    document.querySelector('#__nuxt').style.paddingRight = "17px"
     isShowModal.value = true;
 }
 

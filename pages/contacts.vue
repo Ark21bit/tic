@@ -35,10 +35,11 @@
                 <NuxtLink :to="generalConfigStore.value.static_info.contact.socials.whatsApp" class="shrink-0 text-fblack"><IconsWhatsapp/></NuxtLink>
                 <NuxtLink :to="generalConfigStore.value.static_info.contact.socials.vk" class="shrink-0 text-fblack"><IconsVk/></NuxtLink>
             </div>            
-        </div>   
+        </div>
         <div class="col-[full] h-[350px] lg:h-[500px] -mb-20 lg:-mb-[150px] mt-20 lg:mt-[70px]">
             <GMapMap :disableDefaultUI="true" :center="center" :zoom="10"/>
         </div>     
+        
     </main>
 </template>
 
