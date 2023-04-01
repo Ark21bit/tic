@@ -7,11 +7,11 @@
                 
             </slot>  
             <slot name="dropdown-header-icon">
-                <IconsDropdownArrow class="text-fred group-[.active]/dropdown:rotate-180"></IconsDropdownArrow>
+                <IconsDropdownArrow class="text-fred group-[.active]/dropdown:rotate-180 transition-transform duration-500 ease-linear"></IconsDropdownArrow>
             </slot>  
         </button>
     </div>
-    <div class="dropdown-body flex-col group-[.active]/dropdown:flex hidden">
+    <div ref="dropdownBody" class="dropdown-body flex-col group-[.active]/dropdown:h-auto h-0 overflow-hidden transition-[height] duration-500 ease-linear">
         <slot/>
     </div>     
 </div>
@@ -34,5 +34,19 @@
         return ''
     })
 
+    /* анимация высоты */
+
+    let dropdownBody = ref(null)       
+
+    watch(isDropdownItemShow, (newValue, oldValue) => {
+        
+        if (newValue) {                                  
+            return dropdownBody.value.style.height = dropdownBody.value.scrollHeight + 'px'
+        }
+         dropdownBody.value.style.height = 0
+               
+    })
+
 </script>
+
 

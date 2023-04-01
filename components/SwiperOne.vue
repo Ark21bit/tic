@@ -1,12 +1,7 @@
 <template>
     <swiper :slidesPerView="1"  :navigation="{nextEl:'.next', prevEl:'.prev' }" :modules="[SwiperNavigation]" class="swiper-one w-full h-[391px] lg:h-[600px]" :loop="true">
-        <SwiperSlide v-for="n in 10" :key="n">
-           <img src="@/assets/imgs/img4.png" alt="" class="w-full h-full object-cover">
-           <div class="absolute left-1/2 -translate-x-1/2 wrapper flex flex-col gap-2.5 items-center bottom-[30px] text-white">
-                <p class="text-lg lg:text-xl font-medium leading-[1.2]">Остров-град Свияжск</p>
-                <p class="text-sm leading-[1.4]">Какое-нибудь описание</p>
-           </div>
-        </SwiperSlide>
+        
+        <slot/>
         
         <div class="absolute wrapper flex justify-between top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
             <Button size="arrowM" class="prev rotate-180 max-lg:p-2.5" color="white">
