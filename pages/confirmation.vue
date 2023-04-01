@@ -68,8 +68,6 @@
 </template>
 
 <script setup>
-
-
 const generalConfigStore = useGeneralConfigStore()
 </script>
 

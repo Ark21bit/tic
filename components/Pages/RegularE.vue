@@ -94,7 +94,7 @@
                                     <div>
                                         <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.select_datetime}}</p>
                                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                                            <FormsDatepicker decoration="border" :highlightedDates="availableSelectDate" v-model="SelectTimeatableDate">{{generalConfigStore.value.static_info.global_words.date}}</FormsDatepicker>
+                                            <FormsDatepicker decoration="border" :allowedDates="availableSelectDate" v-model="SelectTimeatableDate">{{generalConfigStore.value.static_info.global_words.date}}</FormsDatepicker>
                                             <FormsSelect decoration="border" v-model="selectTimeatableTime" :optionsTitle="timeatableTime.title" :optionsValue="timeatableTime.value">Время</FormsSelect>                                            
                                         </div>
                                     </div>

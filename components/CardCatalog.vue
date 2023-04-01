@@ -29,9 +29,7 @@
     </div>
 </template>
 
-<script setup >
-    
-    
+<script setup > 
     const generalConfigStore = useGeneralConfigStore()
 
     const props = defineProps(

@@ -19,7 +19,6 @@
         headers:{Locale:locale.value},
         query:{slug:route.params.pathMatch.join("/")}
     })
-
-    if(error.value) throw createError({statusCode:error.value.statusCode, statusMessage:error.value.statusMessage})
+    if(error.value) throw createError({statusCode:error.value.statusCode, statusMessage:error.value.statusMessage, fatal: true})
 </script>
 

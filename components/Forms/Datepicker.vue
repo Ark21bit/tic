@@ -6,7 +6,7 @@
           {{ labelTitle }}
         </label>
       </slot>                    
-    <VueDatePicker :highlight="props.highlightedDates" v-bind="$attrs" :uid="props.id" month-name-format="long" v-model="value" :clearable="false" :close-on-auto-apply="false" :auto-apply="true" format="dd.MM.yyyy" locale="ru" position="right" :no-today="true" :enable-time-picker="false">
+    <VueDatePicker :allowed-dates="props.allowedDates" v-bind="$attrs" :uid="props.id" month-name-format="long" v-model="value" :clearable="false" :close-on-auto-apply="false" :auto-apply="true" format="dd.MM.yyyy" locale="ru" position="right" :no-today="true" :enable-time-picker="false">
       <template #input-icon>
             <IconsDatepicker class="transition ease-linear duration-200"/>
       </template>      
@@ -54,7 +54,7 @@ export default {
     id: { type:String, default:'id' },
     decoration:{ type:String, default:'default'},
     boxClass:{ type:String, default:'default'},
-    highlightedDates:{type:Array}
+    allowedDates:{type:Array}
   })
   
   /* классы для обертки */
@@ -160,6 +160,10 @@ export default {
     .dp__cell_highlight {
       @apply outline-fred -outline-offset-1 outline outline-1 bg-transparent
     }
+
+    /* .dp__cell_disabled{
+      @apply text-fblack
+    } */
 
     .dp__calendar{
       @apply space-y-2.5

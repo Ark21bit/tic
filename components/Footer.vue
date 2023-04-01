@@ -92,8 +92,6 @@
 </template>
 
 <script setup>
-
-
 const generalConfigStore = useGeneralConfigStore()
 
 const locale = useI18n()

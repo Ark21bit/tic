@@ -32,7 +32,3 @@
     })
 
 </script>
-
-<style type="text/tailwindcss">
-    
-</style>
