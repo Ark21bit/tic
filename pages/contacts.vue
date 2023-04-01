@@ -44,8 +44,6 @@
 </template>
 
 <script setup>
-    import { useGeneralConfigStore} from '@/stores/generalConfigStore'
-
     const generalConfigStore = useGeneralConfigStore()
 
     let center = ref({lat: 55.093048, lng: 50.842120})

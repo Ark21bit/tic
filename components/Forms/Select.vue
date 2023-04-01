@@ -63,10 +63,13 @@ const selectClass = computed(()=>{
 /* двухстороннее cвязывание v-model */
 
 const SelectTitle = computed(()=>{
-  const index = props.optionsValue.findIndex(item=>item == selectOptionValue.value) 
-  if(index != -1){
-    return props.optionsTitle[index]
+  if (Array.isArray(props.optionsValue)) {
+    const index = props.optionsValue.findIndex(item=>item == selectOptionValue.value) 
+    if(index != -1){
+      return props.optionsTitle[index]
+    }
   }
+  
   return null
 })
 

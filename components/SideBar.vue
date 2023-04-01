@@ -8,36 +8,147 @@
                 <span class="w-full h-0.5 bg-fred rounded-[1px] group-[.menu-active]/side:rotate-45 origin-[100%] transition-transform ease-linear duration-500"/>
             </button></div>
         <div class="flex-col group-[.menu-active]/side:flex lg:flex hidden border-t border-t-fline">
-            <div class="flex flex-col gap-5 py-5 ">
-                <!-- <template v-for="link in generalConfigStore.value.structure">
-                    <Dropdown class="px-5 border-b-fline" active-class="active border-b" v-if="link.parent_id != 0 && (link.slug.split('/').length - 1) > 0">
-                        <template #dropdown-header-content>
-                            {{link.title}}
-                        </template>
-                        <template #dropdown-header-icon>
-                            <IconsDropdownArrow class="p-1.5 w-6 h-6 rounded-full bg-[#F4F4F4] group-[.active]/dropdown:rotate-180 transition-transform duration-500 ease-linear"/>
-                        </template>
-                        <ul class="flex py-5 flex-col text-fblack gap-[15px]">
-                            <template v-for="children in generalConfigStore.value.structure">
-                                <li class="before:w-1.5 before:h-1.5 before:rounded-full before:bg-fred flex items-start before:mt-[.5em] before:shrink-0 gap-2.5" v-if="children.parent_id == link.id"><NuxtLink to="/">{{children.title}}</NuxtLink></li>                        
-                            </template>
-                        </ul>
-                    </Dropdown>
-                   
-                    <NuxtLink v-else-if="link.parent_id == 0" to="/" class="px-5">{{link.title}}</NuxtLink>                             
-                </template> -->
+            <div class="flex flex-col gap-5 py-5 ">                
+                <SideBarItem v-for="(item, key) in SideBarItems" class="px-5" :key="key" :link="item"/>                
             </div>            
         </div>
-        <!-- {{ arrayMenyLink }} -->
     </div>
 </template>
 
-<script setup>    
-    import { useGeneralConfigStore} from '@/stores/generalConfigStore'
-
+<script setup>
     const generalConfigStore = useGeneralConfigStore()
 
     let isSideBarShow = ref( false )
+
+    const SideBarItems = computed(()=>{
+        return generalConfigStore.value.structure.filter(a=>{
+            return a.parent_id ==0
+        })
+    })
+
+    /* let data = ref([
+        {
+            "id": 1,
+            "slug": "ekskursii",
+            "parent_id": 0,
+            "title": "Экскурсии",
+            "children": [
+            {
+                "id": 2,
+                "slug": "ekskursii/kazan",
+                "parent_id": 1,
+                "title": "Экскурсии по Казани"
+            },
+            {
+                "id": 19,
+                "slug": "ekskursii/podborki",
+                "parent_id": 1,
+                "title": "Подборки экскурсий"
+            },
+            {
+                "id": 13,
+                "slug": "ekskursii/tatarstan",
+                "parent_id": 1,
+                "title": "Экскурсии по Татарстану"
+            },
+            {
+                "id": 9,
+                "slug": "ekskursii/kazan/ehkskursii-s-centrom-semi-kazan",
+                "parent_id": 2,
+                "title": "Экскурсии на Чашу"
+            },
+            {
+                "id": 12,
+                "slug": "ekskursii/kazan/ehkskursii-s-kremlyom",
+                "parent_id": 2,
+                "title": "Экскурсии с Кремлём"
+            },
+            {
+                "id": 11,
+                "slug": "ekskursii/kazan/ehkskursii-s-kfu",
+                "parent_id": 2,
+                "title": "Экскурсии с КФУ"
+            },
+            {
+                "id": 10,
+                "slug": "ekskursii/kazan/ehkskursii-s-dvorcom-zemledelcev",
+                "parent_id": 2,
+                "title": "Экскурсии с Дворцом земледельцев"
+            },
+            {
+                "id": 8,
+                "slug": "ekskursii/kazan/ehkskursii-v-hram-vsekh-religij",
+                "parent_id": 2,
+                "title": "Экскурсии в ХВР"
+            },
+            {
+                "id": 7,
+                "slug": "ekskursii/kazan/ehkskursii-po-staro-tatarskoj-slobode",
+                "parent_id": 2,
+                "title": "Экскурсии по СТС"
+            },
+            {
+                "id": 6,
+                "slug": "ekskursii/kazan/ehkskursii-po-kremlevskoj",
+                "parent_id": 2,
+                "title": "Экскурсии по Кремлёвской"
+            },
+            {
+                "id": 5,
+                "slug": "ekskursii/kazan/ehkskursii-po-chernomu-ozeru",
+                "parent_id": 2,
+                "title": "Экскурсии по Чёрному озеру"
+            },
+            {
+                "id": 4,
+                "slug": "ekskursii/kazan/ehkskursii-po-baumana",
+                "parent_id": 2,
+                "title": "Экскурсии по Баумана"
+            },
+            {
+                "id": 3,
+                "slug": "ekskursii/kazan/obzornye-ehkskursii-po-kazani",
+                "parent_id": 2,
+                "title": "Обзорные экскурсии по Казани"
+            },
+            {
+                "id": 15,
+                "slug": "ekskursii/tatarstan/bolgar",
+                "parent_id": 13,
+                "title": "Экскурсии в Болгар"
+            },
+            {
+                "id": 18,
+                "slug": "ekskursii/tatarstan/raifa",
+                "parent_id": 13,
+                "title": "Экскурсии в Раифу"
+            },
+            {
+                "id": 17,
+                "slug": "ekskursii/tatarstan/chistopol",
+                "parent_id": 13,
+                "title": "Экскурсии в Чистополь"
+            },
+            {
+                "id": 16,
+                "slug": "ekskursii/tatarstan/elabuga",
+                "parent_id": 13,
+                "title": "Экскурсии в Елабугу"
+            },
+            {
+                "id": 14,
+                "slug": "ekskursii/tatarstan/sviyazhsk",
+                "parent_id": 13,
+                "title": "Экскурсии в Свияжск"
+            },]
+        },    
+        {
+            "id": 38,
+            "slug": "tury",
+            "parent_id": 0,
+            "title": "Туры"
+        },    
+    ]) */
 
     /* const arrayMenyLink = computed(()=>{
         let array = []

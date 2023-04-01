@@ -10,8 +10,7 @@
             </div>
             <div class="flex flex-col gap-[30px]">
                 <div class="text-sm text-fblack mb-2.5 max-lg:hidden">
-                    <span class="last:text-finactive after:content-['/'] last:after:content-['']">Экскурсии по Татарстану</span>                    
-                    <span class="last:text-finactive after:content-['/'] last:after:content-['']">Остров-град Свияжск</span>
+                    <NuxtLink class="last:text-finactive after:content-['/'] last:after:content-['']" v-for="item in hotel.info_breadcrumbs.data" :to="localePath(`/${item.url}`)">{{ item.lang_info.title }}</NuxtLink>
                 </div>
                 <div class="flex max-sm:flex-col gap-[15px] lg:gap-5 sm:items-center">                    
                      <h1 class="text-[1.5625rem] leading-1.2 lg:text-4xl text-fblack font-bold">{{ hotel.lang_info.title }}</h1>
@@ -47,7 +46,7 @@
                     <p class="text-sm leading-[1.4] text-ftext3 mb-[30px] lg:mb-5">{{ hotel.lang_info.description }}</p>
                     <div class="flex gap-1 items-start sm:items-center">
                         <img src="@/assets/imgs/icons/map2.svg" alt="">
-                        <NuxtLink to="/" class="link text-sm leading-[1.4]">{{ hotel.lang_info.fiz_address }}</NuxtLink>
+                        <NuxtLink :to="localePath(`/`)" class="link text-sm leading-[1.4]">{{ hotel.lang_info.fiz_address }}</NuxtLink>
                     </div>
                 </div>
                 <div class="lg:border-y border-y-fline lg:py-[30px] max-lg:hidden flex flex-col gap-[30px]">
@@ -69,7 +68,7 @@
                             Ещё один любопытный пункт экскурсии в город Болгар - посещение музея лекаря, в котором экскурсанты познакомятся с технологиями средневекового врачевания. Немногие знают, что государство Волжская Булгария до прихода татаро-монголов уже была очень развитым государством с четкой системой государственного управления, развитой медициной и собственными традициями строительства. Дошедшие до наших дней здания Болгара поражают экскурсантов продуманностью и масштабом.
                         </p>
                     </div>
-                    <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
+                    <NuxtLink :to="localePath(`/`)" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
                 </div> 
             </div>            
         </div>
@@ -81,13 +80,7 @@
 </template>
 
 <script setup>
-    import { useGeneralConfigStore} from '@/stores/generalConfigStore'
-
     const generalConfigStore = useGeneralConfigStore()
-    
-
-    const { locale } = useI18n()
- 
 
     const props = defineProps({            
         hotel: { type:Object },

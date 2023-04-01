@@ -1,4 +1,4 @@
-import { useGeneralConfigStore} from '@/stores/generalConfigStore'
+
 
 export default defineNuxtRouteMiddleware( async (to, from) => {
     

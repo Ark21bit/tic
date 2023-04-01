@@ -8,12 +8,8 @@
                 <SideBar class="w-full sticky top-[50px]" />               
             </div>
             <div class="flex flex-col gap-[60px]">
-                <!-- <div class="text-sm text-fblack -mb-5 max-lg:hidden">
-                    <span class="last:text-finactive after:content-['/'] last:after:content-['']">Экскурсии по Татарстану</span>                    
-                    <span class="last:text-finactive after:content-['/'] last:after:content-['']">Остров-град Свияжск</span>
-                </div> -->
                 <div class="text-sm text-fblack -mb-5 max-lg:hidden">
-                    <NuxtLink class="last:text-finactive after:content-['/'] last:after:content-['']" v-for="item in product.data.info_breadcrumbs.data" :to="item.url">{{ item.lang_info.title }}</NuxtLink>
+                    <NuxtLink class="last:text-finactive after:content-['/'] last:after:content-['']" v-for="item in product.data.info_breadcrumbs.data" :to="localePath(`/${item.url}`)">{{ item.lang_info.title }}</NuxtLink>
                 </div>
                 <div>                    
                      <h1 class="text-[1.5625rem] leading-1.2 lg:text-4xl text-fblack  font-bold mb-5">Вечерняя Казань</h1>
@@ -147,7 +143,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="group/table" v-for="additional_product in product.data.info_additional_products.data">
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td"><NuxtLink :to="`/${additional_product.addition_info.slug}`">{{additional_product.addition_info.lang_info.title}}</NuxtLink></td>
+                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td"><NuxtLink :to="localePath(`/${additional_product.addition_info.slug}`)">{{additional_product.addition_info.lang_info.title}}</NuxtLink></td>
                                                     <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">{{additional_product.price}} ₽</td>
                                                     <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
                                                 </tr>                                                                                     
@@ -169,8 +165,7 @@
                                             <FormsSelect decoration="border" :options-value="product.data.payment_types" v-model="test" :options-title="getTitlePaymentTypes(product.data.payment_types)">{{generalConfigStore.value.static_info.global_words.type_payment}}</FormsSelect>                                      
                                             <FormsInput decoration="border" type="email">{{generalConfigStore.value.static_info.global_words.email_text}}</FormsInput>        
                                             <FormsCheckbox class="col-[full]">{{generalConfigStore.value.static_info.global_words.order_confirm_procedure_provision_excursion_services}}</FormsCheckbox>                               
-                                            <FormsCheckbox class="col-[full]">{{generalConfigStore.value.static_info.global_words.order_fz_confirm_text}}</FormsCheckbox>                               
-                                            {{ test }}
+                                            <FormsCheckbox class="col-[full]">{{generalConfigStore.value.static_info.global_words.order_fz_confirm_text}}</FormsCheckbox>
                                         </div>
                                     </div>
                                     <Button size="L" class="lg:w-fit">Забронировать экскурсию</Button>
@@ -188,7 +183,7 @@
                         <h3 class="text-xl font-medium text-fblack mb-5">{{ product.data.lang_info.description }}</h3>
                         <p class="text-sm leading-[1.4] text-ftext3">{{ product.data.lang_info.text }}</p>                       
                     </div>
-                    <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
+                    <NuxtLink :to="localePath(`/`)" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
                 </div>             
                 <Reviews/> 
             </div>            
@@ -201,12 +196,11 @@
 </template>
 
 <script setup>
-import { useGeneralConfigStore} from '@/stores/generalConfigStore'
+
 
 const generalConfigStore = useGeneralConfigStore()
 
 const runtimeConfig = useRuntimeConfig()
-const route = useRoute()
 const locale = useI18n()
 
 let test = ref()
@@ -311,22 +305,38 @@ const openModal = ()=>{
     isShowModal.value = true;
 }
 
+onUnmounted(()=>{
+    document.querySelector('body').style.overflowY = ""
+    document.querySelector('#__nuxt').style.paddingRight = ""
+})
+
 /* функции для получения названий по id */
 
 const getTitlePlacesStart = (placesStart)=>{
-    return placesStart.map(a=>{
-        for(const item of generalConfigStore.value.orders.places_start){
-            if(item.id == a) return item.title
-        }       
-    })
+    if (Array.isArray(placesStart)) {
+        return placesStart.map(a=>{
+            for(const item of generalConfigStore.value.orders.places_start){
+                if(item.id == a) return item.title
+            }       
+        })
+    }    
+    for(const item of generalConfigStore.value.orders.places_start){
+        if(item.id == placesStart) return [...item.title]
+    }       
+    
 }
 
 const getTitlePaymentTypes = (paymentTypes)=>{
-    return paymentTypes.map(a=>{
-        for(const item of generalConfigStore.value.orders.payment_types){
-            if(item.id == a) return item.title
-        }       
-    })
+    if (Array.isArray(paymentTypes)) {
+        return paymentTypes.map(a=>{
+            for(const item of generalConfigStore.value.orders.payment_types){
+                if(item.id == a) return item.title
+            }       
+        })
+    }
+    for(const item of generalConfigStore.value.orders.payment_types){
+        if(item.id == paymentTypes) return [...item.title]
+    }  
 }
 
 const getTitleCategoriesProduct = ( productCategories )=>{    

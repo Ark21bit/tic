@@ -9,13 +9,8 @@
                 <div class="relative">
                     <SideBar class="w-full sticky top-[50px]" />
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <CardCatalog />
-                    <CardCatalog />
-                    <CardCatalog />
-                    <CardCatalog />
-                    <CardCatalog />
-                    <CardCatalog />
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
+                    <CardCatalog v-for="item in catalogItems" :reviewsCount="item.reviews_count" :slug="item.slug" :price="item.price_see" :price-old="item.price_see_old" :title="item.lang_info.title" :description="item.lang_info.description" :isSale="item.is_sale" :media-preview="item.media_preview"/>                 
                 </div>
             </div>
         </div>
@@ -77,9 +72,9 @@
                 </div>
                 <div class="flex-1">
                     <p class="text-ftext3 text-sm leading-[1.4]">
-                        Летом мы с удовольствием предлагаем гостям нашего города <NuxtLink to="/" class="link">обзорные экскурсии по Казани</NuxtLink> на комфортабельных автобусах, оснащённых кондиционерами. Таким образом, жаркое казанское лето - не помеха для проведения увлекательных экскурсий по городу, пригородам и достопримечательностям гостеприимной Республики Татарстан.
+                        Летом мы с удовольствием предлагаем гостям нашего города <NuxtLink :to="localePath(`/`)" class="link">обзорные экскурсии по Казани</NuxtLink> на комфортабельных автобусах, оснащённых кондиционерами. Таким образом, жаркое казанское лето - не помеха для проведения увлекательных экскурсий по городу, пригородам и достопримечательностям гостеприимной Республики Татарстан.
                         <br><br>
-                        В летнее время наша компания также проводит <NuxtLink to="/"  class="link">пешеходные экскурсии по Казани.</NuxtLink> Они менее продолжительные по времени, нежели <NuxtLink to="/"  class="link">автобусные экскурсии,</NuxtLink> но не менее увлекательные и интересные гостям города.
+                        В летнее время наша компания также проводит <NuxtLink :to="localePath(`/`)"  class="link">пешеходные экскурсии по Казани.</NuxtLink> Они менее продолжительные по времени, нежели <NuxtLink to="/"  class="link">автобусные экскурсии,</NuxtLink> но не менее увлекательные и интересные гостям города.
                     </p>
                 </div>
             </div>
@@ -88,18 +83,16 @@
 </template>
 
 <script setup>
-import { useGeneralConfigStore} from '@/stores/generalConfigStore'
-
 const generalConfigStore = useGeneralConfigStore()
-
-const route = useRoute()
 
 let date = ref()
 
-
+const props = defineProps(
+    {
+        catalogItems:{type:Object}
+    }
+)
 
 
 
 </script>
-/регулярныеэкскурсии/название
-/индивидуальныеэкскурсии/название

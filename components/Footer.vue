@@ -4,11 +4,10 @@
         <div class="wrapper flex items-center py-4  gap-12 justify-between ">
             <IconsLogo class="text-white w-[135px] lg:w-[169px]" />
             <nav class="lg:flex hidden items-center gap-[35px] text-sm text-white ml-auto max-lg:hidden">
-                <NuxtLink :to="link.slug" v-for="link in generalConfigStore.value.static_info.menu.footer" to="/">{{ link.title }}</NuxtLink>                
+                <NuxtLink :to="localePath(`${link.slug}`)" v-for="link in generalConfigStore.value.static_info.menu.footer" to="/">{{ link.title }}</NuxtLink>                
             </nav>
             <div class="flex text-[rgba(255,255,255,0.4)] text-sm">
-                <NuxtLink to="/" class="flex text-white after:w-[1px] after:h-full after:bg-[rgba(255,255,255,0.4)] after:mx-2.5">РУ</NuxtLink>            
-                <NuxtLink to="/" class="flex">EN</NuxtLink>
+                <NuxtLink :to="switchLocalePath(key)" :class="{'text-white':locale.locale._value == key}" class="flex after:w-[1px] last:after:hidden after:h-full after:bg-[rgba(255,255,255,0.4)] after:mx-2.5" v-for="item, key in generalConfigStore.value.locales">{{ item.slice(0,2)}}</NuxtLink> 
             </div>
         </div>
         <div class="py-5 lg:py-[30px] border text-white border-y-[#123A4F] border-transparent sm:max-lg:border-b-transparent sm:max-lg:border-t-[#123A4F]">
@@ -87,14 +86,16 @@
         </div>
         <div class="wrapper flex max-sm:flex-col text-white justify-between sm:pt-0 lg:py-[30px] gap-[15px] py-5">
             <p class="text-xs lg:text-sm  max-lg:hidden">{{ generalConfigStore.value.static_info.global_words.copyright }}</p>
-            <NuxtLink :to="link.slug" class="text-xs lg:text-sm " v-for="link in generalConfigStore.value.static_info.bottom_footer">{{link.title}}</NuxtLink>          
+            <NuxtLink :to="localePath(`${link.slug}`)" class="text-xs lg:text-sm " v-for="link in generalConfigStore.value.static_info.bottom_footer">{{link.title}}</NuxtLink>          
         </div>
     </footer>
 </template>
 
 <script setup>
-import { useGeneralConfigStore} from '@/stores/generalConfigStore'
+
 
 const generalConfigStore = useGeneralConfigStore()
+
+const locale = useI18n()
 </script>
 

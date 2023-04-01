@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { useGeneralConfigStore} from '@/stores/generalConfigStore'
+
     
     const generalConfigStore = useGeneralConfigStore()
 </script>

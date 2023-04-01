@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { useGeneralConfigStore} from '@/stores/generalConfigStore'   
+   
 
 const generalConfigStore = useGeneralConfigStore()
 
@@ -53,6 +53,11 @@ const openModal = ()=>{
     document.querySelector('#__nuxt').style.paddingRight = "17px"
     isShowModal.value = true;
 }
+
+onUnmounted(()=>{
+    document.querySelector('body').style.overflowY = ""
+    document.querySelector('#__nuxt').style.paddingRight = ""
+})
 </script>
 
 <style type="text/tailwindcss">

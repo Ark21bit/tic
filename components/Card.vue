@@ -4,13 +4,11 @@
         <div v-if="props.isSale" :class="textSaleClass" class="absolute rounded-tl-[10px] rounded-br-[10px] top-0 left-0 text-white bg-fred py-2 px-6 font-semibold uppercase">sale</div>
         <p class="z-10 text-white font-medium max-w-[350px]" :class="textClass">{{ props.title }}</p>        
         <Button v-if="props.slug.includes('http')" :href="props.slug" tag="a" target="_blank" color="secondary" size="L" class="z-10 max-lg:w-full">{{ generalConfigStore.value.static_info.global_words.more }}</Button> 
-        <Button v-else :to="`/${props.slug}`" tag="router-link" color="secondary" size="L" class="z-10 max-lg:w-full">{{ generalConfigStore.value.static_info.global_words.more }}</Button>       
+        <Button v-else :to="localePath(`/${props.slug}`)" tag="router-link" color="secondary" size="L" class="z-10 max-lg:w-full">{{ generalConfigStore.value.static_info.global_words.more }}</Button>       
     </div>
 </template>
 <!-- <p class="z-10 px-2.5 py-[5px] rounded-[5px] bg-[rgba(231,54,61,0.8)] text-white text-xs font-medium">От 1000 руб.  / чел</p> -->
 <script setup>
-import { useGeneralConfigStore} from '@/stores/generalConfigStore'
-
 const generalConfigStore = useGeneralConfigStore()
 
 const props = defineProps(

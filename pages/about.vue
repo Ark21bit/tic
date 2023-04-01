@@ -15,18 +15,9 @@
 </template>
 
 <script setup>
-
-/* definePageMeta({
-    alias:"/about"
-}) */
-
-const route = useRoute() 
 const runtimeConfig = useRuntimeConfig()
 
-let locale = 'ru'
-if (route.params.locale) {
-    locale = route.params.locale
-}
+const locale = useI18n()
       
 const { data:about_info } = await useFetch(`${runtimeConfig.public.apiBase}/api/search/page`,{
     headers:{Locale:locale.value},

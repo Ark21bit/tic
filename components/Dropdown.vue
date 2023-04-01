@@ -1,17 +1,17 @@
 <template>
-<div class="group/dropdown dropdown-item" :class="activeClass" ref="dropdownItem">
+<div class="dropdown-item" :class="activeClass" ref="dropdownItem">
     <div class="dropdown-header  ">
-        <button type="button" @click="isDropdownItemShow = !isDropdownItemShow" class="flex items-center justify-between w-full text-fblack group-[.active]/dropdown:text-fred">
+        <button type="button" @click="isDropdownItemShow = !isDropdownItemShow" class="flex items-center text-left justify-between w-full text-fblack" :class="{'text-fred':isDropdownItemShow}">
             
             <slot name="dropdown-header-content">
                 
             </slot>  
-            <slot name="dropdown-header-icon">
-                <IconsDropdownArrow class="text-fred group-[.active]/dropdown:rotate-180 transition-transform duration-500 ease-linear"></IconsDropdownArrow>
+            <slot name="dropdown-header-icon" :isDropdownItemShow="isDropdownItemShow">
+                <IconsDropdownArrow class="text-fred transition-transform duration-500 ease-linear" :class="{'rotate-180':isDropdownItemShow}"></IconsDropdownArrow>
             </slot>  
         </button>
     </div>
-    <div ref="dropdownBody" class="dropdown-body flex-col group-[.active]/dropdown:h-auto h-0 overflow-hidden transition-[height] duration-500 ease-linear">
+    <div ref="dropdownBody" class="dropdown-body flex-col h-0 overflow-hidden transition-[height] duration-500 ease-linear" :class="{'h-auto':isDropdownItemShow}">
         <slot/>
     </div>     
 </div>
@@ -36,7 +36,7 @@
 
     /* анимация высоты */
 
-    let dropdownBody = ref(null)       
+   /*  let dropdownBody = ref(null)       
 
     watch(isDropdownItemShow, (newValue, oldValue) => {
         
@@ -45,7 +45,7 @@
         }
          dropdownBody.value.style.height = 0
                
-    })
+    }) */
 
 </script>
 

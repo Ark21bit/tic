@@ -52,16 +52,10 @@
 </style>
 
 <script setup>
-import { useGeneralConfigStore} from '@/stores/generalConfigStore'
-
 const generalConfigStore = useGeneralConfigStore()
 
-const route = useRoute() 
 const runtimeConfig = useRuntimeConfig()
-
-/* definePageMeta({
-    alias:"/about"
-}) */
+const locale = useI18n()
 
 /* модальные окна */
 
@@ -81,12 +75,12 @@ const openModal = ()=>{
     isShowModal.value = true;
 }
 
-/* запрос на полчукние данных с api */ 
+onUnmounted(()=>{
+    document.querySelector('body').style.overflowY = ""
+    document.querySelector('#__nuxt').style.paddingRight = ""
+})
 
-let locale = 'ru'
-if (route.params.locale) {
-    locale = route.params.locale
-}
+/* запрос на полчукние данных с api */ 
       
 const { data:mainInfo } = await useFetch(`${runtimeConfig.public.apiBase}/api/search/page`,{
     headers:{Locale:locale.value},

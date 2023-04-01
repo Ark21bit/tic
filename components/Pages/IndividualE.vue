@@ -1,7 +1,7 @@
 <template>
     <main class="grid-container contain-paint">
         
-        <SwiperOne class="col-[full]" :data="product.data.media_gallery.data"/>     
+        <SwiperOne class="col-[full]" :data="product.media_gallery.data"/>     
         <ExcursionCategories class="col-[full] grid-container border-b border-b-fline mb-10 max-lg:hidden"/>
         <div class="grid grid-cols-1 lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10 max-lg:mt-[30px] pb-5 lg:pb-[60px]">
             <div class="relative">
@@ -9,8 +9,7 @@
             </div>
             <div class="flex flex-col gap-[30px]">
                 <div class="text-sm text-fblack mb-2.5 max-lg:hidden">
-                    <span class="last:text-finactive after:content-['/'] last:after:content-['']">Экскурсии по Татарстану</span>                    
-                    <span class="last:text-finactive after:content-['/'] last:after:content-['']">Остров-град Свияжск</span>
+                    <NuxtLink class="last:text-finactive after:content-['/'] last:after:content-['']" v-for="item in product.info_breadcrumbs.data" :to="localePath(`/${item.url}`)">{{ item.lang_info.title }}</NuxtLink>
                 </div>
                 <div class="flex flex-col items-start gap-[30px] lg:pb-[30px]">                    
                      <h1 class="text-[1.5625rem] sm:text-[1.75rem] leading-[1.2] lg:text-4xl text-fblack  font-bold -mb-2.5">Вечерняя НеоПанорамы</h1>
@@ -20,7 +19,7 @@
                         <thead class="table-primary-thead">
                             <tr>
                                 <th class="table-primary-th">Участников в группе</th>
-                            <th class="table-primary-th">Стоимость на группу(рус. яз.)</th>
+                                <th class="table-primary-th">Стоимость на группу(рус. яз.)</th>
                             </tr>                           
                         </thead>
                         <tbody>
@@ -47,21 +46,21 @@
                 </div>                
                 <div class="lg:border-y border-y-fline lg:py-[30px] max-lg:hidden flex flex-col gap-[30px]">
                     <div >
-                        <h3 class="text-xl font-medium text-fblack mb-5">{{product.data.lang_info.title}}</h3>
-                        <p class="text-sm leading-[1.4] text-ftext3">{{product.data.lang_info.mini_description}}</p>
+                        <h3 class="text-xl font-medium text-fblack mb-5">{{product.lang_info.title}}</h3>
+                        <p class="text-sm leading-[1.4] text-ftext3">{{product.lang_info.mini_description}}</p>
                     </div>
                     <div > 
-                        <h3 class="text-xl font-medium text-fblack mb-5">{{product.data.lang_info.description}}</h3>
-                        <p class="text-sm leading-[1.4] text-ftext3">{{product.data.lang_info.text}}</p>
+                        <h3 class="text-xl font-medium text-fblack mb-5">{{product.lang_info.description}}</h3>
+                        <p class="text-sm leading-[1.4] text-ftext3">{{product.lang_info.text}}</p>
                     </div>
-                    <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
+                    <NuxtLink :to="localePath(`/`)" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
                 </div>            
                 <Reviews/>  
             </div>            
         </div>
         <div class="col-[full] grid-container pt-10 lg:pt-[60px] lg:border-t border-t-fline">
             <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">{{generalConfigStore.value.static_info.global_words.recommendations}}</h2>                    
-            <Recommendations :data="product.data.info_recommendations.data" /> 
+            <Recommendations :data="product.info_recommendations.data" /> 
         </div>
         <ClientOnly>
             <Teleport to="#teleported">
@@ -90,8 +89,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="group/table" v-for="additional_product in product.data.info_additional_products.data">
-                                        <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td"><NuxtLink :to="`/${additional_product.addition_info.slug}`">{{additional_product.addition_info.lang_info.title}}</NuxtLink></td>
+                                    <tr class="group/table" v-for="additional_product in product.info_additional_products.data">
+                                        <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td"><NuxtLink :to="localePath(`/${additional_product.addition_info.slug}`)">{{additional_product.addition_info.lang_info.title}}</NuxtLink></td>
                                         <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">{{additional_product.price}} ₽</td>
                                         <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
                                     </tr>                                                                            
@@ -124,28 +123,15 @@
 </template>
 
 <script setup>
-import { useGeneralConfigStore} from '@/stores/generalConfigStore'
-    
 const generalConfigStore = useGeneralConfigStore()
 
-const runtimeConfig = useRuntimeConfig()
-const route = useRoute()
-
-/* локализация страницы */
-
-let locale = 'ru'
-if (route.params.locale) {
-    locale = route.params.locale
-}
-
-/* получение прродукта из api */
-      
-const { data:product, error } = await useFetch(`${runtimeConfig.public.apiBase}/api/search/slugs`,{
-    headers:{Locale:locale.value},
-    query:{slug:'individualnaia-ekskursiia-vecernie-ogni-kazani'}
+const props = defineProps({            
+    product: { type:Object },
 })
 
-if(error.value) throw createError({statusCode:error.value.statusCode, statusMessage:error.value.statusMessage})
+const product = computed(()=>{
+    return props.product
+})
 
 /* модальные окна */
 
@@ -164,4 +150,9 @@ const openModal = ()=>{
     document.querySelector('#__nuxt').style.paddingRight = "17px"
     isShowModal.value = true;
 }
+
+onUnmounted(()=>{
+    document.querySelector('body').style.overflowY = ""
+    document.querySelector('#__nuxt').style.paddingRight = ""
+})
 </script>

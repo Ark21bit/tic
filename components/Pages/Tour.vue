@@ -1,7 +1,7 @@
 <template>
     <main class="grid-container contain-paint">
         
-        <SwiperOne class="col-[full]" /> 
+        <SwiperOne class="col-[full]" :data="tour.media_gallery.data"/>  
         <ExcursionCategories class="col-[full] grid-container border-b border-b-fline mb-10 max-lg:hidden"/>
         
         <div class="grid grid-cols-1 lg:grid-cols-[265px_calc(100%-305px)] gap-y-5 gap-x-10 max-lg:mt-[30px] pb-5 lg:pb-[60px]">
@@ -10,8 +10,7 @@
             </div>
             <div class="flex flex-col gap-[30px]">
                 <div class="text-sm text-fblack mb-2.5 max-lg:hidden">
-                    <span class="last:text-finactive after:content-['/'] last:after:content-['']">Экскурсии по Татарстану</span>                    
-                    <span class="last:text-finactive after:content-['/'] last:after:content-['']">Остров-град Свияжск</span>
+                    <NuxtLink class="last:text-finactive after:content-['/'] last:after:content-['']" v-for="item in tour.info_breadcrumbs.data" :to="localePath(`/${item.url}`)">{{ item.lang_info.title }}</NuxtLink>
                 </div>
                 <div class="flex flex-col items-start gap-[30px] lg:pb-[30px]">                    
                      <h1 class="text-[1.5625rem] sm:text-[1.75rem] leading-[1.2] lg:text-4xl text-fblack  font-bold -mb-2.5">Остров-град Свияжск</h1>
@@ -98,25 +97,25 @@
                                 </thead>
                                 <tbody>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink :to="localePath(`/`)" class="link">Название отеля</NuxtLink></td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['1_people_placement']">3999 ₽</td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['2_people_placement']">3999 ₽</td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.additional_people_placement">3999 ₽</td>
                                     </tr>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink :to="localePath(`/`)" class="link">Название отеля</NuxtLink></td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['1_people_placement']">3999 ₽</td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['2_people_placement']">3999 ₽</td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.additional_people_placement">3999 ₽</td>
                                     </tr>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink :to="localePath(`/`)" class="link">Название отеля</NuxtLink></td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['1_people_placement']">3999 ₽</td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['2_people_placement']">3999 ₽</td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.additional_people_placement">3999 ₽</td>
                                     </tr>
                                     <tr class="group/table">
-                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink to="/" class="link">Название отеля</NuxtLink></td>
+                                        <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.hotel"><NuxtLink :to="localePath(`/`)" class="link">Название отеля</NuxtLink></td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['1_people_placement']">3999 ₽</td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words['2_people_placement']">3999 ₽</td>
                                         <td class="table-primary-td" :data-label="generalConfigStore.value.static_info.global_words.additional_people_placement">3999 ₽</td>
@@ -143,33 +142,23 @@
                 </div>                
                 <div class="lg:border-y border-y-fline lg:py-[30px] max-lg:hidden flex flex-col gap-[30px]">
                     <div >
-                        <h3 class="text-xl font-medium text-fblack mb-5">Экскурсии в Булгар из Казани</h3>
-                        <p class="text-sm leading-[1.4] text-ftext3">
-                            Узнать одну из древних жемчужин Республики Татарстан можно на экскурсии в Булгар с выездом из Казани. Булгар (также Болгар) - это древний город, расположенный в Спасском районе Татарстана, в котором сохранилось множество древних построек и любопытных современных зданий. Экскурсии в Булгар популярны, прежде всего, потому, что это место, где впервые на территории России был принят ислам. Помимо этого Булгары славятся великолепными зданиями, пожалуй, самое известное из которых - Белая Мечеть - это здрание очень напоминает туристам индийский Тадж-Махал по архитектуре и окружению.
-                            <br><br>
-                            Экскурсия в Болгар: цена, программа
-                            <br><br>
-                            Классическая экскурсия в Болгар включает в себя посещение древнего городища (столицы Волжской Булгарии), включенного в список объектов культурного наследия ЮНЕСКО. В рамках экскурсии в Болгар туристы увидят великую русскую реку Каму в одном из самых широких ее мест, знаковые памятники архитектуры 13-14 веков нашей эры, мавзолеи 15 века, современное здание - Белую мечеть, и самый необычный памятник - здание, олицетворяющее место принятия ислама на территории современной России.
-                        </p>
+                        <h3 class="text-xl font-medium text-fblack mb-5">{{tour.lang_info.title}}</h3>
+                        <p class="text-sm leading-[1.4] text-ftext3">{{tour.lang_info.mini_description}}</p>
                     </div>
                     <div > 
-                        <h3 class="text-xl font-medium text-fblack mb-5">Древний город Болгар: экскурсия с выездом из Казани</h3>
-                        <p class="text-sm leading-[1.4] text-ftext3">
-                            Кроме упомянутых объектов, справедливо включенных ЮНЕСКО в список материального культурного наследия человечества, Болгар способен удивить туристов любопытным объектом, включенным в список рекордов Гиннеса. Речь о самом большом в мире печатном коране. Он хранится в здании памятного знака, а его вес насчитывает более 500 кг. Священная книга украшена драгоценными и полудрагоценными камнями и золотом, а чтобы перелистнуть ее страницы требуется помощь нескольких человек.
-                            <br><br>
-                            Ещё один любопытный пункт экскурсии в город Болгар - посещение музея лекаря, в котором экскурсанты познакомятся с технологиями средневекового врачевания. Немногие знают, что государство Волжская Булгария до прихода татаро-монголов уже была очень развитым государством с четкой системой государственного управления, развитой медициной и собственными традициями строительства. Дошедшие до наших дней здания Болгара поражают экскурсантов продуманностью и масштабом.
-                        </p>
+                        <h3 class="text-xl font-medium text-fblack mb-5">{{tour.lang_info.description}}</h3>
+                        <p class="text-sm leading-[1.4] text-ftext3">{{tour.lang_info.text}}</p>
                     </div>
-                    <NuxtLink to="/" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
+                    <NuxtLink :to="localePath(`/`)" class="link font-medium text-sm max-lg:hidden">{{generalConfigStore.value.static_info.global_words.show_more}}</NuxtLink>
                 </div>          
                 <Reviews/>
             </div>            
         </div>
         <div class="col-[full] grid-container pt-10 lg:pt-[60px] lg:border-t border-t-fline">
             <h2 class="text-2xl lg:text-3xl font-bold  text-fblack mb-[30px]">{{generalConfigStore.value.static_info.global_words.recommendations}}</h2>                    
-            <Recommendations class="wrapper col-[full]" /> 
+            <!-- <Recommendations class="wrapper col-[full]" />  -->
+            <Recommendations :data="tour.info_recommendations.data"/> 
         </div>
-        <Button @click="router.push({name:'asd___ru', path:'/test'})">asdasd</Button>
     </main>
     <ClientOnly>
         <Teleport to="#teleported">
@@ -247,6 +236,14 @@
 <script setup>
 const generalConfigStore = useGeneralConfigStore()
 
+const props = defineProps({            
+    tour: { type:Object },
+})
+
+const tour = computed(()=>{
+    return props.tour
+})
+
 /* модальные окна */
 
 let isShowModal = ref(false)
@@ -264,4 +261,9 @@ const openModal = ()=>{
     document.querySelector('#__nuxt').style.paddingRight = "17px"
     isShowModal.value = true;
 }
+
+onUnmounted(()=>{
+    document.querySelector('body').style.overflowY = ""
+    document.querySelector('#__nuxt').style.paddingRight = ""
+})
 </script>
