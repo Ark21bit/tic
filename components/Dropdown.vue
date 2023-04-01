@@ -1,5 +1,5 @@
 <template>
-<div class="dropdown-item" :class="activeClass" ref="dropdownItem">
+<div class="dropdown-item" :class="activeClass" ref="dropdownItem" v-auto-animate="{duration:500}">
     <div class="dropdown-header  ">
         <button type="button" @click="isDropdownItemShow = !isDropdownItemShow" class="flex items-center text-left justify-between w-full text-fblack" :class="{'text-fred':isDropdownItemShow}">
             
@@ -11,15 +11,14 @@
             </slot>  
         </button>
     </div>
-    <div ref="dropdownBody" class="dropdown-body flex-col h-0 overflow-hidden transition-[height] duration-500 ease-linear" :class="{'h-auto':isDropdownItemShow}">
+    <div ref="dropdownBody" class="dropdown-body flex-col" v-if="isDropdownItemShow" >
         <slot/>
     </div>     
 </div>
 
 </template>
 
-<script setup>   
-
+<script setup>      
     let isDropdownItemShow = ref( false )
 
     const props = defineProps(
@@ -33,19 +32,6 @@
         }
         return ''
     })
-
-    /* анимация высоты */
-
-   /*  let dropdownBody = ref(null)       
-
-    watch(isDropdownItemShow, (newValue, oldValue) => {
-        
-        if (newValue) {                                  
-            return dropdownBody.value.style.height = dropdownBody.value.scrollHeight + 'px'
-        }
-         dropdownBody.value.style.height = 0
-               
-    }) */
 
 </script>
 

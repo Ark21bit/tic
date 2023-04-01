@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@fawmi/vue-google-maps": "^0.9.72",
+    "@formkit/auto-animate": "^1.0.0-beta.6",
     "@pinia/nuxt": "^0.4.7",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@vuepic/vue-datepicker": "^4.2.1",
