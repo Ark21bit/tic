@@ -1,10 +1,11 @@
 <template>  
-    <label class="grid gap-x-5 gap-y-[5px] text-fblack group" :class="[{ 'error':errorTitle }, labelDirectionClass, labelClass]">      
+    <label class="grid gap-x-5 gap-y-[5px] items-start text-fblack group" :class="[{ 'error':errors.length > 0 }, labelDirectionClass, labelClass]">      
         <slot/>                
       
       <input v-bind="$attrs" v-model="value" class="rounded-[5px] px-[15px] py-3 placeholder:text-[#90A4B8] text-sm group-[.error]:bg-[#EDF1F4] group-[.error]:border-[#E12525] group-[.error]:border-[1.5px] text-fblack" :class="inputClass">  
+      
       <slot name="error">
-        <span v-if="errorTitle" :class="errorClass" class="text-fred">{{ errorTitle }}</span>
+        <span v-if="errors.length > 0" v-for="error in errors" :class="errorClass" class="text-fred">{{ error  }}</span>
       </slot>
     </label>      
   </template>
@@ -18,7 +19,7 @@ export default {
 <script setup>
 const props = defineProps({      
         direction: { type:String, default:'vertical' },
-        errorTitle : { type:String },
+        errors : { type:Array,default:[] },
         modelValue: { default:null },
         decoration:{ type:String, default:'default'},
         labelClass: { type:String, default:null },

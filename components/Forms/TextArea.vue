@@ -1,11 +1,11 @@
 
 <template>  
-    <label class="grid gap-x-5 gap-y-[5px] text-fblack group" :class="[{ 'error':ErrorTitle }, labelDirectionClass, labelClass]">      
+    <label class="grid gap-x-5 gap-y-[5px] text-fblack group" :class="[{ 'error':errors.length> 0 }, labelDirectionClass, labelClass]">      
         <slot/>                
       
       <textarea v-bind="$attrs" v-model="value" class="resize-none rounded-[5px] px-[15px] py-3 placeholder:text-[#90A4B8] text-sm group-[.error]:bg-[#EDF1F4] group-[.error]:border-[#E12525] group-[.error]:border-[1.5px] text-fblack" :class="inputClass"/>  
       <slot name="error">
-        <span v-if="ErrorTitle" :class="errorClass" class="text-fred">{{ ErrorTitle }}</span>
+        <span v-if="errors.length> 0" v-for="error in errors" :class="errorClass" class="text-fred">{{ error }}</span>
       </slot>
     </label>      
   </template>
@@ -20,7 +20,7 @@ export default {
 const props = defineProps({            
   decoration: { type: String, default: "default" },
   direction: { type:String, default:'vertical' },
-  ErrorTitle : { type:String },
+  errors : { type:Array, default:[] },
   modelValue: { default:null },
   decoration:{ type:String, default:'default'},
   labelClass: { type:String, default:null },

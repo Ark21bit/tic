@@ -12,14 +12,14 @@
             <Teleport to="#teleported">
                 <Modal @close="closeModal" modalMaxSizeClass="max-w-[714px]" v-show="isShowModal">
                     <h2 class="text-[1.5625rem] lg:text-3xl font-bold text-fblack max-lg:mt-[37px]">{{generalConfigStore.value.static_info.global_words.send_review}}</h2>                
-                    <form class="flex flex-col gap-5 mt-5 text-fblack">
-                        <p class="flex gap-[15px] max-sm:mb-2.5 text-[#32373D] font-bold">{{generalConfigStore.value.static_info.global_words.you_mark}} <Rating v-model="rating" :is-interactive="true"/></p>
+                    <form @submit.prevent="storeReview" class="flex flex-col gap-5 mt-5 text-fblack">
+                        <p class="flex gap-[15px] max-sm:mb-2.5 text-[#32373D] font-bold">{{generalConfigStore.value.static_info.global_words.you_mark}} <Rating v-model="forms.rating" :is-interactive="true"/></p>
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-y-[25px]">
-                            <FormsInput decoration="border" type="text">{{generalConfigStore.value.static_info.global_words.you_mark}}</FormsInput>                                                                             
-                            <FormsInput decoration="border" type="email">{{generalConfigStore.value.static_info.global_words.email_text}}</FormsInput> 
+                            <FormsInput :errors="getErrorsMessage(v$.name.$errors)" v-model="forms.name" decoration="border" type="text">{{generalConfigStore.value.static_info.global_words.fio}}</FormsInput>                                                                             
+                            <FormsInput :errors="getErrorsMessage(v$.email.$errors)" v-model="forms.email" decoration="border" type="email">{{generalConfigStore.value.static_info.global_words.email_text}}</FormsInput> 
                             <FormsSelect decoration="border">{{generalConfigStore.value.static_info.global_words.excursion}}</FormsSelect>                                                                      
                             <FormsDatepicker decoration="border" >{{generalConfigStore.value.static_info.global_words.date}}</FormsDatepicker>                                                                      
-                            <FormsTextArea decoration="border" class="h-[85px]" labelClass="col-[full]">Отзыв</FormsTextArea>       
+                            <FormsTextArea :errors="getErrorsMessage(v$.message.$errors)" v-model="forms.message" decoration="border" class="h-[85px]" labelClass="col-[full]">Отзыв</FormsTextArea>       
                         </div>
                         <Button size="L" class="lg:w-fit min-w-[150px] max-sm:mt-5">{{generalConfigStore.value.static_info.global_words.send}}</Button>                    
                     </form>
@@ -30,10 +30,45 @@
 </template>
 
 <script setup>  
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, helpers  } from '@vuelidate/validators'
 
 const generalConfigStore = useGeneralConfigStore()
 
-let rating = ref()
+let forms = ref({ rating:null, product_id:null, name:null, email:null, message:null })
+
+const storeReview = async()=>{
+    const result = await v$.value.$validate()
+    if (!result) {
+        return
+    }
+    const { data, error } = await useFetch(`${runtimeConfig.public.apiBase}/api/reviews/store`,{
+        body:{
+            product_id:forms.value.client_email,
+            rating:forms.value.client_fio,
+            name:forms.value.client_telephone,
+            email:forms.value.comment_client,
+            message:forms.value.sale_coupon_id,           
+        },
+        method:'Post',
+    })
+}
+
+const rules = {    
+    /* product_id:{required:helpers.withMessage('обязательное поле', required)}, */
+    rating:{required:helpers.withMessage('обязательное поле', required)}, 
+    name:{required:helpers.withMessage('обязательное поле', required)},     
+    email:{required:helpers.withMessage('обязательное поле', required), email},     
+    message:{required:helpers.withMessage('обязательное поле', required)},     
+}
+
+const v$ = useVuelidate(rules, forms,{ $lazy: true })
+
+const getErrorsMessage =(errors)=>{
+    return errors.map(a=>{
+       return a.$message
+    })
+}
 
 /* модальные окна */
 

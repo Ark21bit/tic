@@ -89,87 +89,7 @@
                     <ClientOnly>
                         <Teleport to="#teleported">
                             <Modal @close="closeModal" v-show="isShowModal">
-                                <h2 class="text-[1.5625rem] lg:text-3xl font-bold text-fblack max-lg:mt-[37px]">Вечерняя Казань</h2>
-                                <form class="flex flex-col lg:gap-10 gap-[30px] mt-[30px] lg:mt-[50px] text-fblack">
-                                    <div>
-                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.select_datetime}}</p>
-                                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                                            <FormsDatepicker decoration="border" :allowedDates="availableSelectDate" v-model="SelectTimeatableDate">{{generalConfigStore.value.static_info.global_words.date}}</FormsDatepicker>
-                                            <FormsSelect decoration="border" v-model="selectTimeatableTime" :optionsTitle="timeatableTime.title" :optionsValue="timeatableTime.value">Время</FormsSelect>                                            
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-wrap items-baseline">
-                                        <p class="leading-[1.2] text-[1.0625rem] mb-5 lg:mb-[25px]">Выберите категорию <span v-if="priceTimeatables.length > 0">(осталось {{ countPeople - selectСountPeople }} билетов!)</span></p>
-                                        <div class="flex gap-[30px] max-sm:w-full font-medium items-center max-lg:mt-5 lg:ml-auto max-lg:order-1">
-                                            <p class="text-sm font-medium max-lg:basis-[213px]">Выбрано <span class="text-fred">{{ selectСountPeople }} билетов</span></p>
-                                            <p class="text-sm font-medium text-fred shrink-0 ml-auto">{{sumPriceTicket.toLocaleString()}} ₽ </p>
-                                        </div>
-                                        <table class="table-primary w-full" v-if="priceTimeatables.length > 0">
-                                            <thead class="table-primary-thead">
-                                                <tr class="group/table">
-                                                    <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.type_ticket}}</th>
-                                                    <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.price}}</th>
-                                                    <th class="table-primary-th text-right">{{generalConfigStore.value.static_info.global_words.count}}</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="group/table" v-for="priceTimetable in priceTimeatables">
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td">{{getTitleTypeTicket(priceTimetable.type_ticket_id)}}</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">{{priceTimetable.price}} ₽</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter v-model="priceTimetable.count" class="float-right"/></td>
-                                                </tr>                                                
-                                            </tbody>
-                                        </table>                                      
-                                    </div>
-                                    <div>                                    
-                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.sale_coupon}}</p>                                        
-                                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                                            <FormsInput decoration="border" type="text"></FormsInput>                                        
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-wrap items-baseline">
-                                        <p class="leading-[1.2] text-[1.0625rem] mb-5 lg:mb-[25px]">{{generalConfigStore.value.static_info.global_words.additional_service}}</p>
-                                        <div class="flex gap-[30px] max-sm:w-full font-medium items-center max-lg:mt-5 lg:ml-auto max-lg:order-1">
-                                            <p class="text-sm font-medium max-lg:basis-[213px]">Выбрано <span class="text-fred">4 доп. услуги</span></p>
-                                            <p class="text-sm font-medium text-fred shrink-0 ml-auto">200 ₽</p> 
-                                        </div>
-                                        <table class="table-primary">
-                                            <thead class="table-primary-thead">
-                                                <tr class="group/table">
-                                                    <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.type_ticket}}</th>
-                                                    <th class="table-primary-th">{{generalConfigStore.value.static_info.global_words.price}}</th>
-                                                    <th class="table-primary-th text-right">{{generalConfigStore.value.static_info.global_words.count}}</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="group/table" v-for="additional_product in product.data.info_additional_products.data">
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.type_ticket" class="table-primary-td"><NuxtLink :to="localePath(`/${additional_product.addition_info.slug}`)">{{additional_product.addition_info.lang_info.title}}</NuxtLink></td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.price" class="table-primary-td">{{additional_product.price}} ₽</td>
-                                                    <td :data-label="generalConfigStore.value.static_info.global_words.count" class="table-primary-td"><FormsCounter class="float-right"/></td>
-                                                </tr>                                                                                     
-                                            </tbody>                                        
-                                        </table>
-                                    </div>
-                                    <div>                                    
-                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.comment_for_order}}</p>                                        
-                                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                                            <FormsInput decoration="border" type="text" labelClass="col-[full]"></FormsInput>                                        
-                                        </div>
-                                    </div>
-                                    <div>                                    
-                                        <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.person_data_contract}}</p>                                        
-                                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-y-[25px]">
-                                            <FormsInput decoration="border" type="text">{{generalConfigStore.value.static_info.global_words.fio}}</FormsInput>
-                                            <FormsSelect decoration="border" :options-value="product.data.start_place_types" :options-title="getTitlePlacesStart(product.data.start_place_types)">{{generalConfigStore.value.static_info.global_words.starting_point}}</FormsSelect>                                        
-                                            <FormsInput decoration="border" type="tel">Номер телефона*</FormsInput>   
-                                            <FormsSelect decoration="border" :options-value="product.data.payment_types" v-model="test" :options-title="getTitlePaymentTypes(product.data.payment_types)">{{generalConfigStore.value.static_info.global_words.type_payment}}</FormsSelect>                                      
-                                            <FormsInput decoration="border" type="email">{{generalConfigStore.value.static_info.global_words.email_text}}</FormsInput>        
-                                            <FormsCheckbox class="col-[full]">{{generalConfigStore.value.static_info.global_words.order_confirm_procedure_provision_excursion_services}}</FormsCheckbox>                               
-                                            <FormsCheckbox class="col-[full]">{{generalConfigStore.value.static_info.global_words.order_fz_confirm_text}}</FormsCheckbox>
-                                        </div>
-                                    </div>
-                                    <Button size="L" class="lg:w-fit">Забронировать экскурсию</Button>
-                                </form>
+                                <RegularEModal :product="product"/>
                             </Modal>
                         </Teleport>
                     </ClientOnly>
@@ -195,97 +115,24 @@
     </main>
 </template>
 
+<script>
+
+</script>
+
 <script setup>
-
-
 const generalConfigStore = useGeneralConfigStore()
-
-const runtimeConfig = useRuntimeConfig()
-const locale = useI18n()
-
-let test = ref()
 
 const props = defineProps({            
     product: { type:Object },
 })
 
 const product = computed(()=>{
-    return props.product
-})
-
-/* блок timetable */
-
-let priceTimeatables = ref([])
-let SelectTimeatableDate = ref(null)
-let selectTimeatableTime = ref(null)
-
-let availableSelectDate = computed(()=>{
-    const uniqueDate = new Set()
-    for (const timetable of product.value.data.info_timetables.data){        
-        uniqueDate.add(timetable.start_event_at)
-    }
-    return [...uniqueDate]
-})
-
-const countPeople = computed(()=>{
-  const index = timeatableTime.value.value.findIndex(item=>item == selectTimeatableTime.value) 
-  if(index != -1){
-    return timeatableTime.value.countPeople[index]
-  }
-  return null
-})
-
-const selectСountPeople = computed(()=>{
-    if (priceTimeatables.value.length > 0) {
-        let S = 0        
-        priceTimeatables.value.forEach(item=>{
-            S+=item.count
-        }) 
-        return S       
-    }
-    return 0
-})
-
-const sumPriceTicket = computed(()=>{
-    if (priceTimeatables.value.length > 0) {
-        let S = 0        
-        priceTimeatables.value.forEach(item=>{
-            S+=item.count *item.price
-        }) 
-        return S       
-    }
-    return 0
-})
-
-const timeatableTime = computed(()=>{
-    let object = {title:[], value:[], countPeople:[]}
-   
-    for (const timetable of product.value.data.info_timetables.data){
-        if (new Intl.DateTimeFormat('ru-RU').format(SelectTimeatableDate.value) == timetable.start_event_at_format_day) {           
-            object.title.push(timetable.start_event_at_format_time)
-            object.value.push(timetable.id)
-            object.countPeople.push(timetable.max_count_people)            
-        }        
-    }
-    if (object.value.length > 0) {        
-        selectTimeatableTime.value = object.value[0]
-    }else{
-        selectTimeatableTime.value = null
-    }
+    /* props.product.data.info_additional_products.data.forEach((element, index)  => {
+        forms.value.additional[index].id = element.addition_info.id
+        forms.value.additional[index].price = element.price
+    });    */
     
-    return object
-})
-
-watch(selectTimeatableTime, async ()=>{
-    const { data, error } = await useFetch(`${runtimeConfig.public.apiBase}/api/products/${selectTimeatableTime.value}/price-timetable`,{
-        headers:{Locale:locale.value},   
-    })    
-    priceTimeatables.value = []
-    if (!error.value) {
-        data.value.data.forEach(item => {
-            priceTimeatables.value.push({type_ticket_id:item.type_ticket_id, price:item.price, count:0})
-        })
-    }    
+    return props.product
 })
 
 /* модальные окна */
@@ -310,45 +157,9 @@ onUnmounted(()=>{
     document.querySelector('#__nuxt').style.paddingRight = ""
 })
 
-/* функции для получения названий по id */
-
-const getTitlePlacesStart = (placesStart)=>{
-    if (Array.isArray(placesStart)) {
-        return placesStart.map(a=>{
-            for(const item of generalConfigStore.value.orders.places_start){
-                if(item.id == a) return item.title
-            }       
-        })
-    }    
-    for(const item of generalConfigStore.value.orders.places_start){
-        if(item.id == placesStart) return [...item.title]
-    }       
-    
-}
-
-const getTitlePaymentTypes = (paymentTypes)=>{
-    if (Array.isArray(paymentTypes)) {
-        return paymentTypes.map(a=>{
-            for(const item of generalConfigStore.value.orders.payment_types){
-                if(item.id == a) return item.title
-            }       
-        })
-    }
-    for(const item of generalConfigStore.value.orders.payment_types){
-        if(item.id == paymentTypes) return [...item.title]
-    }  
-}
-
 const getTitleCategoriesProduct = ( productCategories )=>{    
     for(const item of generalConfigStore.value.products.categories){
         if(item.id == productCategories) return item.title
     }       
 }
-
-const getTitleTypeTicket = ( typeTicket )=>{    
-    for(const item of generalConfigStore.value.orders.ticket_types){
-        if(item.id == typeTicket) return item.title
-    }       
-}
-
 </script>

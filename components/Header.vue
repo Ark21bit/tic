@@ -30,7 +30,7 @@
                     <template #dropdown-header-content>
                         {{ link.title }}
                     </template>
-                    <div class="flex mt-5 flex-col text-fblack gap-5">
+                    <div class="flex pt-5 flex-col text-fblack gap-5">
                         <NuxtLink :to="localePath(`${item.slug}`)" v-for="item in link.children">{{ item.title }}</NuxtLink>
                     </div>
                 </Dropdown>

@@ -9,7 +9,7 @@
             </button></div>
         <div class="flex-col group-[.menu-active]/side:flex lg:flex hidden border-t border-t-fline">
             <div class="flex flex-col gap-5 py-5 ">                
-                <SideBarItem v-for="(item, key) in SideBarItems" class="px-5" :key="key" :link="item"/>                
+                <SideBarItem v-for="item in SideBarItems" class="px-5" :link="item"/>                
             </div>            
         </div>
     </div>

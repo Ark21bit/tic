@@ -10,10 +10,10 @@
                 <IconsDropdownArrow class="text-fred transition-transform duration-500 ease-linear" :class="{'rotate-180':isDropdownItemShow}"></IconsDropdownArrow>
             </slot>  
         </button>
-    </div>
+    </div>   
     <div ref="dropdownBody" class="dropdown-body flex-col" v-if="isDropdownItemShow" >
         <slot/>
-    </div>     
+    </div>  
 </div>
 
 </template>

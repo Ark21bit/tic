@@ -1,5 +1,5 @@
 <template>  
-    <label class="grid gap-x-5 gap-y-[5px] text-fblack group" :class="[{ 'error':errorTitle }, labelDirectionClass, labelClass]">      
+    <label class="grid items-start gap-x-5 gap-y-[5px] text-fblack group" :class="[{ 'error':errors.length> 0 }, labelDirectionClass, labelClass]">      
         <slot/>                
       
         <div v-bind="$attrs" @click="isOptionsShow = !isOptionsShow"  :class="[{'active':isOptionsShow}, selectClass]" class="relative group cursor-pointer rounded-[5px] px-[15px] py-3 placeholder:text-[#90A4B8] text-sm group-[.error]:bg-[#EDF1F4] group-[.error]:border-[#E12525] group-[.error]:border-[1.5px] text-fblack">
@@ -12,7 +12,7 @@
             </div>
         </div>  
       <slot name="error">
-        <span v-if="errorTitle" :class="errorClass" class="text-fred">{{ errorTitle }}</span>
+        <span v-if="errors.length> 0" v-for="error in errors" :class="errorClass" class="text-fred">{{ error }}</span>
       </slot>
     </label>      
   </template>
@@ -28,7 +28,7 @@ export default {
 const props = defineProps({            
     decoration: { type: String, default: "default" },
     direction: { type:String, default:'vertical' },
-    errorTitle : { type:String },
+    errors : { type:Array, default:[] },
     modelValue: { default:null },
     labelClass: { type:String, default:null },
     optionsTitle:{type:Array, default:[]},

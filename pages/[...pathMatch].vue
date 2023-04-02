@@ -7,6 +7,7 @@
     </template>    
     <PagesHotel v-else-if="data.type == 'hotel'" :hotel="data.data" />
     <PagesCatalog v-else-if="data.type == 'page'" :catalogItems="data.data.info_products.data"/> 
+    <PagesCatalog v-else-if="data.type == 'timetable'" :catalogItems="data.data"/> 
 </template>
 
 <script setup>
