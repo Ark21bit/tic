@@ -59,7 +59,6 @@
                     </tr>                                                                                     
                 </tbody>                                        
             </table>
-            {{ forms.additional }}
         </div>
         <div>                                    
             <p class="mb-5 font-medium leading-[1.2] text-[1.0625rem]">{{generalConfigStore.value.static_info.global_words.comment_for_order}}</p>                                        
